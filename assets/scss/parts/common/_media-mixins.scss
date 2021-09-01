@@ -1,0 +1,128 @@
+$break-xs: (
+  max: 767px
+);
+$break-sm: (
+  max: 991px
+);
+$break-md: (
+  max: 1199px
+);
+$break-lg: (
+  max: 1599px
+);
+$break-xl: (
+  min: 1600px
+);
+
+$break-sm-down: (
+  max: map-get($break-sm, max)
+);
+
+$break-sm-only-landscape-only: (
+  min: map-get($break-xs, max) + 1,
+  max: map-get($break-sm, max),
+  orientation: "landscape"
+);
+
+$break-md-only-landscape-only: (
+  min: map-get($break-sm, max) + 1,
+  max: 1366px,
+  orientation: "landscape"
+);
+
+$break-md-down: (
+  max: map-get($break-md, max)
+);
+
+$break-lg-down: (
+  max: map-get($break-lg, max)
+);
+$break-xl-only: (
+  min: map-get($break-xl, min)
+);
+
+
+@mixin breakpoint($map) {
+  $query: "";
+  @if map-has-key($map, min) {
+    $query: append($query, "(min-width: #{map-get($map, min)})");
+  }
+  @if map-has-key($map, min) and map-has-key($map, max) {
+    $query: append($query, "and");
+  }
+  @if map-has-key($map, max) {
+    $query: append($query, "(max-width: #{map-get($map, max)})");
+  }
+  @if map-has-key($map, orientation) {
+    $query: append($query, "and");
+  }
+  @if map-has-key($map, max) {
+    $query: append($query, "(orientation: #{map-get($map, orientation)})");
+  }
+  @media screen and #{$query} {
+    @content;
+  }
+}
+
+/**
+* A series of convenience mixing for a short-hand use of the breakpoint() mixin
+*/
+@mixin for-mobile {
+  @include breakpoint($break-xs) {
+    @content;
+  }
+}
+
+@mixin for-tablet {
+  @include breakpoint($break-sm-down) {
+    @content;
+  }
+}
+
+@mixin for-tablet-landscape-only {
+  @include breakpoint($break-sm-only-landscape-only) {
+    @content;
+  }
+}
+
+@mixin for-large-tablet-landscape-only {
+  @include breakpoint($break-md-only-landscape-only) {
+    @content;
+  }
+}
+
+@mixin for-small-desktop-down {
+  @include breakpoint($break-md-down) {
+    @content;
+  }
+}
+
+@mixin for-small-desktop-only {
+  @include breakpoint($break-md) {
+    @content;
+  }
+}
+
+@mixin for-desktop {
+  @include breakpoint($break-lg) {
+    @content;
+  }
+}
+
+@mixin for-desktop-only {
+  @include breakpoint($break-lg-down) {
+    @content;
+  }
+}
+
+@mixin for-big-desktop {
+  @include breakpoint($break-xl) {
+    @content;
+  }
+}
+
+@mixin for-big-desktop-only {
+  @include breakpoint($break-xl-only) {
+    @content;
+  }
+}

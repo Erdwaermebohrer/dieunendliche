@@ -1,0 +1,12 @@
+sw.*
+/node_modules
+# Local Netlify folder
+.netlify
+
+# nuxt.js build output
+.nuxt
+
+# dist output
+dist
+dist/.
+
