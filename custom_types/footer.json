@@ -1,0 +1,42 @@
+{
+  "Main" : {
+    "title" : {
+      "type" : "StructuredText",
+      "config" : {
+        "single" : "heading1,heading2,heading3,heading4,heading5,heading6",
+        "label" : "Title"
+      }
+    },
+    "logo" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "Logo"
+      }
+    },
+    "navigation" : {
+      "type" : "Group",
+      "config" : {
+        "fields" : {
+          "navigation_title" : {
+            "type" : "StructuredText",
+            "config" : {
+              "single" : "heading1,heading2,heading3,heading4,heading5,heading6",
+              "label" : "Navigation Title"
+            }
+          },
+          "page" : {
+            "type" : "Link",
+            "config" : {
+              "allowTargetBlank" : true,
+              "label" : "Page",
+              "select" : null
+            }
+          }
+        },
+        "label" : "Navigation"
+      }
+    }
+  }
+}
