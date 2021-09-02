@@ -1,22 +1,28 @@
 <template>
-  <div class="page page__home">
-    <h1>Home Page</h1>
-    {{ page }}
+  <div :class="'page page__' + uid">
+    <h1>{{ uid }} Page</h1>
+    <slice-wrapper :slices="slices" />
   </div>
 </template>
 
 <script>
+import SliceWrapper from '../components/prismic/SlicesWrapper.vue';
+
 export default {
+  components: {
+    "slice-wrapper": SliceWrapper
+  },
   data() {
     return {
-      page: []
+      slices: [],
+      uid: 'homepage'
     }
   },
   async asyncData({ $prismic, error }) {
     try {
-      const result = await $prismic.api.getSingle('homepage');
+      const result = await $prismic.api.getByUID('page', 'homepage')
       return {
-        page: result.data
+        slices: result.data.body
       };
     } catch (e) {
       error({ statusCode: 404, message: "Page not found" });
