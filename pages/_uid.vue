@@ -1,22 +1,29 @@
 <template>
-  <div class="page page__internal">
-    <h1>Internal Page</h1>
-    {{ page }}
+  <div :class="'page page__' + uid">
+    <h1>{{ uid }} Page</h1>
+    <slice-wrapper :slices="slices" />
   </div>
 </template>
 
 <script>
+import SliceWrapper from '../components/prismic/SlicesWrapper.vue';
+
 export default {
+  components: {
+    "slice-wrapper": SliceWrapper
+  },
   data() {
     return {
-      page: []
+      slices: [],
+      uid: 'internal'
     }
   },
-  async asyncData({ app, $prismic, params, error, store }) {
+  async asyncData({ $prismic, params, error }) {
     try {
       const result = await $prismic.api.getByUID('page', params.uid)
       return {
-        page: result.data
+        slices: result.data.body,
+        uid: params.uid
       };
     } catch (e) {
       error({ statusCode: 404, message: "Page not found" });
