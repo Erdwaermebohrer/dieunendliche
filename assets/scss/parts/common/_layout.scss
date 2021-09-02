@@ -7,9 +7,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  font-family: $font-primary;
 }
 
 * {
@@ -18,4 +16,84 @@ body {
 
 body {
   font-family: $font-primary;
+}
+
+h1 {
+  font-size: 4.063em;
+  line-height: 82.42px;
+
+  @include for-tablet {
+  }
+}
+
+h2 {
+  font-size: 2.125em;
+  line-height: 43.11px;
+
+  @include for-tablet {
+  }
+}
+
+h3 {
+  font-size: 1.5em;
+  line-height: 30.43px;
+
+  @include for-tablet {
+  }
+}
+
+a {
+  font-size: 0.875em;
+  line-height: 17.75px;
+
+  @include for-tablet {
+  }
+}
+
+p {
+  font-size: 0.875em;
+  line-height: 17.75px;
+
+  @include for-tablet {
+  }
+}
+
+span {
+  font-size: 0.875em;
+  line-height: 17.75px;
+
+  @include for-tablet {
+  }
+}
+
+ul > li {
+  font-size: 2.125em;
+  font-weight: 600;
+  line-height: 43px;
+
+  @include for-tablet {
+  }
+}
+
+input {
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 15.22px;
+
+  @include for-tablet {
+  }
+}
+
+img {
+  object-fit: cover;
+
+  @include for-tablet {
+  }
+}
+
+.container {
+  width: 100%;
+
+  @include for-tablet {
+  }
 }

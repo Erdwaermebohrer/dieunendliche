@@ -1,6 +1,6 @@
 <template>
-  <div class="page page__home">
-    <h1>Home Page</h1>
+  <div class="page page__internal">
+    <h1>Internal Page</h1>
     {{ page }}
   </div>
 </template>
@@ -12,9 +12,9 @@ export default {
       page: []
     }
   },
-  async asyncData({ $prismic, error }) {
+  async asyncData({ app, $prismic, params, error, store }) {
     try {
-      const result = await $prismic.api.getSingle('homepage');
+      const result = await $prismic.api.getByUID('page', params.uid)
       return {
         page: result.data
       };

@@ -1,6 +1,6 @@
 <template>
-  <div class="page page__home">
-    <h1>Home Page</h1>
+  <div class="page page__about">
+    <h1>About Page</h1>
     {{ page }}
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   },
   async asyncData({ $prismic, error }) {
     try {
-      const result = await $prismic.api.getSingle('homepage');
+      const result = await $prismic.api.getSingle('about');
       return {
         page: result.data
       };

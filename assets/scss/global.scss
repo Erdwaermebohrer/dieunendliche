@@ -4,10 +4,16 @@
 */
 
 //common
+@import './parts/common/variables';
 @import './parts/common/fonts';
 @import './parts/common/colors';
 @import './parts/common/media-mixins';
 @import './parts/common/layout';
+@import './parts/common/page';
 
 //pages
 @import './parts/pages/home/home-page';
+@import './parts/pages/about/about-page';
+@import './parts/pages/kunden/kunden-page';
+@import './parts/pages/partners/partners-page';
+@import './parts/pages/internal/internal-page';
