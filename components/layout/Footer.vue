@@ -14,6 +14,7 @@
     </div>
     <div class="footer__wrapper--content">
       <div class="title" v-text="$prismic.asText(inputData.title)" />
+      <img class="logo" :src="inputData.logo.url" />
     </div>
   </div>
 </template>
