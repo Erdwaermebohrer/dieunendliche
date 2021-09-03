@@ -32,39 +32,13 @@ export default function (doc,hash) {
     return `${locale}/${doc.uid}${theHash}`
   }
 
-  if (doc.type === 'usecases') {
-    if(lang == 'en'){
-      return `${locale}/usecases/${doc.uid}${theHash}`
-    } else{
-      return `/loesungen/${doc.uid}${theHash}`
-    }
-    
-  }
-
   if (doc.type === 'top_menu') {
     return `${locale}/`
   }
 
-  if (doc.type === 'blog') {
-    return `${locale}/blog${theHash}`
-  }
-
-  if (doc.type === 'posts') {
-    return `${locale}/blog/${doc.uid}${theHash}`
-  }
-
-  if (doc.type === 'post_category') {
-    var newID = encodeURIComponent(doc.uid).replace('%20','-');
-
-    return `${locale}/blog/category/${newID}${theHash}`
-  }
-
   if (doc.type === 'web') {
-
     return doc.uid
   }
-
-  
 
   return '/not-found'
 }

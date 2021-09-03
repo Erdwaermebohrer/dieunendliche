@@ -1,0 +1,17 @@
+[{
+  "id": "page",
+  "name": "Page",
+  "repeatable": true,
+  "value": "page.json"
+}, {
+  "id": "header",
+  "name": "menu",
+  "repeatable": false,
+  "value": "header.json"
+},
+{
+  "id": "footer",
+  "name": "footer",
+  "repeatable": false,
+  "value": "footer.json"
+}]

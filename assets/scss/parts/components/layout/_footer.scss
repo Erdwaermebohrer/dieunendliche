@@ -1,3 +1,21 @@
 .footer__wrapper {
-  
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &--navigation {
+    .navigation__wrapper {
+      display: flex;
+      list-style: none;
+
+      .link-item {
+        padding: 0 20px;
+      }
+    }
+  }
+
+  &--content {
+    padding: 0 40px;
+  }
 }
