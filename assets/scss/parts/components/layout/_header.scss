@@ -26,6 +26,12 @@
 
         .link-item {
           padding: 0 20px;
+          color: $white;
+          text-decoration: none;
+
+          &:hover {
+            opacity: .7;
+          }
         }
       }
 

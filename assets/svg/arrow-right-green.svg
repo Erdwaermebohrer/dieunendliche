@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="17" viewBox="0 0 17 17">
+  <defs>
+    <clipPath id="clip-CRU_Arrow_Right">
+      <rect width="17" height="17"/>
+    </clipPath>
+  </defs>
+  <g id="CRU_Arrow_Right" clip-path="url(#clip-CRU_Arrow_Right)">
+    <rect width="17" height="17" fill="transparent"/>
+    <path id="Pfad_312" fill="#857373" data-name="Pfad 312" d="M.56-7.82v1.64H12.24L8.02-1.94,9.14-.8l6.22-6.22L9.14-13.2,8.02-12.06l4.24,4.24Z" transform="translate(0.44 15.2)"/>
+  </g>
+</svg>
