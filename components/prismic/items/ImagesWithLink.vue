@@ -11,11 +11,13 @@
           class="content__wrapper--title"
           v-text="$prismic.asText(item.title)"
         />
-        <div
-          class="content__wrapper--link"
-        >
+        <div class="content__wrapper--link">
           <img class="icon" src="~assets/svg/arrow-right-white.svg" />
-          <a @click="clickedButton(item)" class="link" v-text="$prismic.asText(item.link_title)" />
+          <a
+            @click="clickedButton(item)"
+            class="link"
+            v-text="$prismic.asText(item.link_title)"
+          />
         </div>
       </div>
     </div>
@@ -29,8 +31,8 @@ export default {
       type: Object,
     },
     clickedButton: {
-      type: Function
-    }
+      type: Function,
+    },
   },
 };
 </script>

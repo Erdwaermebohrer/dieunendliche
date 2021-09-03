@@ -6,19 +6,26 @@
       :key="'slice-' + index"
     >
       <template v-if="slice.slice_type === 'imageswithlink'">
-        <images-with-link :slice="slice" :clickedButton="clickedButton"/>
+        <images-with-link :slice="slice" :clickedButton="clickedButton" />
+      </template>
+
+      <template v-if="slice.slice_type === 'image'">
+        <full-width-image :slice="slice" />
       </template>
     </div>
   </div>
 </template>
 
 <script>
-import ImagesWithLink from './items/ImagesWithLink.vue';
+import FullWidthImage from "./items/FullWidthImage.vue";
+import ImagesWithLink from "./items/ImagesWithLink.vue";
+
 export default {
   props: ["slices", "clickedButton"],
   name: "slices-wrapper",
   components: {
-    ImagesWithLink
+    FullWidthImage,
+    ImagesWithLink,
   },
 };
 </script>
