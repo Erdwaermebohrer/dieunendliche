@@ -8,7 +8,7 @@ export const actions = {
     const headerData = await this.$prismic.api.getSingle('menu');
     const footerData = await this.$prismic.api.getSingle("footer");
 
-    commit("setHeader", headerData.data.navigation);
+    commit("setHeader", headerData.data);
     commit("setFooter", footerData.data);
   }
 };

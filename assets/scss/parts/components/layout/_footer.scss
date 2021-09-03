@@ -9,6 +9,10 @@
       display: flex;
       list-style: none;
 
+      @include for-tablet {
+        flex-direction: column;
+      }
+
       .link-item {
         padding: 0 20px;
       }
