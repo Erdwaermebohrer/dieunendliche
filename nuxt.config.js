@@ -2,6 +2,8 @@ const pkg = require("./package");
 
 export default {
   target: "static",
+  publicRuntimeConfig: {},
+  privateRuntimeConfig: {},
   head: {
     title: pkg.name,
     meta: [
@@ -12,7 +14,10 @@ export default {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.png" }]
   },
   css: [{ src: "@assets/scss/global.scss", lang: "scss" }],
-  plugins: [{ src: "~/plugins/prismicLinks", ssr: false }],
+  plugins: [
+    { src: "~/plugins/prismicLinks", ssr: false },
+    { src: "~plugins/cookieconsent.js", ssr: false }
+  ],
   modules: [
     "@nuxtjs/axios",
     "nuxt-lazy-load",
@@ -24,7 +29,7 @@ export default {
       clientsClaim: true
     },
     manifest: {
-      name: "Die Unendliche",
+      name: "Nuxt Prismic Scaffold",
       lang: "de",
       useWebmanifestExtension: false
     },
@@ -32,7 +37,7 @@ export default {
     icon: "icon.png"
   },
   prismic: {
-    endpoint: "https://dieunendliche.cdn.prismic.io/api/v2",
+    endpoint: process.env.PRISMIC_API_ENDPOINT,
     disableGenerator: false,
     modern: true,
     preview: false,
