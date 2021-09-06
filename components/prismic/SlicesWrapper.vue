@@ -5,16 +5,39 @@
       v-for="(slice, index) in slices"
       :key="'slice-' + index"
     >
-      <div>{{ slice }}</div>
-      <br />
+      <template v-if="slice.slice_type === 'image'">
+        <full-width-image :slice="slice" />
+      </template>
+
+      <template v-if="slice.slice_type === 'list'">
+        <simple-list :slice="slice" />
+      </template>
+
+      <template v-if="slice.slice_type === 'imageswithlink'">
+        <images-with-link :slice="slice" :clickedButton="clickedButton" />
+      </template>
+
+      <template v-if="slice.slice_type === 'imagewithcontent'">
+        <image-with-content :slice="slice" :clickedButton="clickedButton" />
+      </template>
     </div>
   </div>
 </template>
 
 <script>
+import FullWidthImage from "./items/FullWidthImage.vue";
+import ImageWithContent from "./items/ImageWithContent.vue";
+import ImagesWithLink from "./items/ImagesWithLink.vue";
+import SimpleList from "./items/SimpleList.vue";
+
 export default {
-  props: ["slices"],
+  props: ["slices", "clickedButton"],
   name: "slices-wrapper",
-  components: {}
+  components: {
+    FullWidthImage,
+    ImageWithContent,
+    ImagesWithLink,
+    SimpleList,
+  },
 };
 </script>

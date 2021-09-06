@@ -1,7 +1,7 @@
 <template>
   <div :class="'page page__' + uid">
     <h1>{{ uid }} Page</h1>
-    <slice-wrapper :slices="slices" />
+    <slice-wrapper :slices="slices" :clickedButton="clickedButton"/>
   </div>
 </template>
 
@@ -47,6 +47,11 @@ export default {
       page: [],
       slices: [],
       uid: 'homepage'
+    }
+  },
+  methods: {
+    clickedButton(item) {
+      console.log(item);
     }
   },
   async asyncData({ $prismic, error }) {

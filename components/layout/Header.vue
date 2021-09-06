@@ -1,13 +1,13 @@
 <template>
   <div class="header__wrapper">
     <div class="header__wrapper--logo">
-      <span @click="$router.push('/')">Logo</span>
+      <img :src="inputData.logo.url" @click="$router.push('/')" />
     </div>
     <div class="header__wrapper--navigation">
       <ul class="navigation__wrapper--desktop">
         <nuxt-link
           class="link-item"
-          v-for="(navigationItem, index) in inputData"
+          v-for="(navigationItem, index) in inputData.navigation"
           :key="'item-' + index"
           :to="$prismic.linkResolver(navigationItem.page)"
         >
@@ -26,15 +26,27 @@
         </button>
       </div>
       <div class="navigation__wrapper--sidebar" v-if="isNavOpen">
+        <div class="logo__wrapper">
+          <img
+            class="logo"
+            :src="inputData.logo.url"
+            @click="$router.push('/')"
+          />
+        </div>
         <ul class="sidebar__wrapper">
           <nuxt-link
-            v-for="(navigationItem, index) in inputData"
+            class="sidebar__wrapper--item"
+            v-for="(navigationItem, index) in inputData.navigation"
             :key="'item-' + index"
             :to="$prismic.linkResolver(navigationItem.page)"
           >
             <li v-text="$prismic.asText(navigationItem.navigation_title)" />
           </nuxt-link>
         </ul>
+        <div class="button__wrapper">
+          <button class="button" @click="toggleBurger" v-text="'Zurück'" />
+          <span class="line" />
+        </div>
       </div>
     </div>
   </div>
@@ -45,7 +57,7 @@ export default {
   name: "app-header",
   props: {
     inputData: {
-      type: Array,
+      type: Object,
     },
   },
   data() {
