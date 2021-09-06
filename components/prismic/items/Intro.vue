@@ -1,0 +1,31 @@
+<template>
+  <div class="intro__wrapper">
+    <div class="intro__wrapper--media">
+      <img class="image" :src="slice.primary.image.url" />
+      <div class="video__wrapper">
+        <video class="video__wrapper--item" autoplay playsinline muted loop>
+          <source :src="slice.primary.video.url" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <div class="intro__wrapper--content" :class="{'vertical': slice.primary.title_direction}">
+      <div class="title" v-text="$prismic.asText(slice.primary.title)" />
+      <div
+        v-if="slice.primary.title2.length > 0"
+        class="title"
+        v-text="$prismic.asText(slice.primary.title2)"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    slice: {
+      type: Object,
+    },
+  },
+};
+</script>

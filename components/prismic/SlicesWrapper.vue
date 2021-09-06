@@ -5,8 +5,8 @@
       v-for="(slice, index) in slices"
       :key="'slice-' + index"
     >
-      <template v-if="slice.slice_type === 'list'">
-        <simple-list :slice="slice" />
+      <template v-if="slice.slice_type === 'intro'">
+        <intro :slice="slice" />
       </template>
 
       <template v-if="slice.slice_type === 'image'">
@@ -31,10 +31,12 @@
         />
       </template>
 
+      <template v-if="slice.slice_type === 'list'">
+        <simple-list :slice="slice" />
+      </template>
+
       <template v-if="slice.slice_type === 'titleanddescription'">
-        <title-and-description
-          :slice="slice"
-        />
+        <title-and-description :slice="slice" />
       </template>
     </div>
   </div>
@@ -42,6 +44,7 @@
 
 <script>
 import FullWidthImage from "./items/FullWidthImage.vue";
+import Intro from "./items/Intro.vue";
 import ImageWithContent from "./items/ImageWithContent.vue";
 import ImageWithFacts from "./items/ImageWithFacts.vue";
 import ImagesWithLink from "./items/ImagesWithLink.vue";
@@ -53,11 +56,12 @@ export default {
   name: "slices-wrapper",
   components: {
     FullWidthImage,
+    Intro,
     ImageWithContent,
     ImageWithFacts,
     ImagesWithLink,
     SimpleList,
-    TitleAndDescription
+    TitleAndDescription,
   },
 };
 </script>

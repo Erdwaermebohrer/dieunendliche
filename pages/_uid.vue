@@ -1,6 +1,5 @@
 <template>
   <div id="page" :class="'page page__' + uid">
-    <h1>{{ uid }} Page</h1>
     <slice-wrapper :slices="slices" :redirectToExternalPage="redirectToExternalPage" :redirectToInternalPage="redirectToInternalPage"/>
   </div>
 </template>
