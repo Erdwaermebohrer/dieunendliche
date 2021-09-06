@@ -5,12 +5,12 @@
       v-for="(slice, index) in slices"
       :key="'slice-' + index"
     >
-      <template v-if="slice.slice_type === 'image'">
-        <full-width-image :slice="slice" />
-      </template>
-
       <template v-if="slice.slice_type === 'list'">
         <simple-list :slice="slice" />
+      </template>
+
+      <template v-if="slice.slice_type === 'image'">
+        <full-width-image :slice="slice" />
       </template>
 
       <template v-if="slice.slice_type === 'imagewithcontent'">
@@ -30,6 +30,12 @@
           :clickedButton="redirectToInternalPage"
         />
       </template>
+
+      <template v-if="slice.slice_type === 'titleanddescription'">
+        <title-and-description
+          :slice="slice"
+        />
+      </template>
     </div>
   </div>
 </template>
@@ -40,6 +46,7 @@ import ImageWithContent from "./items/ImageWithContent.vue";
 import ImageWithFacts from "./items/ImageWithFacts.vue";
 import ImagesWithLink from "./items/ImagesWithLink.vue";
 import SimpleList from "./items/SimpleList.vue";
+import TitleAndDescription from "./items/TitleAndDescription.vue";
 
 export default {
   props: ["slices", "redirectToInternalPage", "redirectToExternalPage"],
@@ -50,6 +57,7 @@ export default {
     ImageWithFacts,
     ImagesWithLink,
     SimpleList,
+    TitleAndDescription
   },
 };
 </script>
