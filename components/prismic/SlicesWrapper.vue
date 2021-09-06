@@ -14,11 +14,17 @@
       </template>
 
       <template v-if="slice.slice_type === 'imageswithlink'">
-        <images-with-link :slice="slice" :clickedButton="clickedButton" />
+        <images-with-link
+          :slice="slice"
+          :clickedButton="redirectToInternalPage"
+        />
       </template>
 
       <template v-if="slice.slice_type === 'imagewithcontent'">
-        <image-with-content :slice="slice" :clickedButton="clickedButton" />
+        <image-with-content
+          :slice="slice"
+          :clickedButton="redirectToExternalPage"
+        />
       </template>
     </div>
   </div>
@@ -31,7 +37,7 @@ import ImagesWithLink from "./items/ImagesWithLink.vue";
 import SimpleList from "./items/SimpleList.vue";
 
 export default {
-  props: ["slices", "clickedButton"],
+  props: ["slices", "redirectToInternalPage", "redirectToExternalPage"],
   name: "slices-wrapper",
   components: {
     FullWidthImage,

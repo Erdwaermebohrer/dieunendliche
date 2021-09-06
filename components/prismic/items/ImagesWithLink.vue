@@ -14,7 +14,7 @@
         <div class="content__wrapper--link">
           <img class="icon" src="~assets/svg/arrow-right-white.svg" />
           <a
-            @click="clickedButton(item)"
+            @click="clickedButton(item.link)"
             class="link"
             v-text="$prismic.asText(item.link_title)"
           />
