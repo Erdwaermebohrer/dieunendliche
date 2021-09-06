@@ -13,17 +13,21 @@
         <simple-list :slice="slice" />
       </template>
 
-      <template v-if="slice.slice_type === 'imageswithlink'">
-        <images-with-link
-          :slice="slice"
-          :clickedButton="redirectToInternalPage"
-        />
-      </template>
-
       <template v-if="slice.slice_type === 'imagewithcontent'">
         <image-with-content
           :slice="slice"
           :clickedButton="redirectToExternalPage"
+        />
+      </template>
+
+      <template v-if="slice.slice_type === 'imagewithfacts'">
+        <image-with-facts :slice="slice" />
+      </template>
+
+      <template v-if="slice.slice_type === 'imageswithlink'">
+        <images-with-link
+          :slice="slice"
+          :clickedButton="redirectToInternalPage"
         />
       </template>
     </div>
@@ -33,6 +37,7 @@
 <script>
 import FullWidthImage from "./items/FullWidthImage.vue";
 import ImageWithContent from "./items/ImageWithContent.vue";
+import ImageWithFacts from "./items/ImageWithFacts.vue";
 import ImagesWithLink from "./items/ImagesWithLink.vue";
 import SimpleList from "./items/SimpleList.vue";
 
@@ -42,6 +47,7 @@ export default {
   components: {
     FullWidthImage,
     ImageWithContent,
+    ImageWithFacts,
     ImagesWithLink,
     SimpleList,
   },
