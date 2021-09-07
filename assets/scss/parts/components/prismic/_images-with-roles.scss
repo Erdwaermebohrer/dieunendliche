@@ -1,0 +1,166 @@
+.images-with-roles__wrapper {
+  padding: 5vw 5vw 0;
+
+  @include for-tablet {
+    padding: 60px 5vw 160px;
+  }
+
+  &--title {
+    margin: 0;
+    font-weight: 300;
+    color: $white;
+
+    @include for-tablet {
+      padding-bottom: 10px;
+      font-size: 22px;
+      line-height: 28px;
+    }
+  }
+
+  &--images {
+    margin-top: -200px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+
+    @include for-tablet {
+      margin-top: 0;
+    }
+
+    .role-image__wrapper {
+      width: 50%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+
+      @include for-tablet {
+        width: 100%;
+        padding: 60px!important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &:nth-child(1) {
+        justify-content: end;
+        padding: 196px 0;
+
+        @include for-tablet {
+          justify-content: unset;
+          padding: 0;
+        }
+      }
+
+      &:nth-child(3) {
+        justify-content: center;
+        padding: 0 0 352px;
+
+        @include for-tablet {
+          justify-content: unset;
+          padding: 0;
+        }
+      }
+
+      &:nth-child(4) {
+        justify-content: center;
+
+        @include for-tablet {
+          justify-content: unset;
+          padding: 0;
+        }
+      }
+
+      &:nth-child(5) {
+        top: -145px;
+        padding-bottom: 250px;
+        justify-content: flex-end;
+
+        @include for-tablet {
+          top: auto;
+          justify-content: unset;
+          padding: 0;
+        }
+      }
+
+      &:nth-child(7) {
+        top: -145px;
+        justify-content: center;
+
+        @include for-tablet {
+          top: auto;
+          justify-content: unset;
+          padding: 0;
+        }
+      }
+
+      &--content {
+        padding: 0 20px;
+
+        @include for-tablet {
+          width: 100%;
+          padding: 0;
+        }
+
+        .name {
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 18px;
+          color: $white;
+
+          @include for-tablet {
+            margin-top: 10px;
+          }
+        }
+
+        .role {
+          margin-bottom: 20px;
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 18px;
+          color: $white;
+        }
+
+        .link__wrapper {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          .icon {
+            width: 14px;
+            margin-right: 10px;
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+
+          .link {
+            padding: 2px 0;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 18px;
+            border-bottom: 2px solid $white;
+            color: $white;
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+
+      &--image {
+        @include for-tablet {
+          width: 100%;
+        }
+
+        .image {
+          @include for-tablet {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

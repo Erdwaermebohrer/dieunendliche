@@ -31,6 +31,13 @@
         />
       </template>
 
+      <template v-if="slice.slice_type === 'imageswithroles'">
+        <images-with-roles
+          :slice="slice"
+          :clickedButton="redirectToExternalPage"
+        />
+      </template>
+
       <template v-if="slice.slice_type === 'list'">
         <simple-list :slice="slice" />
       </template>
@@ -48,6 +55,7 @@ import Intro from "./items/Intro.vue";
 import ImageWithContent from "./items/ImageWithContent.vue";
 import ImageWithFacts from "./items/ImageWithFacts.vue";
 import ImagesWithLink from "./items/ImagesWithLink.vue";
+import ImagesWithRoles from "./items/ImagesWithRoles.vue";
 import SimpleList from "./items/SimpleList.vue";
 import TitleAndDescription from "./items/TitleAndDescription.vue";
 
@@ -60,6 +68,7 @@ export default {
     ImageWithContent,
     ImageWithFacts,
     ImagesWithLink,
+    ImagesWithRoles,
     SimpleList,
     TitleAndDescription,
   },
