@@ -61,7 +61,7 @@ export default {
       this.$router.push(this.$prismic.linkResolver(item))
     },
     smoothScroll(id) {
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      document.getElementById(id).scrollIntoView();
     },
   },
   mounted() {

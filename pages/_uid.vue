@@ -56,7 +56,7 @@ export default {
       window.open(item.url, '_blank').focus();
     },
     smoothScroll(id) {
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      document.getElementById(id).scrollIntoView();
     },
   },
   mounted() {
