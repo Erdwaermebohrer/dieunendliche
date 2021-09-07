@@ -1,0 +1,94 @@
+.image-with-facts__wrapper {
+  width: 100%;
+  display: flex;
+
+  @include for-tablet {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+
+  &--content {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+    }
+
+    .content__wrapper {
+      width: 100%;
+      height: 100%;
+      padding: 7vw 5vw;
+      top: 0;
+      left: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      @include for-tablet {
+        padding: 60px 5vw;
+      }
+
+      &--title {
+        width: 60%;
+        font-weight: 300;
+        color: $brand-secondary;
+
+        @include for-tablet {
+          width: 100%;
+          font-size: 22px;
+        }
+      }
+
+      &--items {
+        display: flex;
+        flex-wrap: wrap;
+
+        .items__wrapper {
+          width: 50%;
+          padding: 15px 0;
+
+          &--number {
+            font-size: 5.625em;
+            font-weight: 600;
+            line-height: 114px;
+            color: $brand-secondary;
+
+            @include for-tablet {
+              font-size: 60px;
+              line-height: 76px;
+            }
+          }
+
+          &--text {
+            font-size: 0.875em;
+            font-weight: 300;
+            line-height: 18px;
+            color: $brand-secondary;
+          }
+        }
+      }
+    }
+  }
+
+  &--image {
+    width: 50%;
+    height: 850px;
+    padding: 40px 0;
+
+    @include for-tablet {
+      width: 100%;
+      height: auto;
+      padding: 0 0 40px;
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      @include for-tablet {
+        object-fit: cover;
+      }
+    }
+  }
+}

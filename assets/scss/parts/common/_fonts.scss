@@ -1,1 +1,50 @@
-$font-primary: 'Helvecitca', sans-serif;
+@font-face {
+  font-family: "PangeaText";
+  src: url("~assets/fonts/PangeaText-LightItalicWeb.woff2") format("woff2"), url("~assets/fonts/PangeaText-LightItalicWeb.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PangeaText";
+  src: url("~assets/fonts/PangeaText-LightWeb.woff2") format("woff2"), url("~assets/fonts/PangeaText-LightWeb.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PangeaText";
+  src: url("~assets/fonts/PangeaText-RegularWeb.woff2") format("woff2"), url("~assets/fonts/PangeaText-RegularWeb.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PangeaText";
+  src: url("~assets/fonts/PangeaText-ItalicWeb.woff2") format("woff2"), url("~assets/fonts/PangeaText-ItalicWeb.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PangeaText";
+  src: url("~assets/fonts/PangeaText-SemiBoldWeb.woff2") format("woff2"), url("~assets/fonts/PangeaText-SemiBoldWeb.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PangeaText";
+  src: url("~assets/fonts/PangeaText-SemiBoldItalicWeb.woff2") format("woff2"),
+    url("~assets/fonts/PangeaText-SemiBoldItalicWeb.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+$font-primary: "PangeaText", sans-serif;
