@@ -30,18 +30,18 @@
           <img
             class="logo"
             :src="inputData.logo.url"
-            @click="$router.push('/')"
+            @click="navigateToHome"
           />
         </div>
         <ul class="sidebar__wrapper">
-          <nuxt-link
+          <a
             class="sidebar__wrapper--item"
             v-for="(navigationItem, index) in inputData.navigation"
             :key="'item-' + index"
-            :to="$prismic.linkResolver(navigationItem.page)"
+            @click="navigateToRoute(navigationItem.page)"
           >
             <li v-text="$prismic.asText(navigationItem.navigation_title)" />
-          </nuxt-link>
+          </a>
         </ul>
         <div class="button__wrapper">
           <button class="button" @click="toggleBurger" v-text="'Zurück'" />
@@ -69,6 +69,14 @@ export default {
     toggleBurger() {
       this.isNavOpen = !this.isNavOpen;
     },
+    navigateToRoute(item) {
+      this.isNavOpen = false;
+      this.$router.push(this.$prismic.linkResolver(item));
+    },
+    navigateToHome() {
+      this.isNavOpen = false;
+      this.$router.push('/');
+    }
   },
 };
 </script>

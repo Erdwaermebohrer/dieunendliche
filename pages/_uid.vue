@@ -1,7 +1,6 @@
 <template>
-  <div :class="'page page__' + uid">
-    <h1>{{ uid }} Page</h1>
-    <slice-wrapper :slices="slices" :clickedButton="clickedButton"/>
+  <div id="page" :class="'page page__' + uid">
+    <slice-wrapper :slices="slices" :redirectToExternalPage="redirectToExternalPage" :redirectToInternalPage="redirectToInternalPage"/>
   </div>
 </template>
 
@@ -50,9 +49,20 @@ export default {
     }
   },
   methods: {
-    clickedButton(item) {
-      console.log(item);
-    }
+    redirectToInternalPage(item) {
+      this.$router.push(this.$prismic.linkResolver(item.link))
+    },
+    redirectToExternalPage(item) {
+      window.open(item.url, '_blank').focus();
+    },
+    smoothScroll(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.smoothScroll("page");
+    }, 10);
   },
   async asyncData({ $prismic, params, error }) {
     try {

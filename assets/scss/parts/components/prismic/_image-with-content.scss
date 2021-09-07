@@ -2,8 +2,16 @@
   width: 100%;
   display: flex;
 
+  @include for-tablet {
+    flex-wrap: wrap;
+  }
+
   &--content {
     width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+    }
 
     .content__wrapper {
       width: 100%;
@@ -17,20 +25,51 @@
       justify-content: space-between;
       color: $black;
 
+      @include for-tablet {
+        padding: 80px 5vw;
+      }
+
+      &--number {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 15px;
+        color: $brand-secondary;
+
+        &::before {
+          content: "";
+          position: relative;
+          width: 8px;
+          height: 1px;
+          margin-right: 3px;
+          display: flex;
+          background-color: $brand-secondary;
+        }
+      }
+
       &--title {
         width: 60%;
-        font-weight: 400;
+        font-weight: 300;
         color: $brand-secondary;
+
+        @include for-tablet {
+          width: 100%;
+        }
       }
 
       &--description {
-        width: 70%;
-        margin-bottom: 18vw;
+        width: 75%;
+        margin-bottom: 17vw;
         position: relative;
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 18px;
         color: $brand-secondary;
+
+        @include for-tablet {
+          width: 100%;
+        }
       }
 
       &--link {
@@ -44,7 +83,7 @@
         }
 
         .link {
-          border-bottom: 1px solid $brand-secondary;
+          border-bottom: 2px solid $brand-secondary;
         }
       }
     }
@@ -52,6 +91,10 @@
 
   &--image {
     width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+    }
 
     .image {
       width: 100%;
