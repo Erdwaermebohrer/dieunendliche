@@ -38,6 +38,10 @@
         />
       </template>
 
+      <template v-if="slice.slice_type === 'imagewithslider'">
+        <image-with-slider :slice="slice"/>
+      </template>
+
       <template v-if="slice.slice_type === 'list'">
         <simple-list :slice="slice" />
       </template>
@@ -56,6 +60,7 @@ import ImageWithContent from "./items/ImageWithContent.vue";
 import ImageWithFacts from "./items/ImageWithFacts.vue";
 import ImagesWithLink from "./items/ImagesWithLink.vue";
 import ImagesWithRoles from "./items/ImagesWithRoles.vue";
+import ImageWithSlider from "./items/ImageWithSlider.vue";
 import SimpleList from "./items/SimpleList.vue";
 import TitleAndDescription from "./items/TitleAndDescription.vue";
 
@@ -69,6 +74,7 @@ export default {
     ImageWithFacts,
     ImagesWithLink,
     ImagesWithRoles,
+    ImageWithSlider,
     SimpleList,
     TitleAndDescription,
   },
