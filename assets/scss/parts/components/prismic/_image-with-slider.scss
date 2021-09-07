@@ -1,0 +1,127 @@
+.image-with-slider__wrapper {
+  width: 100%;
+  display: flex;
+
+  @include for-tablet {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+
+  &--image {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+
+      @include for-tablet {
+        position: relative;
+        top: 5px;
+      }
+    }
+  }
+
+  &--content {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+    }
+
+    .content__wrapper {
+      width: 100%;
+      height: 100%;
+      padding: 5vw;
+      top: 0;
+      left: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: $black;
+
+      @include for-tablet {
+        padding: 80px 5vw;
+      }
+
+      &--title {
+        width: 60%;
+        font-weight: 300;
+        color: $brand-secondary;
+
+        @include for-tablet {
+          padding-bottom: 100px;
+          font-size: 22px;
+          width: 100%;
+        }
+      }
+
+      &--slider {
+        .slider__header {
+          display: flex;
+          justify-content: space-between;
+
+          @include for-tablet {
+            flex-direction: column-reverse;
+          }
+
+          &--number {
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 30px;
+            color: $brand-secondary;
+
+            @include for-tablet {
+              padding-bottom: 5px;
+              font-size: 22px;
+              line-height: 28px;
+            }
+          }
+
+          &--icon {
+            width: 25px;
+            cursor: pointer;
+
+            @include for-tablet {
+              width: 20px;
+              padding-bottom: 16px;
+            }
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
+        }
+
+        .slider__content {
+          width: 70%;
+
+          @include for-tablet {
+            width: 85%;
+          }
+
+          .agile {
+            width: 100%;
+          }
+
+          .slider-item {
+            width: 100%;
+            font-size: 34px;
+            font-weight: 600;
+            line-height: 43px;
+            color: $brand-secondary;
+
+            @include for-tablet {
+              font-size: 22px;
+              line-height: 28px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

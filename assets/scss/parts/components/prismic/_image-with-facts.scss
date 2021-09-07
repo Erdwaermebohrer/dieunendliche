@@ -72,16 +72,23 @@
 
   &--image {
     width: 50%;
+    height: 850px;
     padding: 40px 0;
 
     @include for-tablet {
       width: 100%;
+      height: auto;
       padding: 0 0 40px;
     }
 
     .image {
       width: 100%;
       height: 100%;
+      object-fit: contain;
+
+      @include for-tablet {
+        object-fit: cover;
+      }
     }
   }
 }
