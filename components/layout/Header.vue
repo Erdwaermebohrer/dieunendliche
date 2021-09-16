@@ -1,8 +1,8 @@
 <template>
   <div class="header__wrapper">
-    <div class="header__wrapper--logo">
+    <a class="header__wrapper--logo">
       <img :src="inputData.logo.url" @click="$router.push('/')" />
-    </div>
+    </a>
     <div class="header__wrapper--navigation">
       <ul class="navigation__wrapper--desktop">
         <nuxt-link

@@ -96,7 +96,7 @@ export default {
           duration: 1,
           ease: "Expo.easeOut",
           background: background,
-          scale: 0.3,
+          scale: 0.5,
         });
       }
     },
