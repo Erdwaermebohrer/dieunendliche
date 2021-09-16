@@ -10,6 +10,7 @@
   @include for-tablet {
     width: 100%;
     padding: 15px 10px;
+    z-index: 30;
   }
 
   &--logo {
@@ -63,6 +64,14 @@
           background-color: transparent;
           pointer-events: all;
           z-index: 999;
+
+          @include for-tablet {
+            width: 100%;
+            height: 20px;
+            top: 83vh;
+            left: calc(-50vw + 73%);
+            margin: 0 auto;
+          }
 
           &:focus {
             outline: 0;

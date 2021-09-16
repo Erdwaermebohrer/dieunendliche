@@ -10,6 +10,7 @@
 @import "./parts/common/media-mixins";
 @import "./parts/common/layout";
 @import "./parts/common/page";
+@import "./parts/common/transitions";
 
 //pages
 @import "./parts/pages/home/home-page";
@@ -21,6 +22,7 @@
 //layout components
 @import "./parts/components/layout/header";
 @import "./parts/components/layout/footer";
+@import "./parts/components/layout/preloader";
 
 //prismic components
 @import "./parts/components/prismic/full-width-image";
