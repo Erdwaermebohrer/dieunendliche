@@ -7,6 +7,7 @@
     <Nuxt />
     <app-footer :inputData="footer" />
     <video
+      v-if="!pageLoading"
       class="cursor"
       ref="cursor"
       id="cursor"

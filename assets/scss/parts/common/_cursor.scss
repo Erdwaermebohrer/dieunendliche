@@ -11,4 +11,8 @@
   pointer-events: none;
   opacity: 0.8;
   z-index: 99999;
+
+  @include for-tablet {
+    display: none;
+  }
 }
