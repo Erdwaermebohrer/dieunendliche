@@ -7,7 +7,7 @@
     <Nuxt />
     <app-footer :inputData="footer" />
     <video
-      v-if="!pageLoading"
+      v-if="showCursor"
       class="cursor"
       ref="cursor"
       id="cursor"
@@ -34,6 +34,11 @@ export default {
     "app-header": Header,
     "app-footer": Footer,
     "app-preloader": Preloader,
+  },
+  data() {
+    return {
+      showCursor: false
+    }
   },
   computed: {
     ...mapGetters({
@@ -100,6 +105,9 @@ export default {
     setTimeout(() => {
       this.setPageLoading(false);
     }, 1500);
+    setTimeout(() => {
+      this.showCursor = true;
+    }, 2300);
   },
 };
 </script>
