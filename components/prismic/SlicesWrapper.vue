@@ -5,6 +5,10 @@
       v-for="(slice, index) in slices"
       :key="'slice-' + index"
     >
+      <template v-if="slice.slice_type === 'formfields'">
+        <form-fields :slice="slice" :sendingForm="sendingForm" />
+      </template>
+
       <template v-if="slice.slice_type === 'intro'">
         <intro :slice="slice" />
       </template>
@@ -61,6 +65,7 @@
 </template>
 
 <script>
+import FormFields from "./items/FormFields.vue";
 import FullWidthImage from "./items/FullWidthImage.vue";
 import Intro from "./items/Intro.vue";
 import ImageWithContent from "./items/ImageWithContent.vue";
@@ -73,9 +78,15 @@ import TitleAndDescription from "./items/TitleAndDescription.vue";
 import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
 
 export default {
-  props: ["slices", "redirectToInternalPage", "redirectToExternalPage"],
+  props: [
+    "slices",
+    "redirectToInternalPage",
+    "redirectToExternalPage",
+    "sendingForm",
+  ],
   name: "slices-wrapper",
   components: {
+    FormFields,
     FullWidthImage,
     Intro,
     ImageWithContent,
