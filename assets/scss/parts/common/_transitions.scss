@@ -7,3 +7,22 @@
   opacity: 0;
   max-height: 0px;
 }
+
+.sidebar-enter-active,
+.sidebar-leave-active {
+  transition: all 1.5s ease-in-out;
+}
+
+.sidebar-enter {
+  opacity: 0;
+}
+
+.sidebar-leave-active {
+  opacity: 0;
+}
+
+.sidebar-enter,
+.sidebar-leave-to {
+  transform: translateY(100%);
+  transition: all 1.5s ease-in-out .5;
+}
