@@ -1,15 +1,14 @@
 .fade-preloader-enter-active, .fade-preloader-leave-active {
   transition: all 2.5s;
-  max-height: 100%;
 }
 
 .fade-preloader-enter, .fade-preloader-leave-to {
   opacity: 0;
-  max-height: 0px;
 }
 
 .sidebar-enter-active,
 .sidebar-leave-active {
+  position: absolute;
   transition: all 1.5s ease-in-out;
 }
 
@@ -21,8 +20,6 @@
   opacity: 0;
 }
 
-.sidebar-enter,
-.sidebar-leave-to {
-  transform: translateY(100%);
-  transition: all 1.5s ease-in-out .5;
+.sidebar-enter, .sidebar-leave-to {
+  transform: translateY(100%)scale(0.2);
 }

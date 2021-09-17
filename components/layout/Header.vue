@@ -26,9 +26,13 @@
         </button>
       </div>
       <transition name="sidebar">
-        <div class="navigation__wrapper--sidebar" v-if="isNavOpen">
+        <div class="navigation__wrapper--sidebar" :class="{'active': isNavOpen}" v-if="isNavOpen">
           <div class="logo__wrapper">
-            <img class="logo" :src="inputData.logo.url" @click="navigateToHome" />
+            <img
+              class="logo"
+              :src="inputData.logo.url"
+              @click="navigateToHome"
+            />
           </div>
           <ul class="sidebar__wrapper">
             <a
@@ -68,7 +72,7 @@ export default {
   methods: {
     toggleBurger() {
       if (this.isNavOpen) {
-        gsap.timeline().to(".video__wrapper--item", {
+        gsap.timeline().to(".video-button__wrapper--item", {
           width: "130px",
           height: "130px",
           transform: "translate3d(0,0,0)",
@@ -77,14 +81,13 @@ export default {
           zIndex: 20,
         });
       } else {
-        gsap.timeline()
-        .to(".video__wrapper--item", {
+        gsap.timeline().to(".video-button__wrapper--item", {
           width: "100%",
-          height: "100%",
-          transform: "translate3d(0,0,0)",
+          height: "60%",
+          transform: "translate3d(0,-150px,0)",
           ease: "expo.inOut",
           duration: 1.5,
-          zIndex: 50,
+          zIndex: 20,
         });
       }
 
