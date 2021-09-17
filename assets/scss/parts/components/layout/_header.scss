@@ -137,6 +137,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fade-in 1.1s ease-in-out;
+          }
+
+          @keyframes fade-in {
+            0% {
+              opacity: 0;
+              width: 0;
+              height: 0;
+              transform: translateY(300%) scale(0);
+            }
+
+            to {
+              opacity: 0.5;
+              width: 100%;
+              height: 350px;
+              transform: translateY(16.5%) scale(1);
+            }
           }
 
           &--item {
