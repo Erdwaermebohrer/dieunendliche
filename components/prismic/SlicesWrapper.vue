@@ -39,7 +39,7 @@
       </template>
 
       <template v-if="slice.slice_type === 'imagewithslider'">
-        <image-with-slider :slice="slice"/>
+        <image-with-slider :slice="slice" />
       </template>
 
       <template v-if="slice.slice_type === 'list'">
@@ -48,6 +48,13 @@
 
       <template v-if="slice.slice_type === 'titleanddescription'">
         <title-and-description :slice="slice" />
+      </template>
+
+      <template v-if="slice.slice_type === 'titledescriptionlink'">
+        <title-description-link
+          :slice="slice"
+          :clickedButton="redirectToExternalPage"
+        />
       </template>
     </div>
   </div>
@@ -63,6 +70,7 @@ import ImagesWithRoles from "./items/ImagesWithRoles.vue";
 import ImageWithSlider from "./items/ImageWithSlider.vue";
 import SimpleList from "./items/SimpleList.vue";
 import TitleAndDescription from "./items/TitleAndDescription.vue";
+import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
 
 export default {
   props: ["slices", "redirectToInternalPage", "redirectToExternalPage"],
@@ -77,6 +85,7 @@ export default {
     ImageWithSlider,
     SimpleList,
     TitleAndDescription,
+    TitleDescriptionLink,
   },
 };
 </script>

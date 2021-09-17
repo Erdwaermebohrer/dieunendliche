@@ -1,0 +1,79 @@
+.title-description-link__wrapper {
+  width: 100%;
+  display: flex;
+  padding: 150px 5vw;
+  background-color: #fffce5;
+
+  @include for-tablet {
+    padding: 100px 5vw 100px;
+    flex-wrap: wrap;
+  }
+
+  &--title {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+      padding-bottom: 60px;
+    }
+
+    .title {
+      margin: 0;
+      font-weight: 300;
+      color: $brand-secondary;
+
+      @include for-tablet {
+        font-size: 22px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  &--content {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+    }
+
+    .description {
+      padding: 0 40px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 18px;
+      color: $brand-secondary;
+
+      @include for-tablet {
+        padding: 0;
+      }
+    }
+
+    .link__wrapper {
+      margin-top: 60px;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+
+      @include for-tablet {
+        padding: 0;
+        margin-top: 20vw;
+      }
+
+      &--icon {
+        margin-right: 10px;
+        font-size: 14px;
+        font-weight: 300;
+        color: $brand-secondary;
+        cursor: pointer;
+      }
+
+      &--link {
+        font-size: 14px;
+        font-weight: 300;
+        color: $brand-secondary;
+        border-bottom: 1px solid $brand-secondary;
+        cursor: pointer;
+      }
+    }
+  }
+}
