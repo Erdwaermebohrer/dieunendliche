@@ -1,8 +1,8 @@
 <template>
   <div class="header__wrapper">
-    <div class="header__wrapper--logo">
-      <img :src="inputData.logo.url" @click="$router.push('/')" />
-    </div>
+    <a class="header__wrapper--logo" @click="$router.push('/')">
+      <img :src="inputData.logo.url" />
+    </a>
     <div class="header__wrapper--navigation">
       <ul class="navigation__wrapper--desktop">
         <nuxt-link
@@ -25,34 +25,38 @@
           <span class="burger__button--bar" />
         </button>
       </div>
-      <div class="navigation__wrapper--sidebar" v-if="isNavOpen">
-        <div class="logo__wrapper">
-          <img
-            class="logo"
-            :src="inputData.logo.url"
-            @click="navigateToHome"
-          />
+      <transition name="sidebar">
+        <div class="navigation__wrapper--sidebar" :class="{'active': isNavOpen}" v-if="isNavOpen">
+          <div class="logo__wrapper">
+            <img
+              class="logo"
+              :src="inputData.logo.url"
+              @click="navigateToHome"
+            />
+          </div>
+          <ul class="sidebar__wrapper">
+            <a
+              class="sidebar__wrapper--item"
+              v-for="(navigationItem, index) in inputData.navigation"
+              :key="'item-' + index"
+              @click="navigateToRoute(navigationItem.page)"
+            >
+              <li v-text="$prismic.asText(navigationItem.navigation_title)" />
+            </a>
+          </ul>
+          <div class="button__wrapper">
+            <button class="button" @click="toggleBurger" v-text="'Zurück'" />
+            <span class="line" />
+          </div>
         </div>
-        <ul class="sidebar__wrapper">
-          <a
-            class="sidebar__wrapper--item"
-            v-for="(navigationItem, index) in inputData.navigation"
-            :key="'item-' + index"
-            @click="navigateToRoute(navigationItem.page)"
-          >
-            <li v-text="$prismic.asText(navigationItem.navigation_title)" />
-          </a>
-        </ul>
-        <div class="button__wrapper">
-          <button class="button" @click="toggleBurger" v-text="'Zurück'" />
-          <span class="line" />
-        </div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
+import { gsap } from "gsap/dist/gsap";
+
 export default {
   name: "app-header",
   props: {
@@ -67,6 +71,26 @@ export default {
   },
   methods: {
     toggleBurger() {
+      if (this.isNavOpen) {
+        gsap.timeline().to(".video-button__wrapper--item", {
+          width: "130px",
+          height: "130px",
+          transform: "translate3d(0,0,0)",
+          ease: "expo.inOut",
+          duration: 1.5,
+          zIndex: 20,
+        });
+      } else {
+        gsap.timeline().to(".video-button__wrapper--item", {
+          width: "100%",
+          height: "60%",
+          transform: "translate3d(0,-150px,0)",
+          ease: "expo.inOut",
+          duration: 1.5,
+          zIndex: 20,
+        });
+      }
+
       this.isNavOpen = !this.isNavOpen;
     },
     navigateToRoute(item) {
@@ -75,8 +99,8 @@ export default {
     },
     navigateToHome() {
       this.isNavOpen = false;
-      this.$router.push('/');
-    }
+      this.$router.push("/");
+    },
   },
 };
 </script>
