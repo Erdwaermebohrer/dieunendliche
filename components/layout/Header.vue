@@ -1,7 +1,7 @@
 <template>
   <div class="header__wrapper">
-    <a class="header__wrapper--logo">
-      <img :src="inputData.logo.url" @click="$router.push('/')" />
+    <a class="header__wrapper--logo" @click="$router.push('/')">
+      <img :src="inputData.logo.url" />
     </a>
     <div class="header__wrapper--navigation">
       <ul class="navigation__wrapper--desktop">
