@@ -83,6 +83,14 @@
           text-transform: uppercase;
         }
       }
+
+      .validation__wrapper {
+        &--error {
+        }
+
+        &--success {
+        }
+      }
     }
 
     .link__wrapper {

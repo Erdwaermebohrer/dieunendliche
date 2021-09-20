@@ -20,6 +20,18 @@
             v-text="$prismic.asText(field.field_placeholder)"
           />
         </div>
+        <div class="validation__wrapper">
+          <div
+            class="validation__wrapper--error"
+            v-if="showErrorMessage"
+            v-text="$prismic.asText(slice.primary.error_message)"
+          />
+          <div
+            class="validation__wrapper--success"
+            v-if="showSuccessMessage"
+            v-text="$prismic.asText(slice.primary.success_message)"
+          />
+        </div>
       </div>
       <div class="link__wrapper">
         <img
@@ -49,15 +61,20 @@ export default {
       },
     },
     sendingForm: {
-      type: Function
-    }
+      type: Function,
+    },
+  },
+  data() {
+    return {
+      showErrorMessage: false,
+      showSuccessMessage: false,
+    };
   },
   methods: {
     checkFields(formFields) {
       this.sendingForm(formFields);
-      
-      //Here should come Validation
 
+      //Here should come Validation
 
       //After Validation reset the form
 
@@ -65,7 +82,7 @@ export default {
     },
     resetFields() {
       this.formFields = {};
-    }
-  }
+    },
+  },
 };
 </script>
