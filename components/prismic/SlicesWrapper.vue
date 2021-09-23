@@ -50,6 +50,10 @@
         <simple-list :slice="slice" />
       </template>
 
+      <template v-if="slice.slice_type === 'steps'">
+        <steps :slice="slice" />
+      </template>
+
       <template v-if="slice.slice_type === 'titleanddescription'">
         <title-and-description :slice="slice" />
       </template>
@@ -76,6 +80,7 @@ import ImageWithSlider from "./items/ImageWithSlider.vue";
 import SimpleList from "./items/SimpleList.vue";
 import TitleAndDescription from "./items/TitleAndDescription.vue";
 import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
+import Steps from './items/Steps.vue';
 
 export default {
   props: [
@@ -97,6 +102,7 @@ export default {
     SimpleList,
     TitleAndDescription,
     TitleDescriptionLink,
+    Steps,
   },
 };
 </script>
