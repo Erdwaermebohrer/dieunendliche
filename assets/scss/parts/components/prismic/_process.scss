@@ -38,10 +38,19 @@
 
     @include for-tablet {
       width: 100%;
+      margin-top: 0;
     }
 
     .content__wrapper {
+      height: 366px;
+      bottom: calc((100vh - 356px) / 2);
+      position: sticky;
       color: $white;
+
+      @include for-tablet {
+        height: 478px;
+        bottom: calc((100vh - 478px) / 2);
+      }
 
       &--item {
         width: 100%;
@@ -51,6 +60,10 @@
         .item__left {
           width: 50%;
           display: flex;
+
+          @include for-tablet {
+            width: 100%;
+          }
 
           &--number {
             font-size: 14px;
@@ -68,15 +81,25 @@
 
         .item__right {
           width: 50%;
+          margin-top: 70px;
           right: 0;
-          margin-top: 95px;
           position: absolute;
+          opacity: 0;
+
+          @include for-tablet {
+            width: 100%;
+            margin-top: 100px;
+          }
 
           &--description {
             width: 84%;
             font-size: 14px;
             font-weight: 300;
             line-height: 17.75px;
+
+            @include for-tablet {
+              width: 100%;
+            }
           }
         }
       }
@@ -85,8 +108,13 @@
 }
 
 .left-item {
-  padding: 50px 0;
+  padding-bottom: 50px;
   flex-direction: column;
+
+  @include for-tablet {
+    margin-top: 20px;
+    padding-bottom: 200px;
+  }
 }
 
 .left-title {
@@ -112,4 +140,9 @@
     position: relative;
     display: flex;
   }
+}
+
+.scroller {
+  width: 1px;
+  position: relative;
 }

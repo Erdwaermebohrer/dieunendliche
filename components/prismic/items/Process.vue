@@ -4,14 +4,14 @@
       <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
     </div>
     <div class="process__wrapper--content">
+      <div v-elementshow id="scroller" class="scroller" />
       <div class="content__wrapper">
         <div
           class="content__wrapper--item"
           v-for="(item, index) in slice.items"
           :key="'item-' + index"
-          v-elementshow
         >
-          <div class="item__left">
+          <div :id="'item-left-' + index" class="item__left">
             <div class="item__left--number" v-text="index" />
             <div
               class="item__left--title"
@@ -19,7 +19,7 @@
             />
           </div>
           <transition name="fade">
-            <div :id="'item-' + index" class="item__right">
+            <div :id="'item-right-' + index" class="item__right">
               <div
                 class="item__right--description"
                 v-text="$prismic.asText(item.description)"
@@ -32,54 +32,79 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-
-Vue.directive("elementshow", {
-  inViewport(el) {
-    var rect = el.getBoundingClientRect();
-    return !(rect.top -100 > rect.height - 100 );
-  },
-
-  bind(el, binding) {
-    el.childNodes[2].classList.add("before-enter");
-    el.$onScroll = function () {
-      if (binding.def.inViewport(el)) {
-        el.childNodes[0].classList.add("left-item");
-        el.childNodes[0].childNodes[0].classList.add("left-number");
-        el.childNodes[0].childNodes[2].classList.add("left-title");
-        el.childNodes[2].classList.add("enter");
-        el.childNodes[2].classList.remove("before-enter");
-      } else {
-        el.childNodes[0].classList.remove("left-item");
-        el.childNodes[0].childNodes[0].classList.remove("left-number");
-        el.childNodes[0].childNodes[2].classList.remove("left-title");
-        el.childNodes[2].classList.add("before-enter");
-        el.childNodes[2].classList.remove("enter");
-      }
-    };
-    document.addEventListener("scroll", el.$onScroll);
-  },
-
-  inserted(el, binding) {
-    el.$onScroll();
-  },
-
-  unbind(el, binding) {
-    document.removeEventListener("scroll", el.$onScroll);
-    delete el.$onScroll;
-  },
-});
-
 export default {
   props: {
     slice: {
       type: Object,
     },
   },
+  directives: {
+    elementshow: {
+      inViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return !(rect.top > rect.height);
+      },
+      bind(el, binding, vnode) {
+        el.$onScroll = function () {
+          if (binding.def.inViewport(el)) {
+            var top = el.getBoundingClientRect().top * -1;
+
+            for (let i = 0; i < vnode.context.numberOfElements; i++) {
+              this["item_l_" + i] = document.getElementById("item-left-" + i);
+              this["item_r_" + i] = document.getElementById("item-right-" + i);
+            }
+
+            for (let i = 0; i < vnode.context.numberOfElements; i++) {
+              if (
+                top > i * vnode.context.scrollPartHeight &&
+                top < (i + 1) * vnode.context.scrollPartHeight
+              ) {
+                this["item_l_" + i].classList.add("left-item");
+                this["item_l_" + i].childNodes[0].classList.add("left-number");
+                this["item_l_" + i].childNodes[2].classList.add("left-title");
+                this["item_r_" + i].classList.add("enter");
+              } else {
+                this["item_l_" + i].classList.remove("left-item");
+                this["item_l_" + i].childNodes[0].classList.remove(
+                  "left-number"
+                );
+                this["item_l_" + i].childNodes[2].classList.remove(
+                  "left-title"
+                );
+                this["item_r_" + i].classList.remove("enter");
+              }
+            }
+          }
+        };
+        document.addEventListener("scroll", el.$onScroll);
+      },
+      inserted(el, binding) {
+        el.$onScroll();
+      },
+      unbind(el, binding) {
+        document.removeEventListener("scroll", el.$onScroll);
+        delete el.$onScroll;
+      },
+    },
+  },
   data() {
     return {
-      activeItem: null,
+      numberOfElements: null,
+      scrollPartHeight: 400,
     };
+  },
+  methods: {
+    setNumberOfElementsOnScroller() {
+      this.numberOfElements = this.slice.items.length;
+    },
+    setScrollerHeight() {
+      document.getElementById("scroller").style.height =
+        this.numberOfElements * this.scrollPartHeight + "px";
+    },
+  },
+  mounted() {
+    this.setNumberOfElementsOnScroller();
+    this.setScrollerHeight();
   },
 };
 </script>
