@@ -1,0 +1,142 @@
+.content-and-carousel__wrapper {
+  width: 100%;
+  padding: 150px 5vw 200px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $white;
+
+  @include for-tablet {
+    padding: 100px 5vw 100px;
+    flex-wrap: wrap;
+  }
+
+  &--title {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+      padding-bottom: 60px;
+    }
+
+    .title {
+      width: 65%;
+      margin: 0;
+      font-weight: 300;
+      color: $brand-secondary;
+
+      @include for-tablet {
+        width: 100%;
+        font-size: 22px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  &--content {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+    }
+
+    .content__wrapper {
+      display: flex;
+      justify-content: flex-end;
+
+      @include for-tablet {
+        justify-content: unset;
+      }
+
+      &--description {
+        width: 80%;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 17.75px;
+        color: $brand-secondary;
+
+        @include for-tablet {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &--slider {
+    width: 100%;
+    margin-top: 280px;
+
+    @include for-tablet {
+      margin-top: 80px;
+    }
+
+    .slider__wrapper {
+      &--icons {
+        width: 100%;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        .icon {
+          cursor: pointer;
+          
+          &:nth-child(1) {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      &--content {
+        .slider-item {
+          height: 220px;
+
+          .wrap {
+            width: 90%;
+            height: 100%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #fffce5;
+
+            .slider-item__content {
+              .author {
+                font-size: 14px;
+                font-weight: 300;
+                color: $brand-secondary;
+              }
+
+              .title {
+                margin-top: 15px;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 22.82px;
+                color: $brand-secondary;
+              }
+            }
+
+            .slider-item__link {
+              display: flex;
+              align-items: center;
+
+              .icon {
+                margin-right: 10px;
+                font-size: 14px;
+                font-weight: 300;
+                color: $brand-secondary;
+                cursor: pointer;
+              }
+
+              .link {
+                font-size: 14px;
+                font-weight: 300;
+                color: $brand-secondary;
+                border-bottom: 1px solid $brand-secondary;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

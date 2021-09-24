@@ -5,6 +5,13 @@
       v-for="(slice, index) in slices"
       :key="'slice-' + index"
     >
+      <template v-if="slice.slice_type === 'contentandcarousel'">
+        <content-and-carousel
+          :slice="slice"
+          :clickedButton="redirectToExternalPage"
+        />
+      </template>
+
       <template v-if="slice.slice_type === 'formfields'">
         <form-fields :slice="slice" :sendingForm="sendingForm" />
       </template>
@@ -50,6 +57,10 @@
         <simple-list :slice="slice" />
       </template>
 
+      <template v-if="slice.slice_type === 'process'">
+        <process :slice="slice" />
+      </template>
+
       <template v-if="slice.slice_type === 'steps'">
         <steps :slice="slice" />
       </template>
@@ -69,6 +80,7 @@
 </template>
 
 <script>
+import ContentAndCarousel from "./items/ContentAndCarousel.vue";
 import FormFields from "./items/FormFields.vue";
 import FullWidthImage from "./items/FullWidthImage.vue";
 import Intro from "./items/Intro.vue";
@@ -77,10 +89,11 @@ import ImageWithFacts from "./items/ImageWithFacts.vue";
 import ImagesWithLink from "./items/ImagesWithLink.vue";
 import ImagesWithRoles from "./items/ImagesWithRoles.vue";
 import ImageWithSlider from "./items/ImageWithSlider.vue";
+import Process from "./items/Process.vue";
 import SimpleList from "./items/SimpleList.vue";
+import Steps from "./items/Steps.vue";
 import TitleAndDescription from "./items/TitleAndDescription.vue";
 import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
-import Steps from './items/Steps.vue';
 
 export default {
   props: [
@@ -91,6 +104,7 @@ export default {
   ],
   name: "slices-wrapper",
   components: {
+    ContentAndCarousel,
     FormFields,
     FullWidthImage,
     Intro,
@@ -99,10 +113,11 @@ export default {
     ImagesWithLink,
     ImagesWithRoles,
     ImageWithSlider,
+    Process,
     SimpleList,
+    Steps,
     TitleAndDescription,
     TitleDescriptionLink,
-    Steps,
   },
 };
 </script>
