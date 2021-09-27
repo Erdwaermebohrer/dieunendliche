@@ -8,6 +8,6 @@ sw.*
 .nuxt
 
 # dist output
-#dist
-#dist/.
+dist
+dist/.
 
