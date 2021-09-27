@@ -1,59 +1,76 @@
 <template>
   <div id="page" :class="'page page__' + uid">
-    <slice-wrapper :slices="slices" :redirectToExternalPage="redirectToExternalPage" :redirectToInternalPage="redirectToInternalPage"/>
+    <slice-wrapper
+      :slices="slices"
+      :redirectToExternalPage="redirectToExternalPage"
+      :redirectToInternalPage="redirectToInternalPage"
+      :sendingForm="sendingForm"
+    />
   </div>
 </template>
 
 <script>
-import SliceWrapper from '../components/prismic/SlicesWrapper.vue';
+import SliceWrapper from "../components/prismic/SlicesWrapper.vue";
 
 export default {
   components: {
-    "slice-wrapper": SliceWrapper
+    "slice-wrapper": SliceWrapper,
   },
   head() {
     return {
-      title: this.$prismic.asText(this.page.meta_title) ? this.$prismic.asText(this.page.meta_title): 'CRU Scaffold',
+      title: this.$prismic.asText(this.page.meta_title)
+        ? this.$prismic.asText(this.page.meta_title)
+        : "CRU Scaffold",
       meta: [
         {
-          hid: 'description',
-          name: 'description',
-          content: this.$prismic.asText(this.page.meta_description) ? this.$prismic.asText(this.page.meta_description): 'CRU Scaffold'
+          hid: "description",
+          name: "description",
+          content: this.$prismic.asText(this.page.meta_description)
+            ? this.$prismic.asText(this.page.meta_description)
+            : "CRU Scaffold",
         },
         {
-          hid: 'og:image',
-          name: 'image',
-          property: 'og:image',
-           content: this.page.og_image.url ? this.page.og_image.url : ''
+          hid: "og:image",
+          name: "image",
+          property: "og:image",
+          content: this.page.og_image.url ? this.page.og_image.url : "",
         },
         {
-          hid: 'og:title',
-          name: 'title',
-          property: 'og:title',
-          content: this.$prismic.asText(this.page.meta_title) ? this.$prismic.asText(this.page.meta_title): 'CRU Scaffold',
+          hid: "og:title",
+          name: "title",
+          property: "og:title",
+          content: this.$prismic.asText(this.page.meta_title)
+            ? this.$prismic.asText(this.page.meta_title)
+            : "CRU Scaffold",
         },
         {
-          hid: 'og:description',
-          name: 'description',
-          property: 'og:description',
-          content: this.$prismic.asText(this.page.meta_description) ? this.$prismic.asText(this.page.meta_description): 'CRU Scaffold'
-        }
-      ]    
+          hid: "og:description",
+          name: "description",
+          property: "og:description",
+          content: this.$prismic.asText(this.page.meta_description)
+            ? this.$prismic.asText(this.page.meta_description)
+            : "CRU Scaffold",
+        },
+      ],
     };
   },
   data() {
     return {
       page: [],
       slices: [],
-      uid: 'internal'
-    }
+      uid: "internal",
+    };
   },
   methods: {
     redirectToInternalPage(item) {
-      this.$router.push(this.$prismic.linkResolver(item.link))
+      this.$router.push(this.$prismic.linkResolver(item.link));
     },
     redirectToExternalPage(item) {
-      window.open(item.url, '_blank').focus();
+      window.open(item.url, "_blank").focus();
+    },
+    sendingForm(form) {
+      //process request here
+      console.log(form);
     },
     smoothScroll(id) {
       document.getElementById(id).scrollIntoView();
@@ -66,15 +83,15 @@ export default {
   },
   async asyncData({ $prismic, params, error }) {
     try {
-      const result = await $prismic.api.getByUID('page', params.uid)
+      const result = await $prismic.api.getByUID("page", params.uid);
       return {
         page: result.data,
         slices: result.data.body,
-        uid: params.uid
+        uid: params.uid,
       };
     } catch (e) {
       error({ statusCode: 404, message: "Page not found" });
     }
-  }
-}
+  },
+};
 </script>

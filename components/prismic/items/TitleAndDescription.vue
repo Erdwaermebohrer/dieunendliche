@@ -23,13 +23,3 @@ export default {
   },
 };
 </script>
-
-<script>
-export default {
-  props: {
-    slice: {
-      type: Object,
-    }
-  },
-};
-</script>

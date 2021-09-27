@@ -1,0 +1,30 @@
+.fade-preloader-enter-active, .fade-preloader-leave-active {
+  transition: all 2.5s;
+}
+
+.fade-preloader-enter, .fade-preloader-leave-to {
+  opacity: 0;
+}
+
+.sidebar-enter-active,
+.sidebar-leave-active {
+  position: absolute;
+  transition: all 1.5s ease-in-out;
+}
+
+.sidebar-enter {
+  opacity: 0;
+}
+
+.sidebar-leave-active {
+  opacity: 0;
+}
+
+.before-enter {
+  opacity: 0;
+}
+
+.enter {
+  opacity: 1!important;
+  transition: opacity 2s ease;
+}
