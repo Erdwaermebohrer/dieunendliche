@@ -31,7 +31,7 @@
       &--title {
         width: 60%;
         font-weight: 300;
-        color: $brand-secondary;
+        color: $light-yellow;
 
         @include for-tablet {
           width: 100%;
@@ -51,7 +51,7 @@
             font-size: 5.625em;
             font-weight: 600;
             line-height: 114px;
-            color: $brand-secondary;
+            color: $light-yellow;
 
             @include for-tablet {
               font-size: 60px;
@@ -63,7 +63,7 @@
             font-size: 0.875em;
             font-weight: 300;
             line-height: 18px;
-            color: $brand-secondary;
+            color: $light-yellow;
           }
         }
       }

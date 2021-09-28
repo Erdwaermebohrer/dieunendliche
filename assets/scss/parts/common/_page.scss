@@ -1,5 +1,8 @@
 .page {
-
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  padding-bottom: 150px;
 
   @include for-tablet {
     width: 100%;

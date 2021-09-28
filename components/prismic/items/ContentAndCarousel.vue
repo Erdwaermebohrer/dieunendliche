@@ -16,12 +16,12 @@
         <div class="slider__wrapper--icons">
           <img
             class="icon"
-            src="~assets/svg/arrow-right-green.svg"
+            src="~assets/svg/arrow-right-white.svg"
             @click="$refs.slider.goToPrev()"
           />
           <img
             class="icon"
-            src="~assets/svg/arrow-right-green.svg"
+            src="~assets/svg/arrow-right-white.svg"
             @click="$refs.slider.goToNext()"
           />
         </div>
@@ -71,7 +71,7 @@ export default {
         } else if (newValue > 760 && newValue < 900) {
           this.sliderOptions.slidesToShow = 2;
         } else {
-          this.sliderOptions.slidesToShow = 3;
+          this.sliderOptions.slidesToShow = 2.96;
         }
       },
       immediate: true,

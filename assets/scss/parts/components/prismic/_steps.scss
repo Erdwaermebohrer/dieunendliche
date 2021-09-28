@@ -1,6 +1,6 @@
 .steps__wrapper {
   width: 100%;
-  padding: 150px 5vw;
+  padding: 150px 5vw 0;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +16,7 @@
     left: 0;
     right: 0;
     margin: 0 auto;
-    margin-top: -357px;
+    margin-top: -161px;
     position: absolute;
     z-index: 2;
 
@@ -46,7 +46,7 @@
   }
 
   &--title {
-    width: 100%;
+    width: 50%;
 
     @include for-tablet {
       width: 100%;
@@ -54,20 +54,33 @@
     }
 
     .title {
+      width: 300px;
       margin: 0;
       font-weight: 300;
-      color: $brand-secondary;
+      color: $light-yellow;
 
       @include for-tablet {
+        width: 100%;
         font-size: 22px;
         line-height: 28px;
       }
     }
   }
 
+  &--description {
+    width: 50%;
+    .description {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 17.75px;
+      color: $light-yellow;
+    }
+  }
+
   &--content {
     width: 78%;
     margin: 0 auto;
+    margin-top: 200px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;
@@ -94,12 +107,12 @@
 
     .step-item {
       width: 50%;
-      min-height: 468px;
+      height: 468px;
       display: flex;
       justify-content: center;
 
       @media screen and (max-width: 1160px) {
-        min-height: 389px;
+        height: 389px;
       }
 
       &:nth-child(1) {
@@ -157,7 +170,7 @@
             align-items: center;
             font-size: 24px;
             font-weight: 300;
-            color: $brand-secondary;
+            color: $light-yellow;
 
             @include for-tablet {
               font-size: 22px;
@@ -170,14 +183,14 @@
               height: 1px;
               margin-right: 8px;
               display: flex;
-              background-color: $brand-secondary;
+              background-color: $light-yellow;
             }
           }
 
           .title {
             font-size: 34px;
             font-weight: 600;
-            color: $brand-secondary;
+            color: $light-yellow;
 
             @include for-tablet {
               font-size: 22px;
@@ -190,7 +203,7 @@
             font-size: 14px;
             font-weight: 300;
             line-height: 17.75px;
-            color: $brand-secondary;
+            color: $light-yellow;
 
             @include for-tablet {
               width: 100%;

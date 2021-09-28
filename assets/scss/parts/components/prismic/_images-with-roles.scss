@@ -5,28 +5,42 @@
     padding: 60px 5vw 160px;
   }
 
-  &--title {
-    margin: 0;
-    font-weight: 300;
-    color: $white;
+  &--content {
+    display: flex;
 
-    @include for-tablet {
-      padding-bottom: 10px;
-      font-size: 22px;
-      line-height: 28px;
+    .title {
+      width: 50%;
+      margin: 0;
+      font-weight: 300;
+      color: $white;
+
+      @include for-tablet {
+        width: 100%;
+        padding-bottom: 10px;
+        font-size: 22px;
+        line-height: 28px;
+      }
+    }
+
+    .description {
+      width: 50%;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 17.75px;
+      color: $white;
+
+      @include for-tablet {
+        width: 100%;
+      }
     }
   }
 
   &--images {
-    margin-top: -200px;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;
-
-    @include for-tablet {
-      margin-top: 0;
-    }
 
     .role-image__wrapper {
       width: 50%;
@@ -36,7 +50,7 @@
 
       @include for-tablet {
         width: 100%;
-        padding: 60px!important;
+        padding: 60px !important;
         flex-direction: column;
         justify-content: center;
         align-items: center;

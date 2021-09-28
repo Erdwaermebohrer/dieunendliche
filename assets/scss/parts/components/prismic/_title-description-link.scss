@@ -1,8 +1,7 @@
 .title-description-link__wrapper {
-  width: 100%;
-  padding: 150px 5vw;
+  margin: 150px 5vw;
+  padding: 120px 50px;
   display: flex;
-  background-color: #fffce5;
 
   @include for-tablet {
     padding: 100px 5vw 100px;
@@ -18,9 +17,10 @@
     }
 
     .title {
+      width: 400px;
       margin: 0;
       font-weight: 300;
-      color: $brand-secondary;
+      color: $white;
 
       @include for-tablet {
         font-size: 22px;
@@ -41,7 +41,7 @@
       font-size: 14px;
       font-weight: 300;
       line-height: 18px;
-      color: $brand-secondary;
+      color: $white;
 
       @include for-tablet {
         padding: 0;
@@ -63,15 +63,15 @@
         margin-right: 10px;
         font-size: 14px;
         font-weight: 300;
-        color: $brand-secondary;
+        color: $white;
         cursor: pointer;
       }
 
       &--link {
         font-size: 14px;
         font-weight: 300;
-        color: $brand-secondary;
-        border-bottom: 1px solid $brand-secondary;
+        color: $white;
+        border-bottom: 1px solid $white;
         cursor: pointer;
       }
     }

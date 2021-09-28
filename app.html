@@ -43,17 +43,18 @@
         languages: {
           de: {
             consent_modal: {
-              title: "Dürfen wir Cookies verwenden?",
+              title: '<image class="logo" src="/cookie.png"/>',
               description:
-                'Sie stimmen der Verwendung von grundlegenden Cookies sowie von Cookies für Statistiken weiterhin zu. <button type="button" data-cc="c-settings" class="cc-link" aria-haspopup="dialog">Anpassen</button>',
+                'Wir verwenden Cookies, um Ihr Wesbite-Er zu personalisieren.',
               primary_btn: {
-                text: "Ja",
-                role: "accept_all" //'accept_selected' or 'accept_all'
+                text: "Erluaben",
+                role: "accept_all" //'settings' or 'accept_necessary'
               },
               secondary_btn: {
-                text: "Nein",
-                role: "accept_necessary" //'settings' or 'accept_necessary'
-              }
+                text: "Personalisieren",
+                role: "settings" //'accept_selected' or 'accept_all'
+              },
+              
             },
             settings_modal: {
               title: "Cookie Einstellungen",

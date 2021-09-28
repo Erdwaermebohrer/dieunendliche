@@ -1,14 +1,17 @@
 <template>
   <div id="page" :class="'page page__' + uid">
+    <background-images />
     <slice-wrapper :slices="slices" :redirectToInternalPage="redirectToInternalPage" />
   </div>
 </template>
 
 <script>
+import BackgroundImages from '../components/layout/BackgroundImages.vue';
 import SliceWrapper from "../components/prismic/SlicesWrapper.vue";
 
 export default {
   components: {
+    "background-images": BackgroundImages,
     "slice-wrapper": SliceWrapper,
   },
   head() {

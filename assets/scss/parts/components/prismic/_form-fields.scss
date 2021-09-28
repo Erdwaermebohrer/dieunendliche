@@ -1,9 +1,9 @@
 .form-fields__wrapper {
-  width: 100%;
-  padding: 5vw;
+  margin: 0 5vw 5vw;
+  padding: 70px;
   display: flex;
   flex-direction: column;
-  background-color: $light-blue;
+  background-color: $light-orange;
 
   @include for-tablet {
     padding: 100px 5vw 100px;
@@ -114,7 +114,7 @@
 
       &--link {
         font-size: 14px;
-        font-weight: 300;
+        font-weight: 600;
         color: $white;
         border-bottom: 1px solid $white;
         cursor: pointer;

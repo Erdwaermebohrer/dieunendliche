@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="image-with-content__wrapper--image">
-      <img class="image" :src="slice.primary.image1.url" />
+      <img class="image" :data-src="slice.primary.image1.url" v-lazy-load/>
     </div>
   </div>
 </template>

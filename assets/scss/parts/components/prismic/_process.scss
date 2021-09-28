@@ -3,7 +3,6 @@
   padding: 150px 5vw 200px;
   display: flex;
   flex-wrap: wrap;
-  background: #618787;
 
   @include for-tablet {
     padding: 100px 5vw 100px;
@@ -57,6 +56,16 @@
         display: flex;
         padding: 5px 0;
 
+        &:nth-child(6) {
+          .item__right {
+            .item__right--description {
+              @include for-tablet {
+                margin-top: 37px;
+              }
+            }
+          }
+        }
+
         .item__left {
           width: 50%;
           display: flex;
@@ -99,6 +108,7 @@
 
             @include for-tablet {
               width: 100%;
+              // margin-top: 37px;
             }
           }
         }
