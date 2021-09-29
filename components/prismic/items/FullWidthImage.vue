@@ -1,6 +1,6 @@
 <template>
   <div class="full-width-image__wrapper">
-    <img class="image" :src="slice.primary.image1.url" />
+    <img class="image" :data-src="slice.primary.image1.url" v-lazy-load/>
     <div class="video__wrapper">
       <video class="video__wrapper--item" autoplay playsinline muted loop>
         <source src="~static/intro-video.mp4" type="video/mp4" />

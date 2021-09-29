@@ -211,6 +211,8 @@
 #c-ttl{
     margin: 0 0 0.6em 0;
     font-size: 1.3em;
+    display: flex;
+    justify-content: center;
 }
 
 #c-txt{
@@ -224,7 +226,7 @@
     color: var(--cc-btn-secondary-text);
     background: #e5ebef;
     background: var(--cc-btn-secondary-bg);
-    padding: 1em 1.6em;
+    padding: 10px;
     display: inline-block;
     cursor: pointer;
     font-size: 0.85em;
@@ -234,11 +236,14 @@
     -o-user-select: none;
     user-select: none;
     text-align: center;
-    border-radius: 4px;
+    border-radius: 20px;
 }
 
 #cm .c-bn{
-    width: 48.5%;
+  width: 48.5%;
+  background: transparent;
+  border: 1px solid #618787;
+  color: #618787;
 }
 
 #c-bns button + button,
@@ -464,15 +469,14 @@ CookieConsent settings modal
 }
 
 .cc_div .cc-link{
-    color: #253b48;
-    color: var(--cc-btn-primary-bg);
-    border-bottom: 1px solid #253b48;
-    border-color: var(--cc-btn-primary-bg);
     display: inline;
     padding-bottom: 0;
     text-decoration: none;
     cursor: pointer;
     font-weight: bold;
+    background: transparent;
+    border: 1px solid #618787;
+    color: #618787;
 }
 
 .cc_div .cc-link:hover,
@@ -483,9 +487,7 @@ CookieConsent settings modal
 #c-bns button:first-child,
 #s-bns button:first-child{
     color: #fff;
-    color: var(--cc-btn-primary-text);
-    background: #253b48;
-    background: var(--cc-btn-primary-bg);
+    background: #618787;
 }
 
 .cc_div .c-tgl:checked ~ .c-tg{
@@ -789,6 +791,15 @@ html.force--consent body{
     transform: translateY(-.2em) rotate(45deg);
     left: 1.2em;
     top: 1.85em;
+}
+
+.icon-cookie {
+  width: 50px;
+  height: 50px;
+  background-image: url("~assets/images/cookie.png");
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
 }
 
 .cc_div .act .b-bn .b-tl::before{

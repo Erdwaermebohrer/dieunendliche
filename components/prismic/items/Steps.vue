@@ -1,11 +1,13 @@
 <template>
-  <div
-    id="steps__wrapper"
-    class="steps__wrapper"
-    :style="'background-color:' + slice.primary.color"
-  >
+  <div id="steps__wrapper" class="steps__wrapper">
     <div class="steps__wrapper--title">
       <h2 class="title" v-text="$prismic.asText(slice.primary.title1)" />
+    </div>
+    <div class="steps__wrapper--description">
+      <div
+        class="description"
+        v-html="$prismic.asText(slice.primary.description)"
+      />
     </div>
     <svg
       id="curve-svg"
@@ -16,7 +18,7 @@
       <path
         id="curve-line"
         d="M496 1H814C869.475 1 922.677 23.0372 961.903 62.2635C1001.13 101.49 1023.17 154.692 1023.17 210.167C1023.17 265.641 1001.13 318.843 961.903 358.07C922.677 397.296 869.475 419.333 814 419.333H209.984C154.51 419.333 101.308 441.371 62.0812 480.597C22.8549 519.823 0.817749 573.025 0.817749 628.5C0.817749 683.974 22.8549 737.177 62.0812 776.403C101.308 815.629 154.51 837.667 209.984 837.667H814C869.475 837.667 922.677 859.704 961.903 898.93C1001.13 938.157 1023.17 991.359 1023.17 1046.83C1023.17 1102.31 1001.13 1155.51 961.903 1194.74C922.677 1233.96 869.475 1256 814 1256H209.984C154.51 1256 101.308 1233.96 62.0812 1194.74C22.8549 1155.51 0.817749 1102.31 0.817749 1046.83"
-        stroke="#857373"
+        stroke="#ffffff"
         stroke-miterlimit="10"
       />
     </svg>
@@ -152,43 +154,43 @@ export default {
         if (scrollPercent > circle_1_percent) {
           circle_1.style.backgroundColor = "#E8543B";
         } else {
-          circle_1.style.backgroundColor = "#857373";
+          circle_1.style.backgroundColor = "#ffffff";
         }
 
         if (scrollPercent > circle_2_percent) {
           circle_2.style.backgroundColor = "#E8543B";
         } else {
-          circle_2.style.backgroundColor = "#857373";
+          circle_2.style.backgroundColor = "#ffffff";
         }
 
         if (scrollPercent > circle_3_percent) {
           circle_3.style.backgroundColor = "#E8543B";
         } else {
-          circle_3.style.backgroundColor = "#857373";
+          circle_3.style.backgroundColor = "#ffffff";
         }
 
         if (scrollPercent > circle_4_percent) {
           circle_4.style.backgroundColor = "#E8543B";
         } else {
-          circle_4.style.backgroundColor = "#857373";
+          circle_4.style.backgroundColor = "#ffffff";
         }
 
         if (scrollPercent > circle_5_percent) {
           circle_5.style.backgroundColor = "#E8543B";
         } else {
-          circle_5.style.backgroundColor = "#857373";
+          circle_5.style.backgroundColor = "#ffffff";
         }
 
         if (scrollPercent > circle_6_percent) {
           circle_6.style.backgroundColor = "#E8543B";
         } else {
-          circle_6.style.backgroundColor = "#857373";
+          circle_6.style.backgroundColor = "#ffffff";
         }
 
         if (scrollPercent > circle_7_percent) {
           circle_7.style.backgroundColor = "#E8543B";
         } else {
-          circle_7.style.backgroundColor = "#857373";
+          circle_7.style.backgroundColor = "#ffffff";
         }
       });
     },

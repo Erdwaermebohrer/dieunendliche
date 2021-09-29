@@ -1,5 +1,5 @@
 <template>
-  <div class="title-description-link__wrapper">
+  <div class="title-description-link__wrapper" :style="{'background-color': slice.primary.color}">
     <div class="title-description-link__wrapper--title">
       <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
     </div>
@@ -11,7 +11,7 @@
       <div class="link__wrapper">
         <img
           class="link__wrapper--icon"
-          src="~assets/svg/arrow-right-green.svg"
+          src="~assets/svg/arrow-right-white.svg"
         />
         <a
           class="link__wrapper--link"

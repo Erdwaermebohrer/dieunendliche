@@ -5,10 +5,20 @@
       v-for="(slice, index) in slices"
       :key="'slice-' + index"
     >
+      <template v-if="slice.slice_type === 'list'">
+        <accordion :slice="slice" />
+      </template>
+
       <template v-if="slice.slice_type === 'contentandcarousel'">
         <content-and-carousel
           :slice="slice"
           :clickedButton="redirectToExternalPage"
+        />
+      </template>
+
+      <template v-if="slice.slice_type === 'contentcarouselwithindex'">
+        <content-carousel-with-index
+          :slice="slice"
         />
       </template>
 
@@ -18,10 +28,6 @@
 
       <template v-if="slice.slice_type === 'intro'">
         <intro :slice="slice" />
-      </template>
-
-      <template v-if="slice.slice_type === 'image'">
-        <full-width-image :slice="slice" />
       </template>
 
       <template v-if="slice.slice_type === 'imagewithcontent'">
@@ -49,14 +55,6 @@
         />
       </template>
 
-      <template v-if="slice.slice_type === 'imagewithslider'">
-        <image-with-slider :slice="slice" />
-      </template>
-
-      <template v-if="slice.slice_type === 'list'">
-        <simple-list :slice="slice" />
-      </template>
-
       <template v-if="slice.slice_type === 'process'">
         <process :slice="slice" />
       </template>
@@ -65,12 +63,23 @@
         <steps :slice="slice" />
       </template>
 
-      <template v-if="slice.slice_type === 'titleanddescription'">
-        <title-and-description :slice="slice" />
+      <template v-if="slice.slice_type === 'titledescription'">
+        <title-description :slice="slice" />
       </template>
 
       <template v-if="slice.slice_type === 'titledescriptionlink'">
         <title-description-link
+          :slice="slice"
+          :clickedButton="redirectToExternalPage"
+        />
+      </template>
+
+      <template v-if="slice.slice_type === 'titlesubtitledescription'">
+        <title-subtitle-description :slice="slice" />
+      </template>
+
+      <template v-if="slice.slice_type === 'titlesubtitlelink'">
+        <title-subtitle-link
           :slice="slice"
           :clickedButton="redirectToExternalPage"
         />
@@ -80,20 +89,21 @@
 </template>
 
 <script>
+import Accordion from "./items/Accordion.vue";
 import ContentAndCarousel from "./items/ContentAndCarousel.vue";
+import ContentCarouselWithIndex from  "./items/ContentCarouselWithIndex.vue";
 import FormFields from "./items/FormFields.vue";
-import FullWidthImage from "./items/FullWidthImage.vue";
 import Intro from "./items/Intro.vue";
 import ImageWithContent from "./items/ImageWithContent.vue";
 import ImageWithFacts from "./items/ImageWithFacts.vue";
 import ImagesWithLink from "./items/ImagesWithLink.vue";
 import ImagesWithRoles from "./items/ImagesWithRoles.vue";
-import ImageWithSlider from "./items/ImageWithSlider.vue";
 import Process from "./items/Process.vue";
-import SimpleList from "./items/SimpleList.vue";
 import Steps from "./items/Steps.vue";
-import TitleAndDescription from "./items/TitleAndDescription.vue";
+import TitleDescription from "./items/TitleDescription.vue";
 import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
+import TitleSubtitleDescription from "./items/TitleSubtitleDescription.vue";
+import TitleSubtitleLink from "./items/TitleSubtitleLink.vue";
 
 export default {
   props: [
@@ -104,20 +114,21 @@ export default {
   ],
   name: "slices-wrapper",
   components: {
+    Accordion,
     ContentAndCarousel,
+    ContentCarouselWithIndex,
     FormFields,
-    FullWidthImage,
     Intro,
     ImageWithContent,
     ImageWithFacts,
     ImagesWithLink,
     ImagesWithRoles,
-    ImageWithSlider,
     Process,
-    SimpleList,
     Steps,
-    TitleAndDescription,
+    TitleDescription,
     TitleDescriptionLink,
+    TitleSubtitleDescription,
+    TitleSubtitleLink,
   },
 };
 </script>

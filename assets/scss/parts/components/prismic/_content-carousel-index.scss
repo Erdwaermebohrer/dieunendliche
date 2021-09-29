@@ -1,0 +1,120 @@
+.content-carousel-index__wrapper {
+  width: 100%;
+  padding: 150px 5vw 200px;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include for-tablet {
+    padding: 100px 5vw 100px;
+    flex-wrap: wrap;
+  }
+
+  &--title {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+      padding-bottom: 60px;
+    }
+
+    .title {
+      width: 35%;
+      margin: 0;
+      font-weight: 300;
+      color: $white;
+
+      @include for-tablet {
+        width: 100%;
+        font-size: 22px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  &--content {
+    width: 50%;
+
+    @include for-tablet {
+      width: 100%;
+    }
+
+    .content__wrapper {
+      display: flex;
+      justify-content: flex-end;
+
+      @include for-tablet {
+        justify-content: unset;
+      }
+
+      &--subtitle {
+        width: 80%;
+        font-size: 44px;
+        font-weight: 400;
+        line-height: 55px;
+        color: $white;
+
+        @include for-tablet {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &--slider {
+    width: 100%;
+    margin-top: 280px;
+
+    @include for-tablet {
+      margin-top: 80px;
+    }
+
+    .slider__wrapper {
+      &--icons {
+        width: 100%;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        .icon {
+          cursor: pointer;
+
+          &:nth-child(1) {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      &--content {
+        .slider-item {
+          height: 220px;
+
+          .wrap {
+            width: 95%;
+            height: 80%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #fffce5;
+
+            .slider-item__content {
+              .index {
+                font-size: 14px;
+                font-weight: 300;
+                color: $brand-secondary;
+              }
+
+              .title {
+                margin-top: 5px;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 22.82px;
+                color: $brand-secondary;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

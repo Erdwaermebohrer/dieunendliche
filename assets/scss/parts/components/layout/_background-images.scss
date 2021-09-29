@@ -1,0 +1,23 @@
+.background-images__wrapper {
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+
+  &--item {
+    width: 100%;
+    height: auto;
+
+    &:nth-child(2) {
+      position: relative;
+      top: -4px;
+    }
+
+    &:nth-child(3) {
+      position: relative;
+      top: -8px;
+    }
+  }
+}

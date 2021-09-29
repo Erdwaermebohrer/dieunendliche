@@ -16,16 +16,30 @@
       <div class="title" v-text="$prismic.asText(inputData.title)" />
       <img class="logo" :src="inputData.logo.url" />
     </div>
+    <div class="footer__wrapper--bottom">
+      <div
+        class="title"
+        v-text="$prismic.asText(inputData.bottom_footer_title)"
+      />
+      <div class="logo__wrapper">
+        <img
+          class="logo__wrapper--item"
+          v-for="(logo, index) in inputData.bottom_footer"
+          :key="'logo-' + index"
+          :src="logo.image.url"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app-footer',
+  name: "app-footer",
   props: {
     inputData: {
-      type: Object
-    }
-  }
-}
+      type: Object,
+    },
+  },
+};
 </script>
