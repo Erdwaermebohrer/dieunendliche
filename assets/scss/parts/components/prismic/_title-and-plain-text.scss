@@ -1,7 +1,8 @@
-.title-description__wrapper {
+.title-and-plain-text__wrapper {
   width: 100%;
   padding: 150px 5vw;
   display: flex;
+  flex-direction: column;
 
   @include for-tablet {
     padding: 100px 5vw 100px;
@@ -9,7 +10,7 @@
   }
 
   &--title {
-    width: 50%;
+    width: 100%;
 
     @include for-tablet {
       width: 100%;
@@ -31,14 +32,15 @@
   }
 
   &--content {
-    width: 50%;
+    width: 100%;
+    margin-top: 40px;
 
     @include for-tablet {
       width: 100%;
+      margin-top: 0;
     }
 
-    .description {
-      padding: 0 40px;
+    .content {
       font-size: 14px;
       font-weight: 300;
       line-height: 18px;

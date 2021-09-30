@@ -4,7 +4,8 @@
   display: flex;
 
   @include for-tablet {
-    padding: 100px 5vw 100px;
+    margin: 0 5vw 70px;
+    padding: 70px 5vw;
     flex-wrap: wrap;
   }
 
@@ -23,6 +24,7 @@
       color: $white;
 
       @include for-tablet {
+        width: 100%;
         font-size: 22px;
         line-height: 28px;
       }

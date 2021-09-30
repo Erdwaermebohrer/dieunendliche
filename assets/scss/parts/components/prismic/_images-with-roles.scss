@@ -2,11 +2,15 @@
   padding: 5vw 5vw 0;
 
   @include for-tablet {
-    padding: 60px 5vw 160px;
+    padding: 60px 5vw 70px;
   }
 
   &--content {
     display: flex;
+
+    @include for-tablet {
+      flex-direction: column;
+    }
 
     .title {
       width: 50%;

@@ -6,6 +6,11 @@
   position: absolute;
   z-index: -1;
 
+  @include for-tablet {
+    height: 100%;
+    background-color: $black; //Temporary
+  }
+
   &--item {
     width: 100%;
     height: auto;
@@ -13,11 +18,19 @@
     &:nth-child(2) {
       position: relative;
       top: -4px;
+
+      @include for-tablet {
+        top: -5px;
+      }
     }
 
     &:nth-child(3) {
       position: relative;
       top: -8px;
+
+      @include for-tablet {
+        top: -10px;
+      }
     }
   }
 }

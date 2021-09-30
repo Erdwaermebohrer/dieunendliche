@@ -6,12 +6,18 @@
   justify-content: space-between;
 
   @include for-tablet {
+    margin: 0 5vw;
+    padding: 20px 0;
     flex-wrap: wrap;
   }
 
   &--item {
     width: 46%;
     position: relative;
+
+    @include for-tablet {
+      margin-bottom: 20px;
+    }
 
     &:before {
       content: "";
