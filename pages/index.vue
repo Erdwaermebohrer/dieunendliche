@@ -1,12 +1,15 @@
 <template>
   <div id="page" :class="'page page__' + uid">
-    <background-images />
-    <slice-wrapper :slices="slices" :redirectToInternalPage="redirectToInternalPage" />
+    <background-images :images="backgroundImages" />
+    <slice-wrapper
+      :slices="slices"
+      :redirectToInternalPage="redirectToInternalPage"
+    />
   </div>
 </template>
 
 <script>
-import BackgroundImages from '../components/layout/BackgroundImages.vue';
+import BackgroundImages from "../components/layout/BackgroundImages.vue";
 import SliceWrapper from "../components/prismic/SlicesWrapper.vue";
 
 export default {
@@ -57,11 +60,32 @@ export default {
       page: [],
       slices: [],
       uid: "homepage",
+      backgroundImages: {
+        desktop: [
+          {
+            image: "bg-01.jpg",
+          },
+          {
+            image: "bg-02.jpg",
+          },
+          {
+            image: "bg-03.jpg",
+          },
+        ],
+        mobile: [
+          {
+            image: "bg-01.jpg",
+          },
+          {
+            image: "bg-02.jpg",
+          },
+        ],
+      },
     };
   },
   methods: {
     redirectToInternalPage(item) {
-      this.$router.push(this.$prismic.linkResolver(item))
+      this.$router.push(this.$prismic.linkResolver(item));
     },
     smoothScroll(id) {
       document.getElementById(id).scrollIntoView();

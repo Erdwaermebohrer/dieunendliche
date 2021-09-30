@@ -35,6 +35,25 @@
         stroke-miterlimit="15"
       />
     </svg>
+    <div id="arrow">
+      <svg
+        id="arrow-svg"
+        width="38"
+        height="22"
+        viewBox="0 0 38 22"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          id="curve-arrow-color"
+          d="M1.08008 20.7822L19.1245 2.29199L37.1821 20.7822"
+          stroke="#ffffff"
+          stroke-width="2"
+          stroke-miterlimit="10"
+        />
+      </svg>
+    </div>
+
     <svg
       id="curve-svg-mobile"
       width="42"
@@ -46,7 +65,7 @@
       <path
         id="curve-line-mobile"
         d="M30.6501 0.5V1499.9C30.6501 1504.05 29.0683 1508.04 26.2528 1510.97C23.4373 1513.91 19.6188 1515.56 15.6371 1515.56C11.6554 1515.56 7.8366 1513.91 5.0211 1510.97C2.20561 1508.04 0.624023 1504.05 0.624023 1499.9V1495.8"
-        stroke="#857373"
+        stroke="#ffffff"
         stroke-miterlimit="10"
       />
     </svg>
@@ -125,9 +144,12 @@ export default {
     },
     animateTimeline() {
       var curve_line = document.getElementById("curve-line-color");
+      var arrow_line = document.getElementById("curve-arrow-color");
       var section = document.getElementById("steps__wrapper");
+      
       var length = curve_line.getTotalLength();
       curve_line.style.strokeDasharray = length;
+ 
 
       var circle_1 = document.getElementById("step-circle-1");
       var circle_2 = document.getElementById("step-circle-2");
@@ -191,6 +213,12 @@ export default {
           circle_7.style.backgroundColor = "#E8543B";
         } else {
           circle_7.style.backgroundColor = "#ffffff";
+        }
+
+        if (scrollPercent > 0.9) {
+          arrow_line.style.stroke = "#E8543B";
+        } else {
+          arrow_line.style.stroke = "#ffffff";
         }
       });
     },

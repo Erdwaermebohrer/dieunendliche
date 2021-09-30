@@ -55,6 +55,8 @@
 
         @include for-tablet {
           width: 100%;
+          font-size: 30px;
+          line-height: 38px;
         }
       }
     }

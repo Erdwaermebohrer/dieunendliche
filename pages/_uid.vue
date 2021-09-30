@@ -1,6 +1,6 @@
 <template>
   <div id="page" :class="'page page__' + uid">
-    <background-images />
+    <background-images :images="selectedBackgroundImages" />
     <slice-wrapper
       :slices="slices"
       :redirectToExternalPage="redirectToExternalPage"
@@ -57,11 +57,137 @@ export default {
       ],
     };
   },
+  watch: {
+    "$route.params": {
+      handler(value) {
+        this.selectedBackgroundImages = this.backgrondImages[value.uid];
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
   data() {
     return {
+      backgrondImages: {
+        about: {
+          desktop: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+          mobile: [
+            {
+              image: "bg-01.jpg",
+            },
+          ],
+        },
+        endkunden: {
+          desktop: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+          mobile: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+        },
+        fachpartner: {
+          desktop: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+          mobile: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+        },
+        datenschutz: {
+          desktop: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+          mobile: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+        },
+        impressum: {
+          desktop: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+          mobile: [
+            {
+              image: "bg-01.jpg",
+            },
+            {
+              image: "bg-02.jpg",
+            },
+            {
+              image: "bg-03.jpg",
+            },
+          ],
+        },
+      },
       page: [],
       slices: [],
       uid: "internal",
+      selectedBackgroundImages: null,
     };
   },
   methods: {
