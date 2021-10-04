@@ -4,7 +4,7 @@
       class="background-images__wrapper--item"
       v-for="(image, index) in computedImages"
       :key="'image-' + index"
-      :data-src="require(`@/assets/images/${image.image}`)"
+      :data-src="image.image.url"
       v-lazy-load
     />
   </div>
@@ -13,8 +13,11 @@
 <script>
 export default {
   props: {
-    images: {
-      type: Object,
+    desktop: {
+      type: Array,
+    },
+    mobile: {
+      type: Array,
     },
   },
   watch: {
@@ -29,7 +32,7 @@ export default {
   },
   computed: {
     computedImages() {
-      return this.isMobile ? this.images.mobile : this.images.desktop;
+      return this.isMobile ? this.mobile : this.desktop;
     },
   },
   data() {

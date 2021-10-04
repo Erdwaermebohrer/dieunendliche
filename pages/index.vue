@@ -1,6 +1,9 @@
 <template>
   <div id="page" :class="'page page__' + uid">
-    <background-images :images="backgroundImages" />
+    <background-images
+      :desktop="page.desktop_background_images"
+      :mobile="page.mobile_background_images"
+    />
     <slice-wrapper
       :slices="slices"
       :redirectToInternalPage="redirectToInternalPage"
@@ -60,27 +63,6 @@ export default {
       page: [],
       slices: [],
       uid: "homepage",
-      backgroundImages: {
-        desktop: [
-          {
-            image: "bg-01.jpg",
-          },
-          {
-            image: "bg-02.jpg",
-          },
-          {
-            image: "bg-03.jpg",
-          },
-        ],
-        mobile: [
-          {
-            image: "bg-01.jpg",
-          },
-          {
-            image: "bg-02.jpg",
-          },
-        ],
-      },
     };
   },
   methods: {
