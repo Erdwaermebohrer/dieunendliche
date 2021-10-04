@@ -1,15 +1,14 @@
 <template>
-  <div class="title-description-link__wrapper" :style="{'background-color': slice.primary.color}">
-    <div class="title-description-link__wrapper--title">
-      <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
+  <div class="title-subtitle-link__wrapper">
+    <div class="title-subtitle-link__wrapper--title">
+      <h2 class="title" v-text="$prismic.asText(slice.primary.title1)" />
     </div>
-    <div class="title-description-link__wrapper--content">
-      <div
-        class="description"
-        v-html="$prismic.asText(slice.primary.description)"
-      />
+    
+    <div class="title-subtitle-link__wrapper--content">
+      <div class="subtitle" v-html="$prismic.asText(slice.primary.subtitle)" />
       <div class="link__wrapper">
         <img
+          v-if="slice.primary.link_title.length > 0"
           class="link__wrapper--icon"
           src="~assets/svg/arrow-right-white.svg"
         />

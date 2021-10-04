@@ -1,13 +1,13 @@
 <template>
-  <div class="title-and-description__wrapper">
-    <div class="title-and-description__wrapper--title">
+  <div class="title-subtitle-description__wrapper">
+    <div class="title-subtitle-description__wrapper--title">
       <h2 class="title" v-text="$prismic.asText(slice.primary.title1)" />
     </div>
     
-    <div class="title-and-description__wrapper--content">
+    <div class="title-subtitle-description__wrapper--content">
       <div class="subtitle" v-html="$prismic.asText(slice.primary.subtitle)" />
       <div class="description__wrapper">
-        <img class="description__wrapper--icon" src="~assets/svg/arrow-right-green.svg" />
+        <img class="description__wrapper--icon" src="~assets/svg/arrow-right-white.svg" />
         <div class="description__wrapper--content" v-text="$prismic.asText(slice.primary.description)" />
       </div>
     </div>

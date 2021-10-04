@@ -48,6 +48,17 @@ export default {
         el.$onScroll = function () {
           if (binding.def.inViewport(el)) {
             var top = el.getBoundingClientRect().top * -1;
+            var page = document.getElementById("page");
+
+            if (
+              top > -700 &&
+              top <
+                vnode.context.numberOfElements * vnode.context.scrollPartHeight
+            ) {
+              page.style.overflow = "visible";
+            } else {
+              page.style.overflow = "hidden";
+            }
 
             for (let i = 0; i < vnode.context.numberOfElements; i++) {
               this["item_l_" + i] = document.getElementById("item-left-" + i);

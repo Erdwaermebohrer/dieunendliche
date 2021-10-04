@@ -5,7 +5,8 @@
       v-for="(item, index) in slice.items"
       :key="'image-' + index"
     >
-      <img class="image" :src="item.image.url" />
+      <img class="image" :data-src="item.image.url" v-lazy-load/>
+      
       <div class="content__wrapper">
         <h2
           class="content__wrapper--title"

@@ -1,17 +1,17 @@
 <template>
-  <div class="content-and-carousel__wrapper">
-    <div class="content-and-carousel__wrapper--title">
+  <div class="content-carousel-index__wrapper">
+    <div class="content-carousel-index__wrapper--title">
       <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
     </div>
-    <div class="content-and-carousel__wrapper--content">
+    <div class="content-carousel-index__wrapper--content">
       <div class="content__wrapper">
         <div
-          class="content__wrapper--description"
+          class="content__wrapper--subtitle"
           v-html="$prismic.asText(slice.primary.description)"
         />
       </div>
     </div>
-    <div class="content-and-carousel__wrapper--slider">
+    <div class="content-carousel-index__wrapper--slider">
       <div class="slider__wrapper">
         <div class="slider__wrapper--icons">
           <img
@@ -34,16 +34,9 @@
             >
               <div class="wrap">
                 <div class="slider-item__content">
-                  <div class="author" v-text="$prismic.asText(slide.author)" />
+                  <div class="index" v-text="(index+1) + '/' + slice.items.length" />
                   <div class="title" v-text="$prismic.asText(slide.title)" />
                 </div>
-                <a class="slider-item__link" @click="clickedButton(slide.link)">
-                  <img class="icon" src="~assets/svg/arrow-right-green.svg" />
-                  <span
-                    class="link"
-                    v-text="$prismic.asText(slide.link_title)"
-                  />
-                </a>
               </div>
             </div>
           </agile>

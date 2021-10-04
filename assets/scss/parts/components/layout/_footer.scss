@@ -1,14 +1,17 @@
 .footer__wrapper {
   width: 100%;
-  margin-top: auto;
-  padding: 25px 0;
+  margin-top: -210px;
+  padding: 25px 0 0;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background-color: $brand-secondary;
+  background-color: $transparent;
+  z-index: 100;
 
   @include for-tablet {
-    padding: 70px 0 20px;
+    margin-top: -559px;
+    padding: 0;
     flex-direction: column;
   }
 
@@ -86,6 +89,44 @@
     .logo {
       @include for-tablet {
         width: 30%;
+      }
+    }
+  }
+
+  &--bottom {
+    width: 100%;
+    padding: 20px 5vw;
+    display: flex;
+    align-items: center;
+    background-color: $brand-secondary;
+
+    .title {
+      font-size: 12px;
+      font-weight: 300;
+      line-height: 15px;
+      color: $white;
+    }
+
+    .logo__wrapper {
+      display: flex;
+      align-items: center;
+
+      @include for-tablet {
+        flex-direction: column;
+        justify-content: center;
+      }
+    
+      &--item {
+        &:nth-child(1) {
+          margin-left: 100px;
+
+          @include for-tablet {
+            margin-left: 30px;
+            margin-bottom: 10px;
+          }
+        }
+
+        margin: 0 30px;
       }
     }
   }

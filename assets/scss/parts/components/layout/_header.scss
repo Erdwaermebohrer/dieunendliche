@@ -1,7 +1,7 @@
 .header__wrapper {
   width: calc(100% - 10px);
   padding: 0 20px;
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,7 +73,7 @@
 
           @include for-tablet {
             height: 20px;
-            top: 83vh;
+            top: 82vh;
             margin: 0 auto;
           }
 

@@ -21,9 +21,14 @@ export default {
   ],
   modules: [
     "@nuxtjs/axios",
-    "nuxt-lazy-load",
     "@nuxtjs/prismic",
-    "@nuxtjs/pwa"
+    "@nuxtjs/pwa",
+    [
+      "nuxt-lazy-load",
+      {
+        directiveOnly: true
+      }
+    ]
   ],
   pwa: {
     workbox: {

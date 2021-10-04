@@ -1,11 +1,10 @@
-.title-description-link__wrapper {
-  margin: 150px 5vw;
-  padding: 120px 50px;
+.title-description__wrapper {
+  width: 100%;
+  padding: 150px 5vw;
   display: flex;
 
   @include for-tablet {
-    margin: 0 5vw 70px;
-    padding: 70px 5vw;
+    padding: 100px 5vw 100px;
     flex-wrap: wrap;
   }
 
@@ -47,34 +46,6 @@
 
       @include for-tablet {
         padding: 0;
-      }
-    }
-
-    .link__wrapper {
-      margin-top: 60px;
-      padding: 0 40px;
-      display: flex;
-      align-items: center;
-
-      @include for-tablet {
-        padding: 0;
-        margin-top: 20vw;
-      }
-
-      &--icon {
-        margin-right: 10px;
-        font-size: 14px;
-        font-weight: 300;
-        color: $white;
-        cursor: pointer;
-      }
-
-      &--link {
-        font-size: 14px;
-        font-weight: 300;
-        color: $white;
-        border-bottom: 1px solid $white;
-        cursor: pointer;
       }
     }
   }

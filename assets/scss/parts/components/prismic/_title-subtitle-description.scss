@@ -1,8 +1,7 @@
-.title-and-description__wrapper {
+.title-subtitle-description__wrapper {
   width: 100%;
   padding: 150px 5vw 200px;
   display: flex;
-  background-color: #fffce5;
 
   @include for-tablet {
     padding: 100px 5vw 100px;
@@ -20,7 +19,7 @@
     .title {
       margin: 0;
       font-weight: 300;
-      color: $brand-secondary;
+      color: $white;
 
       @include for-tablet {
         font-size: 22px;
@@ -41,7 +40,7 @@
       font-size: 2.75em;
       font-weight: 600;
       line-height: 55px;
-      color: $brand-secondary;
+      color: $white;
 
       @include for-tablet {
         padding: 0;
@@ -63,14 +62,14 @@
         margin-bottom: 10px;
         font-size: 14px;
         font-weight: 300;
-        color: $brand-secondary;
+        color: $white;
         transform: rotate(90deg);
       }
 
       &--content {
         font-size: 14px;
         font-weight: 300;
-        color: $brand-secondary;
+        color: $white;
       }
     }
   }
