@@ -131,7 +131,7 @@ export default {
   data() {
     return {
       windowWidth: 0,
-      isMobile: false,
+      isMobile: false
     };
   },
   methods: {
@@ -146,10 +146,9 @@ export default {
       var curve_line = document.getElementById("curve-line-color");
       var arrow_line = document.getElementById("curve-arrow-color");
       var section = document.getElementById("steps__wrapper");
-      
+
       var length = curve_line.getTotalLength();
       curve_line.style.strokeDasharray = length;
- 
 
       var circle_1 = document.getElementById("step-circle-1");
       var circle_2 = document.getElementById("step-circle-2");
@@ -159,15 +158,25 @@ export default {
       var circle_6 = document.getElementById("step-circle-6");
       var circle_7 = document.getElementById("step-circle-7");
 
-      var circle_1_percent = 0.017853500914010043;
-      var circle_2_percent = 0.23676123073300592;
-      var circle_3_percent = 0.3167283414299808;
-      var circle_4_percent = 0.5246140075803968;
-      var circle_5_percent = 0.4492523416088584;
-      var circle_6_percent = 0.7427441565873063;
-      var circle_7_percent = 0.8193618631020123;
+      window.addEventListener("scroll", () => {
+        if (this.isMobile) {
+          var circle_1_percent = 0.011853500914010043;
+          var circle_2_percent = 0.12676123073300592;
+          var circle_3_percent = 0.2667283414299808;
+          var circle_4_percent = 0.4046140075803968;
+          var circle_5_percent = 0.5492523416088584;
+          var circle_6_percent = 0.6827441565873063;
+          var circle_7_percent = 0.8093618631020123;
+        } else {
+          var circle_1_percent = 0.017853500914010043;
+          var circle_2_percent = 0.23676123073300592;
+          var circle_3_percent = 0.3167283414299808;
+          var circle_4_percent = 0.5246140075803968;
+          var circle_5_percent = 0.4492523416088584;
+          var circle_6_percent = 0.7427441565873063;
+          var circle_7_percent = 0.8193618631020123;
+        }
 
-      window.addEventListener("scroll", function () {
         var elementHeight = section.getBoundingClientRect().height;
         var elementTop = section.getBoundingClientRect().top;
         var scrollPercent = (elementTop / elementHeight) * -1.4;
@@ -229,69 +238,11 @@ export default {
         var length = curve_line.getTotalLength();
         curve_line.style.strokeDasharray = length;
 
-        var circle_1 = document.getElementById("step-circle-1");
-        var circle_2 = document.getElementById("step-circle-2");
-        var circle_3 = document.getElementById("step-circle-3");
-        var circle_4 = document.getElementById("step-circle-4");
-        var circle_5 = document.getElementById("step-circle-5");
-        var circle_6 = document.getElementById("step-circle-6");
-        var circle_7 = document.getElementById("step-circle-7");
-
-        var circle_1_percent = 0.011853500914010043;
-        var circle_2_percent = 0.12676123073300592;
-        var circle_3_percent = 0.2667283414299808;
-        var circle_4_percent = 0.4046140075803968;
-        var circle_5_percent = 0.5492523416088584;
-        var circle_6_percent = 0.6827441565873063;
-        var circle_7_percent = 0.8093618631020123;
-
         window.addEventListener("scroll", function () {
           var elementHeight = section.getBoundingClientRect().height;
           var elementTop = section.getBoundingClientRect().top;
           var scrollPercent = (elementTop / elementHeight) * -1.4;
-          curve_line.style.strokeDashoffset = length - scrollPercent * 1700;
-
-          // if (scrollPercent > circle_1_percent) {
-          //   circle_1.style.backgroundColor = "#E8543B";
-          // } else {
-          //   circle_1.style.backgroundColor = "#857373";
-          // }
-
-          // if (scrollPercent > circle_2_percent) {
-          //   circle_2.style.backgroundColor = "#E8543B";
-          // } else {
-          //   circle_2.style.backgroundColor = "#857373";
-          // }
-
-          // if (scrollPercent > circle_3_percent) {
-          //   circle_3.style.backgroundColor = "#E8543B";
-          // } else {
-          //   circle_3.style.backgroundColor = "#857373";
-          // }
-
-          // if (scrollPercent > circle_4_percent) {
-          //   circle_4.style.backgroundColor = "#E8543B";
-          // } else {
-          //   circle_4.style.backgroundColor = "#857373";
-          // }
-
-          // if (scrollPercent > circle_5_percent) {
-          //   circle_5.style.backgroundColor = "#E8543B";
-          // } else {
-          //   circle_5.style.backgroundColor = "#857373";
-          // }
-
-          // if (scrollPercent > circle_6_percent) {
-          //   circle_6.style.backgroundColor = "#E8543B";
-          // } else {
-          //   circle_6.style.backgroundColor = "#857373";
-          // }
-
-          // if (scrollPercent > circle_7_percent) {
-          //   circle_7.style.backgroundColor = "#E8543B";
-          // } else {
-          //   circle_7.style.backgroundColor = "#857373";
-          // }
+          curve_line.style.strokeDashoffset = length - scrollPercent * 1700;          
         });
       }
     },
