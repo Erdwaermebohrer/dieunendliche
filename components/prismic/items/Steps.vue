@@ -53,7 +53,6 @@
         />
       </svg>
     </div>
-
     <svg
       id="curve-svg-mobile"
       width="42"
