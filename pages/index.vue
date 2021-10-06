@@ -66,6 +66,26 @@ export default {
     };
   },
   methods: {
+    backgroundScroll() {
+      var page = document.getElementById("page");
+      var pageHeight = page.offsetHeight;
+      var backgroundImageHeight =
+        document.getElementById("background-image").offsetHeight;
+
+      var imageScrollHeight = pageHeight - backgroundImageHeight;
+      var viewPortHeight = window.innerHeight;
+
+      window.addEventListener("scroll", scroll => {
+        var scrollTop = window.scrollY * 80;
+
+        if (scrollTop > 2500) {
+          var scrollChange = ((scrollTop + viewPortHeight) * (imageScrollHeight / pageHeight)) / 160;
+          document.getElementById("background-image").style.transform = "translate3d(0," + (scrollChange - 20) + "px, 0";
+        } else {
+          document.getElementById("background-image").style.transform = "translate3d(0,0,0)";
+        }
+      });
+    },
     redirectToInternalPage(item) {
       this.$router.push(this.$prismic.linkResolver(item));
     },
@@ -74,9 +94,13 @@ export default {
     },
   },
   mounted() {
+    this.backgroundScroll();
     setTimeout(() => {
       this.smoothScroll("page");
     }, 10);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", scroll);
   },
   async asyncData({ $prismic, error }) {
     try {

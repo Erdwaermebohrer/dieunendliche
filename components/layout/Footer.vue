@@ -1,5 +1,11 @@
 <template>
   <div class="footer__wrapper">
+    <!-- <div class="video__wrapper">
+      <video class="video__wrapper--item" autoplay playsinline muted loop>
+        <source src="~static/intro-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div> -->
     <div class="footer__wrapper--navigation">
       <ul class="navigation__wrapper">
         <nuxt-link
@@ -53,7 +59,9 @@ export default {
   },
   computed: {
     computedNavigation() {
-      return this.isMobile ? this.inputData.navigation_mobile : this.inputData.navigation;
+      return this.isMobile
+        ? this.inputData.navigation_mobile
+        : this.inputData.navigation;
     },
   },
   data() {
