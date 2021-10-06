@@ -49,11 +49,21 @@ export default {
           if (binding.def.inViewport(el)) {
             var top = el.getBoundingClientRect().top * -1;
             var page = document.getElementById("page");
-            // var background = document.getElementById("background-image");
-            
-            if (top > -700 && top < vnode.context.numberOfElements * vnode.context.scrollPartHeight) {
+            var background = document.getElementById("background-image");
+
+            if (
+              top > -700 &&
+              top <
+                vnode.context.numberOfElements * vnode.context.scrollPartHeight
+            ) {
               page.style.overflow = "visible";
-              // background.style.transform = "translate3d(0," + (window.scrollY - vnode.context.scrollPartHeight * 5) + "px, 0";
+              background.style.transform =
+                "translate3d(0," +
+                (window.scrollY - vnode.context.scrollPartHeight * 5.96) +
+                "px, 0";
+            } else if (top < 1000) {
+              page.style.overflow = "hidden";
+              background.style.transform = "none";
             } else {
               page.style.overflow = "hidden";
             }
@@ -96,13 +106,28 @@ export default {
       },
     },
   },
+  watch: {
+    windowWidth: {
+      handler(newValue) {
+        newValue <= 760 ? (this.isMobile = true) : (this.isMobile = false);
+        this.windowWidth = newValue;
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
   data() {
     return {
+      isMobile: false,
       numberOfElements: null,
       scrollPartHeight: 400,
+      windowWidth: 0,
     };
   },
   methods: {
+    onResize() {
+      this.windowWidth = window.innerWidth;
+    },
     setNumberOfElementsOnScroller() {
       this.numberOfElements = this.slice.items.length;
     },
@@ -112,8 +137,15 @@ export default {
     },
   },
   mounted() {
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+      this.windowWidth = window.innerWidth;
+    });
     this.setNumberOfElementsOnScroller();
     this.setScrollerHeight();
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
   },
 };
 </script>
