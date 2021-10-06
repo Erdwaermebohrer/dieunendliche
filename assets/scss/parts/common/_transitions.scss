@@ -1,8 +1,10 @@
-.fade-preloader-enter-active, .fade-preloader-leave-active {
+.fade-preloader-enter-active,
+.fade-preloader-leave-active {
   transition: all 2.5s;
 }
 
-.fade-preloader-enter, .fade-preloader-leave-to {
+.fade-preloader-enter,
+.fade-preloader-leave-to {
   opacity: 0;
 }
 
@@ -25,7 +27,7 @@
 }
 
 .enter {
-  opacity: 1!important;
+  opacity: 1 !important;
   transition: opacity 2s ease;
 }
 
@@ -37,7 +39,21 @@
   transition: all 0.1s;
 }
 
-.accordion-item-enter, .accordion-item-leave-to {
+.accordion-item-enter,
+.accordion-item-leave-to {
   opacity: 0;
 }
 
+.menu-button-enter-active,
+.menu-button-leave-active {
+  position: absolute;
+  transition: all 1.5s ease-in-out;
+}
+
+.menu-button-enter {
+  opacity: 0;
+}
+
+.menu-button-leave-active {
+  opacity: 0;
+}

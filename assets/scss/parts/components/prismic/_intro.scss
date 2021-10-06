@@ -49,7 +49,7 @@
         pointer-events: none;
 
         @include for-tablet {
-          height: 60%;
+          width: 450%;
         }
       }
     }
@@ -65,11 +65,11 @@
         position: absolute;
         display: flex;
         justify-content: center;
-        align-items: flex-end;
 
         &--item {
-          width: 130px;
-          height: 130px;
+          width: 110px;
+          height: 110px;
+          right: 0;
           position: fixed;
           object-fit: cover;
           z-index: 20;

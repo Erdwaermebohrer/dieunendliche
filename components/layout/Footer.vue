@@ -4,7 +4,7 @@
       <ul class="navigation__wrapper">
         <nuxt-link
           class="link-item"
-          v-for="(navigationItem, index) in inputData.navigation"
+          v-for="(navigationItem, index) in computedNavigation"
           :key="'item-' + index"
           :to="$prismic.linkResolver(navigationItem.page)"
         >
@@ -40,6 +40,41 @@ export default {
     inputData: {
       type: Object,
     },
+  },
+  watch: {
+    windowWidth: {
+      handler(newValue) {
+        newValue <= 760 ? (this.isMobile = true) : (this.isMobile = false);
+        this.windowWidth = newValue;
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
+  computed: {
+    computedNavigation() {
+      return this.isMobile ? this.inputData.navigation_mobile : this.inputData.navigation;
+    },
+  },
+  data() {
+    return {
+      isMobile: false,
+      windowWidth: 0,
+    };
+  },
+  methods: {
+    onResize() {
+      this.windowWidth = window.innerWidth;
+    },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+      this.windowWidth = window.innerWidth;
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.onResize);
   },
 };
 </script>

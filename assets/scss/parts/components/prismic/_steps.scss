@@ -21,8 +21,8 @@
     z-index: 2;
 
     @media screen and (max-width: 1160px) {
-      width: 950px;
-      margin-top: -320px;
+      width: 960px;
+      margin-top: -120px;
     }
 
     @include for-tablet {
@@ -116,12 +116,16 @@
     flex-wrap: wrap;
     flex-direction: row-reverse;
 
+    @media screen and (min-width: 1300px) {
+      width: 73%;
+    }
+
     @media screen and (min-width: 1450px) {
-      width: 68%;
+      width: 64%;
     }
 
     @media screen and (min-width: 1600px) {
-      width: 65%;
+      width: 64%;
     }
 
     @media screen and (min-width: 1660px) {
