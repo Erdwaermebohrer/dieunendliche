@@ -81,8 +81,13 @@ export default {
     smoothScroll(id) {
       document.getElementById(id).scrollIntoView();
     },
+    pageScroll() {
+      window.scrollBy(0, 550);
+
+    },
   },
   mounted() {
+    this.pageScroll();
     setTimeout(() => {
       this.smoothScroll("page");
     }, 10);

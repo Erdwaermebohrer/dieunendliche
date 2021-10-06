@@ -46,6 +46,12 @@
     flex-wrap: wrap;
     flex-direction: row-reverse;
 
+    @include for-tablet {
+      margin-top: 100px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .role-image__wrapper {
       width: 50%;
       position: relative;
@@ -53,10 +59,9 @@
       align-items: flex-end;
 
       @include for-tablet {
-        width: 100%;
-        padding: 60px !important;
+        width: 100px;
+        min-height: 300px;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
       }
 
@@ -116,8 +121,9 @@
         padding: 0 20px;
 
         @include for-tablet {
-          width: 100%;
-          padding: 0;
+          width: 115%;
+          padding: 0 5px;
+          text-align: center;
         }
 
         .name {
@@ -143,6 +149,10 @@
           display: flex;
           align-items: center;
           cursor: pointer;
+
+          @include for-tablet {
+            justify-content: center;
+          }
 
           .icon {
             width: 14px;
@@ -175,7 +185,11 @@
 
         .image {
           @include for-tablet {
-            width: 100%;
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            object-position: top;
+            filter: grayscale(1);
           }
         }
       }

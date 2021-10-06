@@ -15,23 +15,26 @@
         </nuxt-link>
       </ul>
       <div class="navigation__wrapper--mobile">
-        <button
-          class="burger__button"
-          :class="{ active: isNavOpen }"
-          @click="toggleBurger"
-        >
-          <span class="burger__button--bar" />
-          <span class="burger__button--bar" />
-          <span class="burger__button--bar" />
-        </button>
+        <transition name="menu-button">
+          <span
+            class="burger__button"
+            @click="toggleBurger"
+            v-if="!isNavOpen"
+            v-text="'Menü'"
+          />
+        </transition>
       </div>
       <transition name="sidebar">
-        <div class="navigation__wrapper--sidebar" :class="{'active': isNavOpen}" v-if="isNavOpen">
-          <div class="logo__wrapper">
+        <div
+          class="navigation__wrapper--sidebar"
+          :class="{ active: isNavOpen }"
+          v-if="isNavOpen"
+        >
+          <div class="close-button__wrapper">
             <img
-              class="logo"
-              :src="inputData.logo.url"
-              @click="navigateToHome"
+              class="icon"
+              src="~assets/svg/close.svg"
+              @click="toggleBurger"
             />
           </div>
           <ul class="sidebar__wrapper">
@@ -45,7 +48,6 @@
             </a>
           </ul>
           <div class="button__wrapper">
-            <button class="button" @click="toggleBurger" v-text="'Zurück'" />
             <span class="line" />
           </div>
         </div>
@@ -73,8 +75,8 @@ export default {
     toggleBurger() {
       if (this.isNavOpen) {
         gsap.timeline().to(".video-button__wrapper--item", {
-          width: "130px",
-          height: "130px",
+          width: "110px",
+          height: "110px",
           transform: "translate3d(0,0,0)",
           ease: "expo.inOut",
           duration: 1.5,
@@ -83,8 +85,8 @@ export default {
       } else {
         gsap.timeline().to(".video-button__wrapper--item", {
           width: "100%",
-          height: "60%",
-          transform: "translate3d(0,-150px,0)",
+          height: "80%",
+          transform: "translate3d(0,150px,0)",
           ease: "expo.inOut",
           duration: 1.5,
           zIndex: 20,

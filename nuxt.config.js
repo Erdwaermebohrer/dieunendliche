@@ -26,7 +26,11 @@ export default {
     [
       "nuxt-lazy-load",
       {
-        directiveOnly: true
+        directiveOnly: true,
+        observerConfig: {
+          rootMargin: "0px 0px 1600px 0px",
+          threshold: 0
+        }
       }
     ]
   ],
