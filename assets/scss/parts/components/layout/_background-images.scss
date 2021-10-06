@@ -32,5 +32,14 @@
         top: -10px;
       }
     }
+
+    &:nth-child(4) {
+      position: relative;
+      top: -13px;
+
+      @include for-tablet {
+        top: -13px;
+      }
+    }
   }
 }

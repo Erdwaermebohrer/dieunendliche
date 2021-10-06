@@ -49,13 +49,11 @@ export default {
           if (binding.def.inViewport(el)) {
             var top = el.getBoundingClientRect().top * -1;
             var page = document.getElementById("page");
-
-            if (
-              top > -700 &&
-              top <
-                vnode.context.numberOfElements * vnode.context.scrollPartHeight
-            ) {
+            // var background = document.getElementById("background-image");
+            
+            if (top > -700 && top < vnode.context.numberOfElements * vnode.context.scrollPartHeight) {
               page.style.overflow = "visible";
+              // background.style.transform = "translate3d(0," + (window.scrollY - vnode.context.scrollPartHeight * 5) + "px, 0";
             } else {
               page.style.overflow = "hidden";
             }

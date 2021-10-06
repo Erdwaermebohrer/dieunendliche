@@ -1,5 +1,5 @@
 <template>
-  <div class="background-images__wrapper">
+  <div id="background-image" class="background-images__wrapper">
     <img
       class="background-images__wrapper--item"
       v-for="(image, index) in computedImages"
