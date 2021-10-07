@@ -63,10 +63,11 @@
 
       &__description {
         width: 100%;
-        padding-top: 20px;
         font-size: 14px;
         line-height: 17.75px;
         color: $white;
+        overflow: hidden;
+        transition: 250ms ease-in-out;
       }
     }
   }

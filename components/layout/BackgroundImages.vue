@@ -1,12 +1,20 @@
 <template>
-  <div id="background-image" class="background-images__wrapper">
-    <img
-      class="background-images__wrapper--item"
-      v-for="(image, index) in computedImages"
-      :key="'image-' + index"
-      :data-src="image.image.url"
-      v-lazy-load
-    />
+  <div>
+    <div id="background-image" class="background-images__wrapper">
+      <img
+        class="background-images__wrapper--item"
+        v-for="(image, index) in computedImages"
+        :key="'image-' + index"
+        :data-src="image.image.url"
+        v-lazy-load
+      />
+    </div>
+    <div class="video-footer__wrapper">
+      <video class="video-footer__wrapper--item" autoplay playsinline muted loop>
+        <source src="~static/intro-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </div>
 </template>
 
@@ -23,7 +31,7 @@ export default {
   watch: {
     windowWidth: {
       handler(newValue) {
-        newValue <= 760 ? (this.isMobile = true) : (this.isMobile = false);
+        newValue <= 991 ? (this.isMobile = true) : (this.isMobile = false);
         this.windowWidth = newValue;
       },
       immediate: true,

@@ -49,21 +49,18 @@ export default {
           if (binding.def.inViewport(el)) {
             var top = el.getBoundingClientRect().top * -1;
             var page = document.getElementById("page");
-            var background = document.getElementById("background-image");
 
-            if (
-              top > -700 &&
-              top <
-                vnode.context.numberOfElements * vnode.context.scrollPartHeight
-            ) {
-              page.style.overflow = "visible";
-              background.style.transform =
-                "translate3d(0," +
-                (window.scrollY - vnode.context.scrollPartHeight * 5.96) +
-                "px, 0";
-            } else if (top < 1000) {
-              page.style.overflow = "hidden";
-              background.style.transform = "none";
+            if (this.windowWidth > 991) {
+              if (
+                top > -700 &&
+                top <
+                  vnode.context.numberOfElements *
+                    vnode.context.scrollPartHeight
+              ) {
+                page.style.overflow = "visible";
+              } else {
+                page.style.overflow = "hidden";
+              }
             } else {
               page.style.overflow = "hidden";
             }
@@ -132,8 +129,14 @@ export default {
       this.numberOfElements = this.slice.items.length;
     },
     setScrollerHeight() {
-      document.getElementById("scroller").style.height =
-        this.numberOfElements * this.scrollPartHeight + "px";
+      if (this.windowWidth > 1000) {
+        document.getElementById("scroller").style.height =
+          this.numberOfElements * this.scrollPartHeight + "px";
+      } else {
+        this.scrollPartHeight = 100;
+        document.getElementById("scroller").style.height =
+          this.numberOfElements * this.scrollPartHeight + "px";
+      }
     },
   },
   mounted() {
