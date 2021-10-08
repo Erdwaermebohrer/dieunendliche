@@ -29,6 +29,7 @@
   }
 
   .title-and-plain-text__wrapper {
+    margin-top: -100px;
     padding: 0 5vw 150px;
 
     @include for-tablet {

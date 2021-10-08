@@ -60,6 +60,7 @@ export default {
       ],
     };
   },
+  transition: "page",
   watch: {
     windowWidth: {
       handler(newValue) {
