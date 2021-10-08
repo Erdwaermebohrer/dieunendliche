@@ -13,6 +13,7 @@
         v-for="(item, index) in slice.items"
         :key="'list-item-' + index"
         @click="selectItemIndex(index)"
+        v-view="listInView"
       >
         <div class="list-item__title" v-text="$prismic.asText(item.title)" />
         <a
@@ -38,6 +39,12 @@
 </template>
 
 <script>
+import { gsap } from "gsap/dist/gsap";
+import checkView from "vue-check-view";
+import Vue from "vue";
+
+Vue.use(checkView);
+
 export default {
   props: {
     slice: {
@@ -65,6 +72,18 @@ export default {
     leave(el) {
       el.style.height = "0";
       el.style.marginTop = "0px";
+    },
+    listInView(e) {
+      var opac = 1 - e.percentCenter * 2 + 0.5;
+      if (e.percentInView > 0) {
+        gsap.to(e.target.element, {
+          duration: 0.1,
+          ease: "power3.out",
+          opacity: opac,
+        });
+      } else {
+        e.target.element.style.opacity = 0;
+      }
     },
     selectItemIndex(index) {
       this.selectedItemIndex === index
