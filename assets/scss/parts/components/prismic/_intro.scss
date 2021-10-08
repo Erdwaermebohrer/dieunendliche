@@ -48,7 +48,7 @@
         opacity: 0.5;
         pointer-events: none;
 
-        @include for-tablet {
+        @include for-mobile {
           width: 450%;
         }
       }

@@ -1,16 +1,15 @@
 .title-and-plain-text__wrapper {
   width: 100%;
-  padding: 150px 5vw;
+  padding: 150px 5vw 250px;
   display: flex;
-  flex-direction: column;
 
   @include for-tablet {
-    padding: 100px 5vw 100px;
+    padding: 0 5vw 100px;
     flex-wrap: wrap;
   }
 
   &--title {
-    width: 100%;
+    width: 50%;
 
     @include for-tablet {
       width: 100%;
@@ -32,22 +31,28 @@
   }
 
   &--content {
-    width: 100%;
-    margin-top: 40px;
+    width: 50%;
+    margin-top: 10px;
 
     @include for-tablet {
       width: 100%;
-      margin-top: 0;
     }
 
     .content {
+      max-width: 100%;
       font-size: 14px;
       font-weight: 300;
       line-height: 18px;
       color: $white;
 
       @include for-tablet {
+        max-width: 100%;
         padding: 0;
+      }
+
+      a {
+        color: $white;
+        text-decoration: none;
       }
     }
   }

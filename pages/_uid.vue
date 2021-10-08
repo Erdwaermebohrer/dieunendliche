@@ -60,11 +60,23 @@ export default {
       ],
     };
   },
+  watch: {
+    windowWidth: {
+      handler(newValue) {
+        newValue <= 760 ? (this.isMobile = true) : (this.isMobile = false);
+        this.windowWidth = newValue;
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
   data() {
     return {
+      isMobile: false,
       page: [],
       slices: [],
       uid: "internal",
+      windowWidth: 0,
     };
   },
   methods: {
@@ -77,20 +89,42 @@ export default {
       var imageScrollHeight = pageHeight - backgroundImageHeight;
       var viewPortHeight = window.innerHeight;
 
-      window.addEventListener("scroll", (scroll) => {
-        var scrollTop = window.scrollY * 80;
+      window.addEventListener("scroll", () => {
+        if (this.windowWidth > 1200) {
+          var scrollTop = window.scrollY * 80;
 
-        if (scrollTop > 2500) {
-          var scrollChange =
-            ((scrollTop + viewPortHeight) * (imageScrollHeight / pageHeight)) /
-            160;
-          document.getElementById("background-image").style.transform =
-            "translate3d(0," + (scrollChange - 20) + "px, 0";
+          if (scrollTop > 2500) {
+            var scrollChange =
+              ((scrollTop + viewPortHeight) *
+                (imageScrollHeight / pageHeight)) /
+              160;
+            document.getElementById("background-image").style.transform =
+              "translate3d(0," + (scrollChange - 20) + "px, 0";
+          } else {
+            document.getElementById("background-image").style.transform =
+              "translate3d(0,0,0)";
+          }
         } else {
-          document.getElementById("background-image").style.transform =
-            "translate3d(0,0,0)";
+          var scrollTop = window.scrollY * 120;
+
+          if (scrollTop > 2500) {
+            var scrollChange =
+              ((scrollTop + viewPortHeight) *
+                (imageScrollHeight / pageHeight)) /
+              160;
+
+            console.log(scrollChange);
+            document.getElementById("background-image").style.transform =
+              "translate3d(0," + (scrollChange - 20) + "px, 0";
+          } else {
+            document.getElementById("background-image").style.transform =
+              "translate3d(0,0,0)";
+          }
         }
       });
+    },
+    onResize() {
+      this.windowWidth = window.innerWidth;
     },
     redirectToInternalPage(item) {
       this.$router.push(this.$prismic.linkResolver(item.link));
@@ -105,19 +139,19 @@ export default {
     smoothScroll(id) {
       document.getElementById(id).scrollIntoView();
     },
-    pageScroll() {
-      window.scrollBy(0, 550);
-    },
   },
   mounted() {
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+      this.windowWidth = window.innerWidth;
+    });
     this.backgroundScroll();
-    this.pageScroll();
     setTimeout(() => {
       this.smoothScroll("page");
     }, 10);
   },
   beforeDestroy() {
-    window.removeEventListener("scroll", scroll);
+    window.removeEventListener("resize", this.onResize);
   },
   async asyncData({ $prismic, params, error }) {
     try {

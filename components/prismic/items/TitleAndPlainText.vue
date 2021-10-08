@@ -6,7 +6,7 @@
     <div class="title-and-plain-text__wrapper--content">
       <div
         class="content"
-        v-html="$prismic.asText(slice.primary.content)"
+        v-html="$prismic.asHtml(slice.primary.content)"
       />
     </div>
   </div>

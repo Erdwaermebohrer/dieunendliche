@@ -31,19 +31,6 @@
   transition: opacity 2s ease;
 }
 
-.accordion-item-enter-active {
-  transition: all 1s;
-}
-
-.accordion-item-leave-active {
-  transition: all 0.1s;
-}
-
-.accordion-item-enter,
-.accordion-item-leave-to {
-  opacity: 0;
-}
-
 .menu-button-enter-active,
 .menu-button-leave-active {
   position: absolute;
