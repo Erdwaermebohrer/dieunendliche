@@ -1,3 +1,14 @@
+.page-enter-active,
+.page-leave-active {
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+  transition-duration: .7s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
 .fade-preloader-enter-active,
 .fade-preloader-leave-active {
   transition: all 2.5s;
@@ -29,19 +40,6 @@
 .enter {
   opacity: 1 !important;
   transition: opacity 2s ease;
-}
-
-.accordion-item-enter-active {
-  transition: all 1s;
-}
-
-.accordion-item-leave-active {
-  transition: all 0.1s;
-}
-
-.accordion-item-enter,
-.accordion-item-leave-to {
-  opacity: 0;
 }
 
 .menu-button-enter-active,

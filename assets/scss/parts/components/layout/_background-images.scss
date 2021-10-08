@@ -6,18 +6,13 @@
   position: absolute;
   z-index: -1;
 
-  @include for-tablet {
-    height: 100%;
-    background-color: $black; //Temporary
-  }
-
   &--item {
     width: 100%;
     height: auto;
 
     &:nth-child(2) {
       position: relative;
-      top: -4px;
+      top: -5px;
 
       @include for-tablet {
         top: -5px;
@@ -26,7 +21,7 @@
 
     &:nth-child(3) {
       position: relative;
-      top: -8px;
+      top: -9px;
 
       @include for-tablet {
         top: -10px;
@@ -38,8 +33,39 @@
       top: -13px;
 
       @include for-tablet {
-        top: -13px;
+        top: -15px;
       }
     }
+  }
+}
+
+.video-footer__wrapper {
+  width: 200%;
+  height: 0;
+  padding-bottom: 71%;
+  bottom: -55vh;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  position: absolute;
+  overflow: hidden;
+  mix-blend-mode: lighten;
+
+  @include for-tablet {
+    bottom: -13vh;
+  }
+
+  @include for-mobile {
+    bottom: -6vh;
+  }
+
+  &--item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    mix-blend-mode: lighten;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 20;
   }
 }

@@ -1,3 +1,58 @@
-.page__datenschutz, .page__impressum {
-  
+.page__datenschutz,
+.page__impressum {
+  .intro__wrapper {
+    .title {
+      display: none;
+    }
+  }
+
+  .title-and-plain-text__wrapper {
+    margin-top: -40%;
+
+    @include for-tablet {
+      margin-top: -150%;
+    }
+  }
+}
+
+.page__error {
+  .intro__wrapper {
+    .title {
+      font-size: 300px;
+      line-height: 380px;
+
+      @include for-tablet {
+        font-size: 160px;
+        line-height: 202px;
+      }
+    }
+  }
+
+  .title-and-plain-text__wrapper {
+    margin-top: -100px;
+    padding: 0 5vw 150px;
+
+    @include for-tablet {
+      padding: 0 5vw;
+    }
+
+    &--title {
+      @include for-tablet {
+        display: flex;
+        justify-content: center;
+      }
+
+      .title {
+        max-width: 29%;
+        font-size: 14px;
+        line-height: 17.75px;
+
+        @include for-tablet {
+          max-width: 60%;
+          margin-top: -150px;
+          text-align: center;
+        }
+      }
+    }
+  }
 }
