@@ -37,8 +37,8 @@ export default {
   },
   data() {
     return {
-      showCursor: false
-    }
+      showCursor: false,
+    };
   },
   computed: {
     ...mapGetters({
@@ -100,8 +100,12 @@ export default {
         });
       }
     },
+    setBodyBackground() {
+      document.body.style.backgroundColor = "transparent";
+    },
   },
   mounted() {
+    this.setBodyBackground();
     setTimeout(() => {
       this.setPageLoading(false);
     }, 1500);
