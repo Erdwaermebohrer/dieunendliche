@@ -71,23 +71,48 @@ export default {
             }
 
             for (let i = 0; i < vnode.context.numberOfElements; i++) {
-              if (
-                top > i * vnode.context.scrollPartHeight &&
-                top < (i + 1) * vnode.context.scrollPartHeight
-              ) {
-                this["item_l_" + i].classList.add("left-item");
-                this["item_l_" + i].childNodes[0].classList.add("left-number");
-                this["item_l_" + i].childNodes[2].classList.add("left-title");
-                this["item_r_" + i].classList.add("enter");
+              if (i === 0) {
+                if (
+                  top > 0.35 * vnode.context.scrollPartHeight &&
+                  top < (i + 1) * vnode.context.scrollPartHeight
+                ) {
+                  this["item_l_" + i].classList.add("left-item");
+                  this["item_l_" + i].childNodes[0].classList.add(
+                    "left-number"
+                  );
+                  this["item_l_" + i].childNodes[2].classList.add("left-title");
+                  this["item_r_" + i].classList.add("enter");
+                } else {
+                  this["item_l_" + i].classList.remove("left-item");
+                  this["item_l_" + i].childNodes[0].classList.remove(
+                    "left-number"
+                  );
+                  this["item_l_" + i].childNodes[2].classList.remove(
+                    "left-title"
+                  );
+                  this["item_r_" + i].classList.remove("enter");
+                }
               } else {
-                this["item_l_" + i].classList.remove("left-item");
-                this["item_l_" + i].childNodes[0].classList.remove(
-                  "left-number"
-                );
-                this["item_l_" + i].childNodes[2].classList.remove(
-                  "left-title"
-                );
-                this["item_r_" + i].classList.remove("enter");
+                if (
+                  top > i * vnode.context.scrollPartHeight &&
+                  top < (i + 1) * vnode.context.scrollPartHeight
+                ) {
+                  this["item_l_" + i].classList.add("left-item");
+                  this["item_l_" + i].childNodes[0].classList.add(
+                    "left-number"
+                  );
+                  this["item_l_" + i].childNodes[2].classList.add("left-title");
+                  this["item_r_" + i].classList.add("enter");
+                } else {
+                  this["item_l_" + i].classList.remove("left-item");
+                  this["item_l_" + i].childNodes[0].classList.remove(
+                    "left-number"
+                  );
+                  this["item_l_" + i].childNodes[2].classList.remove(
+                    "left-title"
+                  );
+                  this["item_r_" + i].classList.remove("enter");
+                }
               }
             }
           }
@@ -117,7 +142,7 @@ export default {
     return {
       isMobile: false,
       numberOfElements: null,
-      scrollPartHeight: 400,
+      scrollPartHeight: 850,
       windowWidth: 0,
     };
   },
