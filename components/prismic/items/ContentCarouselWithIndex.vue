@@ -26,20 +26,25 @@
           />
         </div>
         <div class="slider__wrapper--content">
-          <agile ref="slider" :options="sliderOptions">
-            <div
-              class="slider-item"
-              v-for="(slide, index) in slice.items"
-              :key="'slide-' + index"
-            >
-              <div class="wrap">
-                <div class="slider-item__content">
-                  <div class="index" v-text="(index+1) + '/' + slice.items.length" />
-                  <div class="title" v-text="$prismic.asText(slide.title)" />
+          <client-only>
+            <agile ref="slider" :options="sliderOptions">
+              <div
+                class="slider-item"
+                v-for="(slide, index) in slice.items"
+                :key="'slide-' + index"
+              >
+                <div class="wrap">
+                  <div class="slider-item__content">
+                    <div
+                      class="index"
+                      v-text="index + 1 + '/' + slice.items.length"
+                    />
+                    <div class="title" v-text="$prismic.asText(slide.title)" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </agile>
+            </agile>
+          </client-only>
         </div>
       </div>
     </div>
