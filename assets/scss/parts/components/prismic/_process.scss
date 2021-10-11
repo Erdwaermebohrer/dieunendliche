@@ -1,6 +1,6 @@
 .process__wrapper {
   width: 100%;
-  padding: 150px 5vw 200px;
+  padding: 150px 5vw 50px;
   display: flex;
   flex-wrap: wrap;
 
@@ -18,7 +18,7 @@
     }
 
     .title {
-      width: 65%;
+      width: 15%;
       margin: 0;
       font-weight: 300;
       color: $white;
@@ -33,11 +33,10 @@
 
   &--content {
     width: 100%;
-    margin-top: 200px;
+    margin-top: -500px;
 
     @include for-tablet {
       width: 100%;
-      margin-top: 0;
     }
 
     .content__wrapper {
