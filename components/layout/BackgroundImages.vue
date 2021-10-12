@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="background-image-before" class="background-image-before"  :style="{'height':documentHeight+'px'}">
     <div id="background-image" class="background-images__wrapper">
       <img
         class="background-images__wrapper--item"
@@ -47,14 +47,18 @@ export default {
     return {
       isMobile: false,
       windowWidth: 0,
+      documentHeight: 0
     };
   },
   methods: {
     onResize() {
       this.windowWidth = window.innerWidth;
+      this.documentHeight = document.body.clientHeight;
     },
   },
   mounted() {
+    this.documentHeight = document.body.clientHeight;
+
     this.$nextTick(() => {
       window.addEventListener("resize", this.onResize);
       this.windowWidth = window.innerWidth;

@@ -33,7 +33,7 @@
 
   &--content {
     width: 100%;
-    margin-top: -500px;
+    //margin-top: -500px;
 
     @include for-tablet {
       width: 100%;
@@ -46,7 +46,7 @@
       color: $white;
 
       @media screen and (min-width: 991px) {
-        margin-top: -310px !important;
+        //margin-top: -310px !important;
       }
 
       @include for-tablet {

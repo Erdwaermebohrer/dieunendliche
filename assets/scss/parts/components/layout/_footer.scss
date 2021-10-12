@@ -1,38 +1,39 @@
 .footer__wrapper {
   width: 100%;
-  margin-top: -210px;
+  // margin-top: -210px;
   padding: 25px 0 0;
   position: relative;
   display: flex;
+  z-index: 10;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background-color: $transparent;
 
   @include for-mobile {
-    margin-top: -430px;
+    // margin-top: -430px;
     padding: 0;
     flex-direction: column;
   }
 
   @media screen and (min-width: 600px) {
-    margin-top: -70vw !important;
+   // margin-top: -70vw !important;
   }
 
   @media screen and (min-width: 630px) {
-    margin-top: -68vw !important;
+   // margin-top: -68vw !important;
   }
 
   @media screen and (min-width: 800px) {
-    margin-top: -61vw !important;
+   // margin-top: -61vw !important;
   }
 
   @media screen and (min-width: 863px) {
-    margin-top: -58vw !important;
+    //margin-top: -58vw !important;
   }
 
   @media screen and (min-width: 991px) {
-    margin-top: -210px !important;
+   // margin-top: -210px !important;
   }
 
   &--navigation {
