@@ -9,12 +9,6 @@
           Your browser does not support the video tag.
         </video>
       </div>
-      <div class="video-button__wrapper">
-        <video class="video-button__wrapper--item" autoplay playsinline muted loop>
-          <source src="~static/intro-video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
     </div>
     <div class="intro__wrapper--content" :class="{'vertical': slice.primary.title_direction}">
       <div class="title" v-text="$prismic.asText(slice.primary.title)" />
