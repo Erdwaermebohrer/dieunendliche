@@ -3,16 +3,26 @@
     <div class="form-fields__wrapper--title">
       <h2 class="title" v-text="$prismic.asText(slice.primary.title1)" />
     </div>
-    <div class="form-fields__wrapper--content">
+    <form class="form-fields__wrapper--content"
+      name="Contact form Unendliche"
+      id="form"
+      data-netlify="true"
+      v-on:submit.prevent="checkFields(formFields)">
+      <input type="hidden" name="form-name" value="Contact form Unendliche" />
       <div class="fields__wrapper">
         <div
           class="fields__wrapper--item"
           v-for="(field, index) in slice.items"
           :key="'index' + index"
         >
-          <input
+          <input v-if="field.type != 'textarea'"
             class="input"
-            type="text"
+            :type="field.type"
+            value=""
+            v-model="formFields[field.field_title[0].text]"
+          />
+          <textarea v-if="field.type == 'textarea'"
+            class="textarea"
             v-model="formFields[field.field_title[0].text]"
           />
           <label
@@ -20,31 +30,46 @@
             v-text="$prismic.asText(field.field_placeholder)"
           />
         </div>
-        <div class="validation__wrapper">
-          <div
-            class="validation__wrapper--error"
-            v-if="showErrorMessage"
-            v-text="$prismic.asText(slice.primary.error_message)"
-          />
-          <div
-            class="validation__wrapper--success"
-            v-if="showSuccessMessage"
-            v-text="$prismic.asText(slice.primary.success_message)"
-          />
+
+        <div class="fields__wrapper--item" >
+          <label class="checkbox">
+            <span class="checkbox__box" :class="{'active': formFields['terms']}">
+              <input
+                class="input"
+                type="checkbox"
+                v-model="formFields['terms']"
+              />
+            </span>
+
+            <div v-html="$prismic.asHtml(slice.primary.terms)" />
+          </label>
         </div>
+
+        
+      </div>
+      <div class="validation__wrapper">
+        <div
+          class="validation__wrapper--error"
+          v-if="showErrorMessage"
+          v-text="$prismic.asText(slice.primary.error_message)"
+        />
+        <div
+          class="validation__wrapper--success"
+          v-if="showSuccessMessage"
+          v-text="$prismic.asText(slice.primary.success_message)"
+        />
       </div>
       <div class="link__wrapper">
         <img
           class="link__wrapper--icon"
           src="~assets/svg/arrow-right-white.svg"
         />
-        <a
+        <button
           class="link__wrapper--link"
           v-text="$prismic.asText(slice.primary.link_title)"
-          @click="checkFields(formFields)"
         />
       </div>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -68,10 +93,28 @@ export default {
     return {
       showErrorMessage: false,
       showSuccessMessage: false,
+      fieldCounts: this.slice.items.length
     };
   },
   methods: {
     checkFields(formFields) {
+
+      if(!formFields['terms'] || this.formFields.length != formFields.length){
+        this.showErrorMessage = true;
+      } else{
+        this.showErrorMessage = false;
+        let myForm = document.getElementById("form");
+        let formData = new FormData(myForm);
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "multipart/form-data" },
+          body: new URLSearchParams(formData).toString(),
+        })
+          .then(res => {this.showSuccessMessage = true;})
+          .catch((error) => alert(error));
+
+      }
+     
       this.sendingForm(formFields);
 
       //Here should come Validation

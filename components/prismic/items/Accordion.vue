@@ -74,7 +74,13 @@ export default {
       el.style.marginTop = "0px";
     },
     listInView(e) {
-      var opac = 1 - e.percentCenter * 2.3 + 0.5;
+      var opac = 0;
+      if(e.percentCenter > 0.4){
+        opac = (1-e.percentCenter)*2.2;
+      } else{
+        opac = 2 * e.percentCenter;
+      }
+      
       if (e.percentInView > 0) {
         gsap.to(e.target.element, {
           duration: 0.05,

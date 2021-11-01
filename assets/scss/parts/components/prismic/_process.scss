@@ -14,12 +14,12 @@
 
     @include for-tablet {
       width: 100%;
-      padding-bottom: 60px;
+      padding-bottom: 30px;
     }
 
     .title {
       width: 15%;
-      margin: 0;
+      margin: 0 0 2em 0;
       font-weight: 300;
       color: $white;
 
@@ -27,6 +27,7 @@
         width: 100%;
         font-size: 22px;
         line-height: 28px;
+        margin: 0;
       }
     }
   }
@@ -40,7 +41,7 @@
     }
 
     .content__wrapper {
-      height: 366px;
+      height: 456px;
       bottom: calc((100vh - 356px) / 2);
       position: sticky;
       color: $white;
@@ -52,7 +53,6 @@
       @include for-tablet {
         height: 478px;
         bottom: calc((100vh - 478px) / 2);
-        margin-top: -350px!important;
       }
 
       &--item {

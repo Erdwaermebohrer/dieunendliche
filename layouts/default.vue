@@ -1,12 +1,12 @@
 <template>
-  <div @mousemove="moveCursor" class="container">
+  <div  class="container">
     <transition name="fade-preloader" mode="in-out">
       <app-preloader v-if="pageLoading" />
     </transition>
     <app-header :inputData="header" />
     <Nuxt />
     <app-footer :inputData="footer" />
-    <video
+    <!--<video
       v-if="showCursor"
       class="cursor"
       ref="cursor"
@@ -18,7 +18,7 @@
     >
       <source src="~static/intro-video.mp4" type="video/mp4" />
       Your browser does not support the video tag.
-    </video>
+    </video>-->
   </div>
 </template>
 

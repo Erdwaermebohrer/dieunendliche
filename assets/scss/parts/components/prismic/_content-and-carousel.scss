@@ -71,31 +71,42 @@
     .slider__wrapper {
       &--icons {
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: -15px;
         display: flex;
         justify-content: space-between;
-
+        z-index: 10;
+        position: relative;
         .icon {
           cursor: pointer;
-
-          &:nth-child(1) {
-            transform: rotate(180deg);
-          }
+          margin-left: auto;
         }
       }
 
       &--content {
+
         .slider-item {
           height: 220px;
+          padding-top: 30px;
 
+          &__headline{
+            position: absolute;
+            top: -40px;
+            left: 0;
+            margin: 0;
+            font-size: 0.857em;
+            text-transform: uppercase;
+            color: #857373;
+          }
           .wrap {
             width: 95%;
             height: 100%;
+
             padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             background-color: #fffce5;
+            position: relative;
 
             .slider-item__content {
               .author {
@@ -131,6 +142,7 @@
                 color: $brand-secondary;
                 border-bottom: 1px solid $brand-secondary;
                 cursor: pointer;
+                font-weight: 600;
               }
             }
           }

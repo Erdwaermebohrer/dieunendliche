@@ -16,12 +16,7 @@
         <div class="slider__wrapper--icons">
           <img
             class="icon"
-            src="~assets/svg/arrow-right-white.svg"
-            @click="$refs.slider.goToPrev()"
-          />
-          <img
-            class="icon"
-            src="~assets/svg/arrow-right-white.svg"
+            src="~assets/svg/arrow-right-brown.svg"
             @click="$refs.slider.goToNext()"
           />
         </div>
@@ -34,6 +29,7 @@
                 :key="'slide-' + index"
               >
                 <div class="wrap">
+                  <h3 class="slider-item__headline" v-if="$prismic.asText(slide.small_title)" v-text="$prismic.asText(slide.small_title)" />
                   <div class="slider-item__content">
                     <div
                       class="author"

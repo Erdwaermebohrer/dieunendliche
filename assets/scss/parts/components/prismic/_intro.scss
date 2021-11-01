@@ -1,6 +1,6 @@
 .intro__wrapper {
   position: relative;
-
+  overflow: hidden;
   @include for-tablet {
     height: 100vh;
     position: relative;

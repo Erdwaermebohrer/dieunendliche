@@ -17,6 +17,13 @@
       padding-bottom: 60px;
     }
 
+    &__number{
+      color: $white;
+      margin-top: -1.5em;
+      display: block;
+      transform: translateY(-1em);
+    }
+
     .title {
       width: 400px;
       margin: 0;
@@ -71,7 +78,7 @@
 
       &--link {
         font-size: 14px;
-        font-weight: 300;
+        font-weight: 600;
         color: $white;
         border-bottom: 1px solid $white;
         cursor: pointer;

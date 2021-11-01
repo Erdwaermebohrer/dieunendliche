@@ -31,10 +31,10 @@
 
     &:nth-child(3) {
       position: relative;
-      top: -9px;
+      top: -10px;
 
       @include for-tablet {
-        top: -10px;
+        top: -11px;
       }
     }
 
@@ -65,7 +65,9 @@
   }
 
   @include for-mobile {
-    bottom: -6vh;
+    width: 400%;
+    padding-bottom: 200%;
+    bottom: -40vh;
   }
 
   &--item {

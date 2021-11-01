@@ -1,5 +1,5 @@
 <template>
-  <div class="header__wrapper">
+  <div class="header__wrapper" :class="{'header__wrapper--hidden':showNav == false}">
     <a class="header__wrapper--logo" @click="$router.push('/')">
       <img :src="inputData.logo.url" />
     </a>
@@ -69,6 +69,8 @@ export default {
   data() {
     return {
       isNavOpen: false,
+      lastScrollTop: 0,
+      showNav: true
     };
   },
   methods: {
@@ -95,6 +97,19 @@ export default {
 
       this.isNavOpen = !this.isNavOpen;
     },
+    showHideHeader(){
+      var st = window.pageYOffset || document.documentElement.scrollTop; 
+      if(st > 100){
+        if (st > this.lastScrollTop){
+          this.showNav = false;
+        } else {
+          this.showNav = true;
+        }
+      } else{
+        this.showNav = true;
+      }
+      this.lastScrollTop = st <= 0 ? 0 : st;
+    },
     navigateToRoute(item) {
       this.isNavOpen = false;
       this.$router.push(this.$prismic.linkResolver(item));
@@ -104,5 +119,11 @@ export default {
       this.$router.push("/");
     },
   },
+  beforeMount () {
+    window.addEventListener('scroll', this.showHideHeader);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.showHideHeader);
+  }
 };
 </script>

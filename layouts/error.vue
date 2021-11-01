@@ -5,13 +5,13 @@
         <img
           v-if="!isMobile"
           class="background-images__wrapper--item"
-          data-src="~assets/images/error_desktop.png"
+          data-src="~assets/images/error_desktop.jpg"
           v-lazy-load
         />
         <img
           v-else
           class="background-images__wrapper--item"
-          data-src="~assets/images/error_mobile.png"
+          data-src="~assets/images/error_mobile.jpg"
           v-lazy-load
         />
       </div>

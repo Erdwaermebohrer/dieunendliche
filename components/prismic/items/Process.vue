@@ -1,11 +1,12 @@
 <template>
   <div class="process__wrapper">
-    <div class="process__wrapper--title">
-      <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
-    </div>
+   
     <div class="process__wrapper--content">
       <div v-elementshow id="scroller" class="scroller" />
       <div class="content__wrapper">
+         <div class="process__wrapper--title">
+          <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
+        </div>
         <div
           class="content__wrapper--item"
           v-for="(item, index) in slice.items"

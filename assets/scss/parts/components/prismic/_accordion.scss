@@ -15,7 +15,7 @@
 
     @include for-tablet {
       width: 100%;
-      padding: 0 0 20px 0;
+      padding: 0 0 60px 0;
       font-size: 22px;
       line-height: 27px;
     }
@@ -52,6 +52,7 @@
 
       &__title {
         width: 90%;
+
       }
 
       &__icon {

@@ -48,8 +48,13 @@
 
     @include for-tablet {
       margin-top: 100px;
+      flex-flow: row wrap;
       justify-content: space-between;
       align-items: center;
+      &::after {
+        content: '';
+        flex: auto;
+      }
     }
 
     .role-image__wrapper {
@@ -59,7 +64,7 @@
       align-items: flex-end;
 
       @include for-tablet {
-        width: 100px;
+        width: 25%;
         min-height: 300px;
         flex-direction: column;
         align-items: center;
@@ -121,8 +126,8 @@
         padding: 0 20px;
 
         @include for-tablet {
-          width: 115%;
-          padding: 0 5px;
+          width: 100%;
+          padding: 0 2%;
           text-align: center;
         }
 
@@ -170,6 +175,7 @@
             line-height: 18px;
             border-bottom: 2px solid $white;
             color: $white;
+            font-weight: 600;
 
             &:hover {
               opacity: 0.7;
@@ -179,14 +185,20 @@
       }
 
       &--image {
+        filter: gray; 
+        -webkit-filter: grayscale(1); 
+        filter: grayscale(1); 
+
         @include for-tablet {
           width: 100%;
+          text-align: center;
         }
 
         .image {
           @include for-tablet {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto;
             border-radius: 100%;
             object-position: top;
             filter: grayscale(1);

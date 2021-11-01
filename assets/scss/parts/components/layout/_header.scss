@@ -6,7 +6,12 @@
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-
+  transition: opacity .5s ease-in-out;
+  &--hidden{
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .5s ease-in-out;
+  }
   @include for-tablet {
     width: 100%;
     padding: 15px 30px 15px 10px;
