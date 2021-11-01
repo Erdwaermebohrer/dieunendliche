@@ -86,61 +86,36 @@ export default {
       var page = document.getElementById("page");
       var pageHeight = page.offsetHeight;
       var backgroundImageHeight =
-        document.getElementById("background-image").offsetHeight;
+        document.getElementById("background-image-before").offsetHeight;
 
       var imageScrollHeight = pageHeight - backgroundImageHeight;
       var viewPortHeight = window.innerHeight;
 
+      
+
       window.addEventListener("scroll", () => {
+        pageHeight = page.offsetHeight;
+        backgroundImageHeight = document.getElementById("background-image").offsetHeight;
+
+        if (this.windowWidth < 1000){
+          imageScrollHeight = pageHeight - backgroundImageHeight + 640;
+        } else if (this.windowWidth < 700){
+          imageScrollHeight = pageHeight - backgroundImageHeight + 440;
+        } else{
+          imageScrollHeight = pageHeight - backgroundImageHeight + 250;
+        }
+        
+        var scrollTop = window.scrollY;
+
+        var scrollChange = (scrollTop*imageScrollHeight)/(pageHeight-viewPortHeight);
 
         this.documentHeight = document.body.clientHeight;
         if(document.getElementById("background-image-before").clientHeight != this.documentHeight){
           document.getElementById("background-image-before").style.height = this.documentHeight+'px';
         }
-        
-        if (this.windowWidth > 1940) {
-          var scrollTop = window.scrollY * 40;
-        } else if (this.windowWidth > 1800) {
-          var scrollTop = window.scrollY * 50;
-        } else if (this.windowWidth > 1700) {
-          var scrollTop = window.scrollY * 58;
-        } else if (this.windowWidth > 1610) {
-          var scrollTop = window.scrollY * 65;
-        } else if (this.windowWidth > 1500) {
-          var scrollTop = window.scrollY * 70;
-        } else if (this.windowWidth > 1400) {
-          var scrollTop = window.scrollY * 71;
-        } else if (this.windowWidth > 1300) {
-          var scrollTop = window.scrollY * 78;
-        } else if (this.windowWidth > 1200) {
-          var scrollTop = window.scrollY * 85;
-        } else if (this.windowWidth > 1100) {
-          var scrollTop = window.scrollY * 90;
-        } else if (this.windowWidth > 1000) {
-          var scrollTop = window.scrollY * 103;
-        } else if (this.windowWidth > 900) {
-          var scrollTop = window.scrollY * 3;
-        } else if (this.windowWidth > 800) {
-          var scrollTop = window.scrollY * 10;
-        } else if (this.windowWidth > 730) {
-          var scrollTop = window.scrollY * 15;
-        } else if (this.windowWidth > 600) {
-          var scrollTop = window.scrollY * 25;
-        } else {
-          var scrollTop = window.scrollY * 60;
-        }
 
-        if (scrollTop > 2500) {
-          var scrollChange =
-            ((scrollTop + viewPortHeight) *
-              (imageScrollHeight / pageHeight)) /
-            160;
-          document.getElementById("background-image").style.transform =
-            "translate3d(0," + (scrollChange - 20) + "px, 0";
-        } else {
-          document.getElementById("background-image").style.transform =
-            "translate3d(0,0,0)";
-        }
+        document.getElementById("background-image").style.transform =
+            "translate3d(0," + (scrollChange) + "px, 0";
       });
     },
     onResize() {
