@@ -41,7 +41,7 @@
     }
 
     .content__wrapper {
-      height: 456px;
+      //height: 456px;
       bottom: calc((100vh - 356px) / 2);
       position: sticky;
       color: $white;
@@ -51,7 +51,7 @@
       }
 
       @include for-tablet {
-        height: 478px;
+        //height: 478px;
         bottom: calc((100vh - 478px) / 2);
       }
 

@@ -64,7 +64,7 @@
       position: absolute;
       height: 0px;
       width: 50px;
-      bottom: 236px;
+      bottom: 260px;
       left: -330px;
       transform: scale(0.4);
     }
@@ -115,7 +115,9 @@
   }
 
   &--content {
-    width: 78%;
+    width: 900px;
+    z-index: 20;
+    transform: translateX(6%)translateY(7px);
     margin: 0 auto;
     margin-top: 200px;
     display: flex;
@@ -123,27 +125,29 @@
     flex-direction: row-reverse;
 
     @media screen and (min-width: 1300px) {
-      width: 73%;
+       width: 900px;
+      transform: translateX(6%)translateY(7px);
     }
 
     @media screen and (min-width: 1450px) {
-      width: 64%;
+       width: 900px;
+      transform: translateX(6%) translateY(15px);
     }
 
     @media screen and (min-width: 1600px) {
-      width: 64%;
+      width: 900px;
     }
 
     @media screen and (min-width: 1660px) {
-      width: 52%;
+      width: 900px;
     }
 
     @media screen and (min-width: 1800px) {
-      width: 49%;
+      width: 900px;
     }
 
     @media screen and (min-width: 1900px) {
-      width: 47%;
+      width: 900px;
     }
 
     @include for-tablet {
@@ -193,7 +197,7 @@
       }
 
       &__wrapper {
-        width: 60%;
+        width: 80%;
 
         @include for-tablet {
           width: 100%;
@@ -211,7 +215,7 @@
           z-index: 99;
 
           @include for-tablet {
-            left: 27px;
+            left: 7px;
             position: relative;
           }
         }

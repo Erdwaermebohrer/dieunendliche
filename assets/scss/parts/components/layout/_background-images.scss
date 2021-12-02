@@ -19,32 +19,18 @@
   &--item {
     width: 100%;
     height: auto;
+    display: block;
 
     &:nth-child(2) {
-      position: relative;
-      top: -5px;
-
-      @include for-tablet {
-        top: -5px;
-      }
+      transform: translateY(-1px);
     }
 
     &:nth-child(3) {
-      position: relative;
-      top: -10px;
-
-      @include for-tablet {
-        top: -11px;
-      }
+       transform: translateY(-2px);
     }
 
     &:nth-child(4) {
-      position: relative;
-      top: -13px;
-
-      @include for-tablet {
-        top: -15px;
-      }
+       transform: translateY(-3px);
     }
   }
 }

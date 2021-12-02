@@ -76,48 +76,50 @@ export default {
       slices: [],
       uid: "homepage",
       windowWidth: 0,
+      pageElement: null,
+      pageHeight: 0,
+      backgroundImageHeight: 0,
+      imageScrollHeight: 0,
+      viewPortHeight: 0,
+      scrollTop: 0
     };
   },
   methods: {
-    backgroundScroll() {
-      var page = document.getElementById("page");
-      var pageHeight = page.offsetHeight;
-      var backgroundImageHeight =
+    initBackground() {
+      this.pageElement = document.getElementById("page");
+      this.pageHeight = document.body.clientHeight;
+      this.backgroundImageHeight =
         document.getElementById("background-image").offsetHeight;
 
-      var imageScrollHeight = pageHeight - backgroundImageHeight;
-      var viewPortHeight = window.innerHeight;
+      this.imageScrollHeight = this.pageHeight - this.backgroundImageHeight;
+      this.viewPortHeight = window.innerHeight;
+      this.windowWidth = window.innerWidth;
+
+      console.log('init background');
+    },
+    backgroundScroll(){
+      this.pageHeight = document.body.clientHeight;
+      this.backgroundImageHeight = document.getElementById("background-image").offsetHeight;
+      this.scrollTop = window.scrollY;
+
+      console.log('scroll background');
+
+
+      this.imageScrollHeight = this.pageHeight - this.backgroundImageHeight;
+      console.log('imageScrollHeight: '+this.imageScrollHeight);
+      console.log('pageHeight: '+this.pageHeight);
 
       
 
-      window.addEventListener("scroll", () => {
-        pageHeight = page.offsetHeight;
-        backgroundImageHeight = document.getElementById("background-image").offsetHeight;
-
-        if (this.windowWidth < 700){
-          imageScrollHeight = pageHeight - backgroundImageHeight + 640;
-        } else if (this.windowWidth < 1000){
-          imageScrollHeight = pageHeight - backgroundImageHeight + 440;
-        } else{
-          imageScrollHeight = pageHeight - backgroundImageHeight + 220;
-        }
-        
-        var scrollTop = window.scrollY;
-
-        var scrollChange = (scrollTop*imageScrollHeight)/(pageHeight-viewPortHeight);
+       var scrollChange = (this.scrollTop*this.imageScrollHeight)/(this.pageHeight-this.viewPortHeight);
 
 
-        this.documentHeight = document.body.clientHeight;
-        if(document.getElementById("background-image-before").clientHeight != this.documentHeight){
-          document.getElementById("background-image-before").style.height = this.documentHeight+'px';
-        }
-        
-        document.getElementById("background-image").style.transform =
-            "translate3d(0," + (scrollChange) + "px, 0";
-      });
-    },
-    onResize() {
-      this.windowWidth = window.innerWidth;
+      if(document.getElementById("background-image-before").clientHeight != this.pageHeight){
+        document.getElementById("background-image-before").style.height = this.pageHeight+'px';
+      }
+      
+      document.getElementById("background-image").style.transform =
+          "translate3d(0," + (scrollChange) + "px, 0";
     },
     redirectToInternalPage(item) {
       this.$router.push(this.$prismic.linkResolver(item));
@@ -127,17 +129,22 @@ export default {
     },
   },
   mounted() {
-    this.$nextTick(() => {
-      window.addEventListener("resize", this.onResize);
-      this.windowWidth = window.innerWidth;
-    });
-    this.backgroundScroll();
+
+    this.initBackground();
     setTimeout(() => {
       this.smoothScroll("page");
     }, 10);
   },
+
+  beforeMount () {
+    window.addEventListener('scroll', this.backgroundScroll);
+    window.removeEventListener("resize", this.initBackground);
+    
+  },
   beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("resize", this.initBackground);
+    window.removeEventListener('scroll', this.backgroundScroll);
+
   },
   async asyncData({ $prismic, error }) {
     try {

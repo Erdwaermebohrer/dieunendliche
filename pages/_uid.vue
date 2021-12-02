@@ -78,48 +78,65 @@ export default {
       slices: [],
       uid: "internal",
       windowWidth: 0,
-      documentHeight: 0
+      documentHeight: 0,
+      pageElement: null,
+      pageHeight: 0,
+      bodyHeight: 0,
+      backgroundImageHeight: 0,
+      imageScrollHeight: 0,
+      viewPortHeight: 0,
+      scrollTop: 0
     };
   },
   methods: {
-    backgroundScroll() {
-      var page = document.getElementById("page");
-      var pageHeight = page.offsetHeight;
-      var backgroundImageHeight =
-        document.getElementById("background-image-before").offsetHeight;
+     initBackground() {
+      this.pageElement = document.getElementById("page");
+      this.pageHeight = this.pageElement.offsetHeight;
+      this.bodyHeight = document.body.clientHeight;
+      this.backgroundImageHeight =
+        document.getElementById("background-image").offsetHeight;
 
-      var imageScrollHeight = pageHeight - backgroundImageHeight;
-      var viewPortHeight = window.innerHeight;
+      this.imageScrollHeight = this.pageHeight - this.backgroundImageHeight;
+      this.viewPortHeight = window.innerHeight;
+      this.windowWidth = window.innerWidth;
+
+      console.log('init background');
+    },
+    backgroundScroll(){
+      this.pageElement = document.getElementById("page");
+      this.pageHeight = this.pageElement.offsetHeight;
+      this.bodyHeight = document.body.clientHeight;
+
+      this.backgroundImageHeight = document.getElementById("background-image").offsetHeight;
+      this.scrollTop = window.scrollY;
+
+      var height = this.bodyHeight;
+
+      // if(this.pageHeight > this.bodyHeight){
+      //   height = this.pageHeight;
+      // }
+
+      var viewPortHeight =  window.innerHeight;
+      var offset = viewPortHeight / 4;
+      if(window.innerWidth < 600){
+        offset = viewPortHeight / 3;
+      }
+
+      this.imageScrollHeight = height - this.backgroundImageHeight + offset;
+      console.log('imageScrollHeight: '+this.imageScrollHeight);
+      console.log('height: '+height);
 
       
 
-      window.addEventListener("scroll", () => {
-        pageHeight = page.offsetHeight;
-        backgroundImageHeight = document.getElementById("background-image").offsetHeight;
+       var scrollChange = (this.scrollTop*this.imageScrollHeight)/(height-this.viewPortHeight);
 
-        if (this.windowWidth < 1000){
-          imageScrollHeight = pageHeight - backgroundImageHeight + 640;
-        } else if (this.windowWidth < 700){
-          imageScrollHeight = pageHeight - backgroundImageHeight + 440;
-        } else{
-          imageScrollHeight = pageHeight - backgroundImageHeight + 250;
-        }
-        
-        var scrollTop = window.scrollY;
 
-        var scrollChange = (scrollTop*imageScrollHeight)/(pageHeight-viewPortHeight);
-
-        this.documentHeight = document.body.clientHeight;
-        if(document.getElementById("background-image-before").clientHeight != this.documentHeight){
-          document.getElementById("background-image-before").style.height = this.documentHeight+'px';
-        }
-
-        document.getElementById("background-image").style.transform =
-            "translate3d(0," + (scrollChange) + "px, 0";
-      });
-    },
-    onResize() {
-      this.windowWidth = window.innerWidth;
+      if(document.getElementById("background-image-before").clientHeight != height){
+        document.getElementById("background-image-before").style.height = height+'px';
+      }
+      
+      document.getElementById("background-image").style.transform =
+          "translate3d(0," + (scrollChange) + "px, 0";
     },
     redirectToInternalPage(item) {
       this.$router.push(this.$prismic.linkResolver(item.link));
@@ -136,17 +153,20 @@ export default {
     },
   },
   mounted() {
-    this.$nextTick(() => {
-      window.addEventListener("resize", this.onResize);
-      this.windowWidth = window.innerWidth;
-    });
     this.backgroundScroll();
     setTimeout(() => {
       this.smoothScroll("page");
     }, 10);
   },
+  beforeMount () {
+    window.addEventListener('scroll', this.backgroundScroll);
+    window.removeEventListener("resize", this.initBackground);
+    
+  },
   beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("resize", this.initBackground);
+    window.removeEventListener('scroll', this.backgroundScroll);
+
   },
   async asyncData({ $prismic, params, error }) {
     try {

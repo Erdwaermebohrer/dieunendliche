@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 10;
+  z-index: 200;
   transition: opacity .5s ease-in-out;
   &--hidden{
     opacity: 0;

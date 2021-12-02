@@ -26,18 +26,20 @@
 
         onAccept: function(cookies) {
           if (cookieconsent.allowedCategory("analytics")) {
-            cookieconsent.loadScript(
-              "https://www.googletagmanager.com/gtag/js?id=G-173KL1NGG1",
-              function() {
-                window.dataLayer = window.dataLayer || [];
-                function gtag() {
-                  dataLayer.push(arguments);
-                }
-                gtag("js", new Date());
 
-                gtag("config", "G-173KL1NGG1");
-              }
-            );
+            var GId = '00';
+            // cookieconsent.loadScript(
+            //   "https://www.googletagmanager.com/gtag/js?id="+GId,
+            //   function() {
+            //     window.dataLayer = window.dataLayer || [];
+            //     function gtag() {
+            //       dataLayer.push(arguments);
+            //     }
+            //     gtag("js", new Date());
+
+            //     gtag("config", GId);
+            //   }
+            // );
           }
         },
 
