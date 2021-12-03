@@ -1,19 +1,24 @@
 <template>
   <div
     class="accordion__wrapper"
-    :style="'background-color:' + slice.primary.color"
+    
   >
     <h2
       class="accordion__wrapper--title"
       v-text="$prismic.asText(slice.primary.title)"
     />
-    <ul class="accordion__wrapper--list">
+    <ul class="accordion__wrapper--list" >
+      <li
+        class="list-item list-item--spacer"
+        v-view="listInView"
+        :style="'background-color:' + slice.primary.color" />
       <li
         class="list-item"
         v-for="(item, index) in slice.items"
         :key="'list-item-' + index"
         @click="selectItemIndex(index)"
         v-view="listInView"
+        :style="'background-color:' + slice.primary.color"
       >
         <div class="list-item__title" v-text="$prismic.asText(item.title)" />
         <a
@@ -75,21 +80,25 @@ export default {
     },
     listInView(e) {
       var opac = 0;
-      if(e.percentCenter > 0.4){
-        opac = (1-e.percentCenter)*2.2;
+      if(e.percentCenter > 0.3 && e.percentCenter < 0.7){
+        if(!e.target.element.classList.contains('active')){
+          e.target.element.classList.add('active');
+        }
       } else{
-        opac = 2 * e.percentCenter;
+        if(e.target.element.classList.contains('active')){
+          e.target.element.classList.remove('active');
+        }
       }
       
-      if (e.percentInView > 0) {
-        gsap.to(e.target.element, {
-          duration: 0.05,
-          ease: "power3.out",
-          opacity: opac,
-        });
-      } else {
-        e.target.element.style.opacity = 0;
-      }
+      // if (e.percentInView > 0) {
+      //   gsap.to(e.target.element, {
+      //     duration: 0.05,
+      //     ease: "power3.out",
+      //     opacity: opac,
+      //   });
+      // } else {
+      //   e.target.element.style.opacity = 0;
+      // }
     },
     selectItemIndex(index) {
       this.selectedItemIndex === index

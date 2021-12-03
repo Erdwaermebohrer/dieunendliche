@@ -1,6 +1,6 @@
 .accordion__wrapper {
   margin: 150px 5vw;
-  padding: 70px 40px;
+  padding: 70px 0;
 
   @include for-tablet {
     margin: 0 5vw;
@@ -28,28 +28,46 @@
     color: $white;
 
     .list-item {
-      padding: 30px 0;
+      padding: 30px 40px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
 
+      opacity: 0;
+      transition: 250ms ease-in-out;
+      &.active{
+        opacity: 1;
+        transition: 250ms ease-in-out;
+      }
       @include for-tablet {
         font-size: 22px;
         line-height: 27px;
       }
 
+      &.list-item--spacer:after{
+        display: none;
+      }
+
+      &.list-item--spacer{
+        height: 50px;
+      }
+
       &:after {
         content: "";
         position: absolute;
-        width: 100%;
+        left: 40px;
+        width: calc(100% - 80px);
         height: 1px;
         top: 0px;
         display: flex;
         background-color: $white;
       }
 
+      &:first-child:after{
+        display: none;
+      }
       &__title {
         width: 90%;
         cursor: pointer;
