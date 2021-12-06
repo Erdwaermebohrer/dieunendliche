@@ -87,6 +87,12 @@
             :clickedButton="redirectToExternalPage"
           />
         </template>
+
+        <template v-if="slice.slice_type === 'logo_bar'">
+          <logo-bar
+            :slice="slice"
+          />
+        </template>
       </div>
     </slot>
   </div>
@@ -109,6 +115,7 @@ import TitleDescription from "./items/TitleDescription.vue";
 import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
 import TitleSubtitleDescription from "./items/TitleSubtitleDescription.vue";
 import TitleSubtitleLink from "./items/TitleSubtitleLink.vue";
+import LogoBar from "./items/LogoBar.vue";
 
 export default {
   props: [
@@ -135,6 +142,7 @@ export default {
     TitleDescriptionLink,
     TitleSubtitleDescription,
     TitleSubtitleLink,
+    LogoBar
   },
 };
 </script>

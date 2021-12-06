@@ -102,7 +102,7 @@
             <div class="title" v-text="$prismic.asText(item.step_title)" />
             <div
               class="description"
-              v-text="$prismic.asText(item.step_description)"
+              v-html="$prismic.asText(item.step_description)"
             />
           </div>
         </div>

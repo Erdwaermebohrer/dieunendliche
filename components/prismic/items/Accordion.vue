@@ -35,7 +35,7 @@
           <div
             v-if="index === selectedItemIndex"
             class="list-item__description"
-            v-text="$prismic.asText(item.description)"
+            v-html="$prismic.asText(item.description)"
           />
         </transition>
       </li>

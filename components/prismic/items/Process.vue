@@ -23,7 +23,7 @@
             <div :id="'item-right-' + index" class="item__right">
               <div
                 class="item__right--description"
-                v-text="$prismic.asText(item.description)"
+                v-html="$prismic.asText(item.description)"
               />
             </div>
           </transition>
