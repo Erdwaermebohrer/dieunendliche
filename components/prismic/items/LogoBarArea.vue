@@ -4,7 +4,7 @@
       <h2 class="title"  v-text="$prismic.asText(slice.primary.title)"/>
 
       <div>
-      	<div class="description"  v-text="$prismic.asText(slice.primary.description)"/>
+      	<div class="description"  v-html="$prismic.asText(slice.primary.description)"/>
 
       	<div class="logobar">
 	        <img class="image" :data-src="item.logo.url" v-for="(item, index) in slice.items" :key="'item-' + index" v-lazy-load/>

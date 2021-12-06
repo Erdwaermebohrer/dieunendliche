@@ -1,6 +1,6 @@
 <template>
   <div class="image-with-facts__wrapper">
-    <div class="image-with-facts__wrapper--image">
+    <div class="image-with-facts__wrapper--image" v-if="slice.primary.image1.url">
       <img class="image" :data-src="slice.primary.image1.url" v-lazy-load/>
     </div>
     <div class="image-with-facts__wrapper--content">
