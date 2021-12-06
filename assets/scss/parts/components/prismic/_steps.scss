@@ -54,10 +54,12 @@
     margin-top: -161px;
     position: absolute;
     z-index: 2;
+    transform: translateX(0px);
 
     @media screen and (max-width: 1160px) {
       width: 950px;
-      margin-top: -320px;
+      margin-top: -131px;
+      transform: translateX(-5px);
     }
 
     @include for-tablet {

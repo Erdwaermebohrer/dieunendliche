@@ -1,7 +1,8 @@
 <template>
   <div class="images-with-link__wrapper">
-    <div
+    <a
       class="images-with-link__wrapper--item"
+      @click="clickedButton(item.link)"
       v-for="(item, index) in slice.items"
       :key="'image-' + index"
       :style="'border-bottom: 9px solid '+item.border_color"
@@ -18,14 +19,13 @@
         <div class="content__wrapper--link">
           <img class="icon" src="~assets/svg/arrow-right-white.svg" />
           
-          <a
-            @click="clickedButton(item.link)"
+          <span
             class="link"
             v-text="$prismic.asText(item.link_title)"
           />
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </template>
 
