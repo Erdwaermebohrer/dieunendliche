@@ -115,7 +115,7 @@ import TitleDescription from "./items/TitleDescription.vue";
 import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
 import TitleSubtitleDescription from "./items/TitleSubtitleDescription.vue";
 import TitleSubtitleLink from "./items/TitleSubtitleLink.vue";
-import LogoBar from "./items/LogoBar.vue";
+import LogoBar from "./items/LogoBarArea.vue";
 
 export default {
   props: [
