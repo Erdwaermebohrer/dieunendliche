@@ -1,0 +1,54 @@
+.logobar__wrapper{
+  padding: 5vw 5vw 200px 5vw;
+
+  @include for-tablet {
+    padding: 60px 5vw 70px;
+  }
+
+  &--content {
+    display: flex;
+
+    @include for-tablet {
+      flex-direction: column;
+    }
+
+    .title {
+      width: 50%;
+      margin: 0;
+      font-weight: 300;
+      color: $white;
+
+      @include for-tablet {
+        width: 100%;
+        padding-bottom: 10px;
+        font-size: 22px;
+        line-height: 28px;
+      }
+    }
+
+    > div{
+      width: 50%;
+      margin-top: 20px;
+      @include for-tablet {
+        width: 100%;
+      }
+    }
+
+    .description{
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 17.75px;
+      color: $white;
+    }
+
+    .logobar{
+      margin-top: 20px;
+      img {
+        display: inline-block;
+        margin-right: 20px;
+        height: 25px;
+      }
+    }
+  }
+
+}
