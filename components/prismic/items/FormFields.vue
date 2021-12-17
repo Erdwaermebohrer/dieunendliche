@@ -129,28 +129,17 @@ export default {
 
       if(!this.showErrorMessage){
 
-        // Create final form data
-        var formData = new FormData;
-
-        for (const [key, value] of Object.entries(this.initialFormFields)) {
-          if(this.initialFormFields[key]['value'] != ''){
-            formData.append(key, this.initialFormFields[key]['value']);
-          } else{
-            formData.append(key, '–');
-          }
-          
-        }
-
-        // send form data
+       let myForm = document.getElementById("form");
+        let formData = new FormData(myForm);
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "multipart/form-data" },
           body: new URLSearchParams(formData).toString(),
-       })
-        .then(res => {
-          this.showSuccessMessage = true;
         })
-        .catch((error) => alert(error));
+          .then(res => {
+            this.showSuccessMessage = true;
+          })
+          .catch((error) => alert(error));
 
       }
 
