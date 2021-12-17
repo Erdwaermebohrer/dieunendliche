@@ -141,16 +141,18 @@ export default {
           
         }
         
-
-        console.log(formData);
-        console.log(new URLSearchParams(formData).toString());
+        let myForm = document.getElementById("form");
+        let formDatatw = new FormData(myForm);
+        console.log(formDatatw);
+        console.log(new URLSearchParams(formDatatw).toString());
         //send form data
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString(),
+          body: new URLSearchParams(formDatatw).toString(),
         })
         .then(res => {
+          console.log(res);
           this.showSuccessMessage = true;
         })
         .catch((error) => alert(error));
