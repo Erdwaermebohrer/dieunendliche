@@ -38,6 +38,7 @@
               <input
                 class="input"
                 type="checkbox"
+                name="terms"
                 v-model="formFields['terms']"
               />
             </span>
