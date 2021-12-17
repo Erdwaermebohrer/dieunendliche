@@ -9,7 +9,7 @@
     />
     <ul class="accordion__wrapper--list" >
       <li
-        class="list-item list-item--spacer"
+        class="list-item list-item--spacer always-active"
         v-view="listInView"
         :style="'background-color:' + slice.primary.color" />
       <li
@@ -19,6 +19,7 @@
         @click="selectItemIndex(index)"
         v-view="listInView"
         :style="'background-color:' + slice.primary.color"
+        :class="{'always-active': index <= 2}"
       >
         <div class="list-item__title" v-text="$prismic.asText(item.title)" />
         <a
@@ -80,7 +81,7 @@ export default {
     },
     listInView(e) {
       var opac = 0;
-      if(e.percentCenter > 0.3 && e.percentCenter < 0.7){
+      if(e.percentCenter < 0.7){
         if(!e.target.element.classList.contains('active')){
           e.target.element.classList.add('active');
         }

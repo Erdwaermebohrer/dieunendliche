@@ -62,9 +62,9 @@
         width: 75%;
         margin-bottom: 17vw;
         position: relative;
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 300;
-        line-height: 18px;
+        line-height: 150%;
         color: $brand-secondary;
 
         @include for-tablet {

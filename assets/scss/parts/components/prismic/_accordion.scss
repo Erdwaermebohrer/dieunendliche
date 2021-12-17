@@ -34,16 +34,20 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
+      font-size: 1em;
 
       opacity: 0;
       transition: 250ms ease-in-out;
-      &.active{
+
+      &.active,
+      &.always-active{
         opacity: 1;
         transition: 250ms ease-in-out;
       }
+
       @include for-tablet {
-        font-size: 22px;
-        line-height: 27px;
+        font-size: 1em;
+        padding: 20px;
       }
 
       &.list-item--spacer:after{
@@ -63,6 +67,10 @@
         top: 0px;
         display: flex;
         background-color: $white;
+        @include for-tablet {
+          width: calc(100% - 40px);
+          left: 20px;
+        }
       }
 
       &:first-child:after{
@@ -71,6 +79,11 @@
       &__title {
         width: 90%;
         cursor: pointer;
+        font-size: 2.125em;
+        @include for-tablet {
+          font-size: 1.7em;
+          line-height: 120%;
+        }
       }
 
       &__icon {
@@ -78,12 +91,17 @@
         display: flex;
         justify-content: flex-end;
         cursor: pointer;
+        font-size: 2.125em;
+        @include for-tablet {
+          font-size: 1.7em;
+          line-height: 120%;
+        }
       }
 
       &__description {
         width: 100%;
-        font-size: 14px;
-        line-height: 17.75px;
+        font-size: 1em;
+        line-height: 150%;
         color: $white;
         overflow: hidden;
         transition: 250ms ease-in-out;

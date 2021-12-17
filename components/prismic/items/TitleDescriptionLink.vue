@@ -12,15 +12,32 @@
         v-html="$prismic.asText(slice.primary.description)"
       />
       <div class="link__wrapper">
-        <img
-          class="link__wrapper--icon"
-          src="~assets/svg/arrow-right-white.svg"
-        />
-        <a
-          class="link__wrapper--link"
-          v-text="$prismic.asText(slice.primary.link_title)"
-          @click="clickedButton(slice.primary.link)"
-        />
+        <div>
+          <a 
+            v-if="slice.primary.link && $prismic.asText(slice.primary.link_title)"
+            class="link__wrapper--link"
+            target="_blank"
+            @click="clickedButton(slice.primary.link)"
+          >
+            <img
+              class="link__wrapper--icon"
+              src="~assets/svg/arrow-right-white.svg"
+            />
+            <span>{{$prismic.asText(slice.primary.link_title)}}</span>
+          </a>
+          <div v-for="(item, index) in slice.items" v-if="item.link_title && item.link_url">
+            <a
+              class="link__wrapper--link"
+              target="_blank"
+              @click="clickedButton(item.link_url)">
+              <img
+                class="link__wrapper--icon"
+                src="~assets/svg/arrow-right-white.svg"
+              />
+              <span>{{$prismic.asText(item.link_title)}}</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

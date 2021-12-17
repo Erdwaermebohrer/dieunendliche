@@ -1,7 +1,7 @@
 <template>
   <div class="content-and-carousel__wrapper">
     <div class="content-and-carousel__wrapper--title">
-      <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
+      <h2 class="title" v-html="$newline($prismic.asText(slice.primary.title))" />
     </div>
     <div class="content-and-carousel__wrapper--content">
       <div class="content__wrapper">
@@ -13,44 +13,84 @@
     </div>
     <div class="content-and-carousel__wrapper--slider">
       <div class="slider__wrapper">
-        <div class="slider__wrapper--icons">
-          <img
-            class="icon"
-            src="~assets/svg/arrow-right-brown.svg"
-            @click="$refs.slider.goToNext()"
-          />
-        </div>
         <div class="slider__wrapper--content">
-          <client-only>
-            <agile ref="slider" :options="sliderOptions">
-              <div
-                class="slider-item"
-                v-for="(slide, index) in slice.items"
-                :key="'slide-' + index"
-              >
-                <div class="wrap">
-                  <h3 class="slider-item__headline" v-if="$prismic.asText(slide.small_title)" v-text="$prismic.asText(slide.small_title)" />
-                  <div class="slider-item__content">
-                    <div
-                      class="author"
-                      v-text="$prismic.asText(slide.author)"
-                    />
-                    <div class="title" v-text="$prismic.asText(slide.title)" />
+          <div>
+            <h3 class="slider-item__headline" v-if="$prismic.asText(slice.primary.featured_small_title)" v-text="$prismic.asText(slice.primary.featured_small_title)" />
+              <div>
+                <div
+                  class="slider-item lsider-item--featured" >
+                  <div class="wrap">
+                    <div class="slider-item__content">
+                      <div
+                        class="author"
+                        v-text="$prismic.asText(slice.primary.featured_author)"
+                      />
+                      <div class="title" v-text="$prismic.asText(slice.primary.featured_title)" />
+                    </div>
+                    <a
+                      class="slider-item__link"
+                      @click="clickedButton(slice.primary.featuredlink)"
+                      target="_blank"
+                    >
+                      <img class="icon" src="~assets/svg/arrow-right-green.svg" />
+                      <span
+                        class="link"
+                        v-text="$prismic.asText(slice.primary.featured_link_title)"
+                      />
+                    </a>
                   </div>
-                  <a
-                    class="slider-item__link"
-                    @click="clickedButton(slide.link)"
-                  >
-                    <img class="icon" src="~assets/svg/arrow-right-green.svg" />
-                    <span
-                      class="link"
-                      v-text="$prismic.asText(slide.link_title)"
-                    />
-                  </a>
                 </div>
               </div>
-            </agile>
-          </client-only>
+            </div>
+            <div>
+              <h3 class="slider-item__headline" v-if="$prismic.asText(slice.primary.slider_title)" v-text="$prismic.asText(slice.primary.slider_title)" />
+
+              <div class="slider__wrapper--icons">
+                <img
+                  class="icon icon--prev"
+                  src="~assets/svg/arrow-right-brown.svg"
+                  @click="$refs.slider.goToPrev()"
+                />
+                <img
+                  class="icon"
+                  src="~assets/svg/arrow-right-brown.svg"
+                  @click="$refs.slider.goToNext()"
+                />
+              </div>
+
+              <client-only>
+
+                <agile ref="slider" :options="sliderOptions">
+                  <div
+                    class="slider-item"
+                    v-for="(slide, index) in slice.items"
+                    :key="'slide-' + index"
+                  >
+                    <div class="wrap">
+                      
+                      <div class="slider-item__content">
+                        <div
+                          class="author"
+                          v-text="$prismic.asText(slide.author)"
+                        />
+                        <div class="title" v-text="$prismic.asText(slide.title)" />
+                      </div>
+                      <a
+                        class="slider-item__link"
+                        @click="clickedButton(slide.link)"
+                        target="_blank"
+                      >
+                        <img class="icon" src="~assets/svg/arrow-right-green.svg" />
+                        <span
+                          class="link"
+                          v-text="$prismic.asText(slide.link_title)"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </agile>
+              </client-only>
+            </div>
         </div>
       </div>
     </div>
@@ -75,7 +115,7 @@ export default {
         } else if (newValue > 760 && newValue < 900) {
           this.sliderOptions.slidesToShow = 2;
         } else {
-          this.sliderOptions.slidesToShow = 2.96;
+          this.sliderOptions.slidesToShow = 2;
         }
       },
       immediate: true,
@@ -88,7 +128,7 @@ export default {
       sliderOptions: {
         navButtons: false,
         dots: false,
-        slidesToShow: 3,
+        slidesToShow: 2,
       },
       windowWidth: 0,
     };

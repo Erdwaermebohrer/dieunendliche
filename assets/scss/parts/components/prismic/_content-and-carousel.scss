@@ -48,9 +48,9 @@
 
       &--description {
         width: 80%;
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 300;
-        line-height: 17.75px;
+        line-height: 150%;
         color: $white;
 
         @include for-tablet {
@@ -69,31 +69,60 @@
     }
 
     .slider__wrapper {
+      .agile{
+        width: calc(100% + 19px);
+         @include for-tablet {
+          width: 100%;
+         }
+      }
       &--icons {
         width: 100%;
-        margin-bottom: -15px;
         display: flex;
         justify-content: space-between;
         z-index: 10;
-        position: relative;
+        position: absolute;
+        bottom: -30px;
         .icon {
           cursor: pointer;
           margin-left: auto;
+          &--prev{
+            transform: rotate(180deg);
+            margin-right: auto;
+            margin-left: 0;
+          }
         }
       }
 
       &--content {
-
+        display: flex;
+        @include for-tablet {
+          flex-wrap: wrap;
+        }
+        > div:first-child{
+          width: 35%;
+          @include for-tablet {
+            width: 100%;
+            .wrap{
+              width: 100%;
+            }
+          }
+        }
+        > div:last-child{
+          width: 65%;
+          position: relative;
+          @include for-tablet {
+            width: 100%;
+            margin-top: 30px;
+          }
+        }
         .slider-item {
           height: 220px;
-          padding-top: 30px;
+          padding-top: 10px;
 
           &__headline{
-            position: absolute;
-            top: -40px;
-            left: 0;
+            position: relative;
             margin: 0;
-            font-size: 0.857em;
+            font-size: 1em;
             text-transform: uppercase;
             color: #857373;
           }
@@ -110,14 +139,14 @@
 
             .slider-item__content {
               .author {
-                font-size: 14px;
+                font-size: 1em;
                 font-weight: 300;
                 color: $brand-secondary;
               }
 
               .title {
                 margin-top: 15px;
-                font-size: 18px;
+                font-size: 20px;
                 font-weight: 400;
                 line-height: 22.82px;
                 color: $brand-secondary;
@@ -130,14 +159,14 @@
 
               .icon {
                 margin-right: 10px;
-                font-size: 14px;
+                font-size: 1em;
                 font-weight: 300;
                 color: $brand-secondary;
                 cursor: pointer;
               }
 
               .link {
-                font-size: 14px;
+                font-size: 1em;
                 font-weight: 300;
                 color: $brand-secondary;
                 border-bottom: 1px solid $brand-secondary;

@@ -29,9 +29,9 @@
     .description {
       width: 50%;
       margin-top: 20px;
-      font-size: 14px;
+      font-size: 1em;
       font-weight: 300;
-      line-height: 17.75px;
+      line-height: 150%;
       color: $white;
 
       @include for-tablet {
@@ -132,9 +132,9 @@
         }
 
         .name {
-          font-size: 14px;
+          font-size: 1em;
           font-weight: 300;
-          line-height: 18px;
+          line-height: 150%;
           color: $white;
 
           @include for-tablet {
@@ -144,9 +144,9 @@
 
         .role {
           margin-bottom: 20px;
-          font-size: 14px;
+          font-size: 1em;
           font-weight: 300;
-          line-height: 18px;
+          line-height: 150%;
           color: $white;
         }
 
@@ -170,9 +170,9 @@
 
           .link {
             padding: 2px 0;
-            font-size: 14px;
+            font-size: 1em;
             font-weight: 300;
-            line-height: 18px;
+            line-height: 150%;
             border-bottom: 2px solid $white;
             color: $white;
             font-weight: 600;

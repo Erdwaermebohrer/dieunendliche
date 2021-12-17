@@ -8,7 +8,7 @@
   }
 
   &--content {
-    width: 50%;
+    width: 100%;
 
     @include for-tablet {
       width: 100%;
@@ -22,16 +22,15 @@
       left: 0;
       position: relative;
       display: flex;
-      flex-direction: column;
 
       @include for-tablet {
         padding: 60px 5vw;
       }
 
       &--title {
-        width: 60%;
+        width: 40%;
         font-weight: 300;
-        color: $light-yellow;
+        color: $white;
 
         @include for-tablet {
           width: 100%;
@@ -42,16 +41,24 @@
       &--items {
         display: flex;
         flex-wrap: wrap;
+        width: 60%;
+        @include for-tablet {
+          width: 100%;
+        } 
 
         .items__wrapper {
           width: 50%;
           padding: 15px 0;
+          padding-left: 10%;
+          @include for-tablet {
+            padding-left: 0;
+          }
 
           &--number {
             font-size: 5.625em;
             font-weight: 600;
             line-height: 114px;
-            color: $light-yellow;
+            color: $white;
 
             @include for-tablet {
               font-size: 60px;
@@ -60,10 +67,10 @@
           }
 
           &--text {
-            font-size: 0.875em;
+            font-size: 1em;
             font-weight: 300;
-            line-height: 18px;
-            color: $light-yellow;
+            line-height: 150%;
+            color: $white;
           }
         }
       }

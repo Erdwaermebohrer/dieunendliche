@@ -7,7 +7,7 @@
       <div class="content__wrapper">
         <h2
           class="content__wrapper--title"
-          v-text="$prismic.asText(slice.primary.title1)"
+          v-html="$newline($prismic.asText(slice.primary.title1))"
         />
         <div class="content__wrapper--items">
           <div class="items__wrapper" v-for="(item, index) in slice.items" :key="'item-' + index">

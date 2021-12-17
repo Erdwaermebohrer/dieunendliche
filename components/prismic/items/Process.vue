@@ -2,31 +2,52 @@
   <div class="process__wrapper">
    
     <div class="process__wrapper--content">
-      <div v-elementshow id="scroller" class="scroller" />
       <div class="content__wrapper">
-         <div class="process__wrapper--title">
+        <div class="process__wrapper--title process__wrapper--title--mobile ">
           <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
         </div>
-        <div
-          class="content__wrapper--item"
-          v-for="(item, index) in slice.items"
-          :key="'item-' + index"
-        >
-          <div :id="'item-left-' + index" class="item__left">
-            <div class="item__left--number" v-text="index" />
-            <div
-              class="item__left--title"
-              v-text="$prismic.asText(item.title)"
-            />
+        <div class="process__wrapper__side">
+          <div class="process__wrapper--title">
+            <h2 class="title" v-text="$prismic.asText(slice.primary.title)" />
           </div>
-          <transition name="fade">
+          <div
+            class="process__wrapper__side--item"
+            v-for="(item, index) in slice.items"
+            :key="'item-' + index"
+            :data-index="index"
+            ref="sticky-a"
+          >
+            <div :id="'item-left-' + index" class="item__left">
+              <div class="item__left--number" v-text="index" />
+              <div
+                class="item__left--title"
+                v-text="$prismic.asText(item.title)"
+              />
+            </div>
+          </div>
+
+          <div class="process__wrapper__faker">
+            <div class="process__wrapper__faker__inner" ref="sticky-fake"></div>
+          </div>
+        </div>
+
+
+        
+
+        <div class="process__wrapper__content">
+          <div
+            class="process__content--item"
+            v-for="(item, index) in slice.items"
+            :key="'item-' + index"
+            ref="sticky-div"
+          >
             <div :id="'item-right-' + index" class="item__right">
               <div
                 class="item__right--description"
-                v-html="$prismic.asText(item.description)"
+                v-html="$prismic.asHtml(item.description)"
               />
             </div>
-          </transition>
+          </div>
         </div>
       </div>
     </div>
@@ -37,96 +58,6 @@ export default {
   props: {
     slice: {
       type: Object,
-    },
-  },
-  directives: {
-    elementshow: {
-      inViewport(el) {
-        var rect = el.getBoundingClientRect();
-        return !(rect.top > rect.height);
-      },
-      bind(el, binding, vnode) {
-        el.$onScroll = function () {
-          if (binding.def.inViewport(el)) {
-            var top = el.getBoundingClientRect().top * -1;
-            var page = document.getElementById("page");
-
-            // if (this.windowWidth > 991) {
-            //   if (
-            //     top > -700 &&
-            //     top <
-            //       vnode.context.numberOfElements *
-            //         vnode.context.scrollPartHeight
-            //   ) {
-            //     page.style.overflow = "visible";
-            //   } else {
-            //     page.style.overflow = "hidden";
-            //   }
-            // } else {
-            //   page.style.overflow = "hidden";
-            // }
-
-            for (let i = 0; i < vnode.context.numberOfElements; i++) {
-              this["item_l_" + i] = document.getElementById("item-left-" + i);
-              this["item_r_" + i] = document.getElementById("item-right-" + i);
-            }
-
-            for (let i = 0; i < vnode.context.numberOfElements; i++) {
-              if (i === 0) {
-                if (
-                  top > 0.35 * vnode.context.scrollPartHeight &&
-                  top < (i + 1) * vnode.context.scrollPartHeight
-                ) {
-                  this["item_l_" + i].classList.add("left-item");
-                  this["item_l_" + i].childNodes[0].classList.add(
-                    "left-number"
-                  );
-                  this["item_l_" + i].childNodes[2].classList.add("left-title");
-                  this["item_r_" + i].classList.add("enter");
-                } else {
-                  this["item_l_" + i].classList.remove("left-item");
-                  this["item_l_" + i].childNodes[0].classList.remove(
-                    "left-number"
-                  );
-                  this["item_l_" + i].childNodes[2].classList.remove(
-                    "left-title"
-                  );
-                  this["item_r_" + i].classList.remove("enter");
-                }
-              } else {
-                if (
-                  top > i * vnode.context.scrollPartHeight &&
-                  top < (i + 1) * vnode.context.scrollPartHeight
-                ) {
-                  this["item_l_" + i].classList.add("left-item");
-                  this["item_l_" + i].childNodes[0].classList.add(
-                    "left-number"
-                  );
-                  this["item_l_" + i].childNodes[2].classList.add("left-title");
-                  this["item_r_" + i].classList.add("enter");
-                } else {
-                  this["item_l_" + i].classList.remove("left-item");
-                  this["item_l_" + i].childNodes[0].classList.remove(
-                    "left-number"
-                  );
-                  this["item_l_" + i].childNodes[2].classList.remove(
-                    "left-title"
-                  );
-                  this["item_r_" + i].classList.remove("enter");
-                }
-              }
-            }
-          }
-        };
-        document.addEventListener("scroll", el.$onScroll);
-      },
-      inserted(el, binding) {
-        el.$onScroll();
-      },
-      unbind(el, binding) {
-        document.removeEventListener("scroll", el.$onScroll);
-        delete el.$onScroll;
-      },
     },
   },
   watch: {
@@ -141,40 +72,64 @@ export default {
   },
   data() {
     return {
-      isMobile: false,
-      numberOfElements: null,
-      scrollPartHeight: 850,
-      windowWidth: 0,
+      sections: {},
+      sectionBefore: 0,
+      windowWidth: 0
     };
   },
-  methods: {
-    onResize() {
-      this.windowWidth = window.innerWidth;
-    },
-    setNumberOfElementsOnScroller() {
-      this.numberOfElements = this.slice.items.length;
-    },
-    setScrollerHeight() {
-      if (this.windowWidth > 1000) {
-        document.getElementById("scroller").style.height =
-          this.numberOfElements * this.scrollPartHeight + "px";
-      } else {
-        this.scrollPartHeight = 100;
-        document.getElementById("scroller").style.height =
-          this.numberOfElements * this.scrollPartHeight + "px";
-      }
-    },
-  },
-  mounted() {
-    this.$nextTick(() => {
-      window.addEventListener("resize", this.onResize);
-      this.windowWidth = window.innerWidth;
-    });
-    this.setNumberOfElementsOnScroller();
-    this.setScrollerHeight();
+  beforeMount () {
+    //this.sections = document.querySelectorAll('.slice-section > section');
+
+    window.addEventListener('scroll', this.scrollDivs);
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.onResize);
+    window.removeEventListener('scroll', this.scrollDivs);
   },
+  mounted(){
+    console.log(this.$refs);
+    var newscroll =  window.scrollY + 1;
+    window.scrollTo(0,newscroll);
+
+    this.$refs['sticky-fake'].innerHTML = this.$refs['sticky-div'][0].innerHTML;
+     this.$refs['sticky-a'][0].classList.add('active');
+  },
+  methods: {
+    scrollDivs () {
+      // Your scroll handling here
+      for (var i = this.$refs['sticky-div'].length - 1; i >= 0; i--) {
+        if(this.$refs['sticky-div'][i].getBoundingClientRect().top >= -50 && this.$refs['sticky-div'][i].getBoundingClientRect().top < 50){
+            
+           var newSection = i;
+            if(this.sectionBefore != newSection){
+              this.sectionBefore = newSection;
+              this.setNavActive(i,this.$refs['sticky-div'][i].innerHTML);
+              
+            }
+
+        
+        } else if(this.$refs['sticky-div'][i].getBoundingClientRect().top > 50 && this.$refs['sticky-div'][i].getBoundingClientRect().top < 150){
+          var newSection = i-1;
+          if(this.sectionBefore != newSection){
+            this.sectionBefore = newSection;
+            this.setNavActive(newSection,this.$refs['sticky-div'][i-1].innerHTML);
+          }
+        }
+      }
+    },
+    setNavActive(index,html){
+      for (var i = this.$refs['sticky-a'].length - 1; i >= 0; i--) {
+        this.$refs['sticky-a'][i].classList.remove('active');
+
+        if(this.$refs['sticky-a'][i].dataset.index == index){
+          if(!this.$refs['sticky-a'][i].classList.contains('active')){
+            this.$refs['sticky-a'][i].classList.add('active');
+            this.$refs['sticky-fake'].innerHTML = html;
+
+          }
+        }
+      }
+    }
+  }
+ 
 };
 </script>

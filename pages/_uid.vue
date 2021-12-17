@@ -100,7 +100,6 @@ export default {
       this.viewPortHeight = window.innerHeight;
       this.windowWidth = window.innerWidth;
 
-      console.log('init background');
     },
     backgroundScroll(){
       this.pageElement = document.getElementById("page");
@@ -123,8 +122,7 @@ export default {
       }
 
       this.imageScrollHeight = height - this.backgroundImageHeight + offset;
-      console.log('imageScrollHeight: '+this.imageScrollHeight);
-      console.log('height: '+height);
+      
 
       
 
@@ -136,7 +134,7 @@ export default {
       }
       
       document.getElementById("background-image").style.transform =
-          "translate3d(0," + (scrollChange) + "px, 0";
+          "translate3d(0," + (scrollChange * 1.05) + "px, 0";
     },
     redirectToInternalPage(item) {
       this.$router.push(this.$prismic.linkResolver(item.link));

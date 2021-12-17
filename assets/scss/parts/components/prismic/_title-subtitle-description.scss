@@ -1,10 +1,10 @@
 .title-subtitle-description__wrapper {
   width: 100%;
-  padding: 150px 5vw 200px;
+  padding: 150px 5vw 20px;
   display: flex;
 
   @include for-tablet {
-    padding: 100px 5vw 100px;
+    padding: 100px 5vw 20px;
     flex-wrap: wrap;
   }
 
@@ -60,14 +60,14 @@
 
       &--icon {
         margin-bottom: 10px;
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 300;
         color: $white;
         transform: rotate(90deg);
       }
 
       &--content {
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 300;
         color: $white;
       }

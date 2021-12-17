@@ -47,9 +47,9 @@
 
     .description {
       padding: 0 40px;
-      font-size: 14px;
+      font-size: 1em;
       font-weight: 300;
-      line-height: 18px;
+      line-height: 150%;
       color: $white;
 
       @include for-tablet {
@@ -70,18 +70,24 @@
 
       &--icon {
         margin-right: 10px;
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 300;
         color: $white;
         cursor: pointer;
+        transform: translateY(0.23em);
       }
 
       &--link {
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 600;
         color: $white;
-        border-bottom: 1px solid $white;
+        margin-bottom: .5em;
+        display: block;
+        
         cursor: pointer;
+        span{
+          border-bottom: 1px solid $white;
+        }
       }
     }
   }

@@ -17,7 +17,8 @@ export default {
   plugins: [
     { src: "~plugins/vue-agile.js", ssr: false },
     { src: "~plugins/cookieconsent.js", ssr: false },
-    { src: "~/plugins/prismicLinks", ssr: false }
+    { src: "~/plugins/prismicLinks", ssr: false },
+    { src:'~plugins/global-functions.js'}
   ],
   modules: [
     "@nuxtjs/axios",

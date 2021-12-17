@@ -88,7 +88,6 @@ export default {
     } else{
       this.showVideo = true;
     }
-    console.log(this.documentHeight);
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.onResize);
