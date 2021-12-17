@@ -147,7 +147,7 @@ export default {
         //send form data
         fetch("/", {
           method: "POST",
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams(formData).toString(),
         })
         .then(res => {
