@@ -3,7 +3,6 @@
     <div class="form-fields__wrapper--title">
       <h2 class="title" v-text="$prismic.asText(slice.primary.title1)" />
     </div>
-    {{initialFormFields}}
     <form class="form-fields__wrapper--content"
       name="Contact form Unendliche"
       id="form"
@@ -19,7 +18,6 @@
           <input v-if="field.type != 'textarea'"
             class="input"
             :type="field.type"
-            value=""
             :name="$prismic.asText(field.field_title)"
             v-model="formFields[$prismic.asText(field.field_title)]"
           />
@@ -96,82 +94,35 @@ export default {
     return {
       showErrorMessage: false,
       showSuccessMessage: false,
-      fieldCounts: this.slice.items.length,
-      initialFormFields: {}
+      fieldCounts: this.slice.items.length
     };
-  },
-  mounted(){
-
-    // Set up initial form
-    for (var i = this.slice.items.length - 1; i >= 0; i--) {
-      var item = this.$prismic.asText(this.slice.items[i].field_title);
-      this.initialFormFields[item] = {"value": "", "mandatory": this.slice.items[i].mandatory};
-    }
-    this.initialFormFields['terms']= {"value": false, "mandatory": true};
   },
   methods: {
     checkFields(formFields) {
-      this.showErrorMessage = false;
 
-      // Push values to the initial form fields
-      for (const [key, value] of Object.entries(this.formFields)) {
-        this.initialFormFields[key]['value'] = value;
-      }
-
-
-      // check for correct values
-      for (const [key, value] of Object.entries(this.initialFormFields)) {
-        if(this.initialFormFields[key]['mandatory'] == true && this.initialFormFields[key]['value'] == ''){
-          this.showErrorMessage = true;
-        } 
-      }
-
-      if(!this.showErrorMessage){
-
-        // Create final form data
-        var formData = {}; //new FormData;
-
-        formData['form-name'] = 'Contact form Unendliche';
-
-        for (const [key, value] of Object.entries(this.initialFormFields)) {
-          if(this.initialFormFields[key]['value'] != ''){
-            console.log(this.initialFormFields[key]['value'] );
-            formData[key] = this.initialFormFields[key]['value'];
-          } else{
-            formData[key] = '-';
-          }
-          
-        }
-        console.log(formData);
+      if(!formFields['terms'] || this.formFields.length != formFields.length){
+        this.showErrorMessage = true;
+      } else{
+        this.showErrorMessage = false;
         let myForm = document.getElementById("form");
-        let formDatatw = new FormData(myForm);
-        console.log(formDatatw);
-        console.log(new URLSearchParams(formDatatw).toString());
-        //send form data
-        // fetch("/", {
-        //   method: "POST",
-        //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        //   body: new URLSearchParams(formDatatw).toString(),
-        // })
-
-        fetch('/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: formData,
+        let formData = new FormData(myForm);
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "multipart/form-data" },
+          body: new URLSearchParams(formData).toString(),
         })
-        .then(res => {
-          console.log(res);
-          this.showSuccessMessage = true;
-        })
-        .catch((error) => alert(error));
+          .then(res => {this.showSuccessMessage = true;})
+          .catch((error) => alert(error));
 
       }
+     
+      this.sendingForm(formFields);
 
+      //Here should come Validation
 
-      
-    
+      //After Validation reset the form
+
+      // this.resetFields();
     },
     resetFields() {
       this.formFields = {};
