@@ -20,10 +20,12 @@
             class="input"
             :type="field.type"
             value=""
+            :name="$prismic.asText(field.field_title)"
             v-model="formFields[$prismic.asText(field.field_title)]"
           />
           <textarea v-if="field.type == 'textarea'"
             class="textarea"
+            :name="$prismic.asText(field.field_title)"
             v-model="formFields[$prismic.asText(field.field_title)]"
           />
           <label
@@ -131,19 +133,23 @@ export default {
 
         for (const [key, value] of Object.entries(this.initialFormFields)) {
           if(this.initialFormFields[key]['value'] != ''){
+            console.log(this.initialFormFields[key]['value'] );
             formData.append(key, this.initialFormFields[key]['value']);
           } else{
             formData.append(key, '–');
           }
           
         }
+        
 
-        // send form data
+        console.log(formData);
+        console.log(new URLSearchParams(formData).toString());
+        //send form data
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "multipart/form-data" },
           body: new URLSearchParams(formData).toString(),
-       })
+        })
         .then(res => {
           this.showSuccessMessage = true;
         })
