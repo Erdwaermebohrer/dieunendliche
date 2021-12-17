@@ -3,7 +3,6 @@
     <div class="form-fields__wrapper--title">
       <h2 class="title" v-text="$prismic.asText(slice.primary.title1)" />
     </div>
-    {{initialFormFields}}
     <form class="form-fields__wrapper--content"
       name="Contact form Unendliche"
       id="form"
