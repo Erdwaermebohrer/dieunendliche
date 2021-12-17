@@ -129,27 +129,37 @@ export default {
       if(!this.showErrorMessage){
 
         // Create final form data
-        var formData = new FormData;
+        var formData = {}; //new FormData;
+
+        formData['form-name'] = 'Contact form Unendliche';
 
         for (const [key, value] of Object.entries(this.initialFormFields)) {
           if(this.initialFormFields[key]['value'] != ''){
             console.log(this.initialFormFields[key]['value'] );
-            formData.append(key, this.initialFormFields[key]['value']);
+            formData[key] = this.initialFormFields[key]['value'];
           } else{
-            formData.append(key, '–');
+            formData[key] = '-';
           }
           
         }
-        
+        console.log(formData);
         let myForm = document.getElementById("form");
         let formDatatw = new FormData(myForm);
         console.log(formDatatw);
         console.log(new URLSearchParams(formDatatw).toString());
         //send form data
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formDatatw).toString(),
+        // fetch("/", {
+        //   method: "POST",
+        //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        //   body: new URLSearchParams(formDatatw).toString(),
+        // })
+
+        fetch('/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: formData,
         })
         .then(res => {
           console.log(res);
