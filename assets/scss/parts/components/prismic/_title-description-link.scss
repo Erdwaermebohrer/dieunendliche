@@ -70,6 +70,8 @@
 
       &--icon {
         margin-right: 10px;
+        width: 17px;
+        height: 17px;
         font-size: 1em;
         font-weight: 300;
         color: $white;
@@ -81,12 +83,26 @@
         font-size: 1em;
         font-weight: 600;
         color: $white;
-        margin-bottom: .5em;
+        margin-bottom: 1.2em;
         display: block;
         
         cursor: pointer;
+        @include for-tablet {
+          margin-bottom: 2em;
+          display: flex;
+          justify-content: flex-start;
+        }
         span{
-          border-bottom: 1px solid $white;
+          position: relative;
+          &:after{
+            content: '';
+            background-color: $white;
+            height: 1px;
+            width: 100%;
+            bottom: -7px;
+            left: 0;
+            position: absolute;
+          }
         }
       }
     }

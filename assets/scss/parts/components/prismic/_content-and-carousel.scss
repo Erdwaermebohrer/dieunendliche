@@ -41,9 +41,27 @@
     .content__wrapper {
       display: flex;
       justify-content: flex-end;
+      flex-wrap: wrap;
 
       @include for-tablet {
         justify-content: unset;
+      }
+
+      &--subtitle {
+        width: 80%;
+        font-size: 44px;
+        font-weight: 600;
+        line-height: 55px;
+        color: $white;
+        margin-bottom: 1em;
+        hyphens: auto;
+
+
+        @include for-tablet {
+          width: 100%;
+          font-size: 30px;
+          line-height: 38px;
+        }
       }
 
       &--description {
@@ -70,10 +88,8 @@
 
     .slider__wrapper {
       .agile{
-        width: calc(100% + 19px);
-         @include for-tablet {
-          width: 100%;
-         }
+        width: 100%;
+        overflow: hidden;
       }
       &--icons {
         width: 100%;

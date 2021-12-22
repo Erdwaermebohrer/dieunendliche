@@ -6,6 +6,7 @@
     
     <div class="title-subtitle-link__wrapper--content">
       <div class="subtitle" v-html="$prismic.asText(slice.primary.subtitle)" />
+      <div class="description" v-text="$prismic.asText(slice.primary.description)" />
       <div class="link__wrapper">
         <img
           v-if="slice.primary.link_title.length > 0"

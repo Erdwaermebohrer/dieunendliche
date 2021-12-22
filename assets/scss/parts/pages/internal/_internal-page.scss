@@ -1,4 +1,4 @@
-.page__datenschutz,
+.page__datenschutzerklaerung,
 .page__impressum {
   .intro__wrapper {
     .title {
@@ -10,7 +10,7 @@
     margin-top: -40%;
 
     @include for-tablet {
-      margin-top: -150%;
+      margin-top: -60vh;
     }
   }
 }

@@ -201,6 +201,7 @@
 
     @include for-tablet {
       width: 100%;
+      margin-bottom: 3em;
     }
 
     .description {
@@ -208,6 +209,10 @@
       font-weight: 300;
       line-height: 150%;
       color: $light-yellow;
+      transform: translateX(-1.5em);
+      @include for-tablet {
+        transform: initial;
+      }
     }
   }
 

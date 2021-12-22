@@ -114,6 +114,8 @@
     @include for-tablet {
       width: 100%;
       padding: 0 5vw;
+      margin-bottom: 20px;
+      justify-content: space-between;
     }
 
     .title {
@@ -130,9 +132,9 @@
     }
 
     .logo {
-      @include for-tablet {
-        width: 30%;
-      }
+      width: 30px;
+      margin-left: 20px;
+
     }
   }
 
@@ -163,9 +165,13 @@
         width: 40%;
         justify-content: space-between;
       }
-
       &--item {
+        width: 100px;
+        height: auto;
+        margin: 0 30px;
+
         &:nth-child(1) {
+          
           margin-left: 100px;
 
           @include for-tablet {
@@ -173,8 +179,7 @@
           }
         }
 
-        margin: 0 30px;
-
+        
         @include for-tablet {
           margin: 0;
           width: 60px;

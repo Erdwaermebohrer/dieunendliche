@@ -106,6 +106,9 @@
             display: inline-block;
             margin: 0;
           }
+          a{
+            color: $white;
+          }
           &__box{
             border: 1px solid #fff;
             position: relative;
@@ -123,6 +126,7 @@
             &.active{
               background-color: #fff;
             }
+
           }
         }
 

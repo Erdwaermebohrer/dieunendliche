@@ -1,7 +1,7 @@
 <template>
   <div class="content-carousel-index__wrapper">
     <div class="content-carousel-index__wrapper--title">
-      <h2 class="title" v-text="$newline($prismic.asText(slice.primary.title))" />
+      <h2 class="title" v-html="$newline($prismic.asText(slice.primary.title))" />
     </div>
     <div class="content-carousel-index__wrapper--content">
       <div class="content__wrapper">

@@ -7,7 +7,9 @@
       	<div class="description"  v-html="$prismic.asText(slice.primary.description)"/>
 
       	<div class="logobar">
-	        <img class="image" :data-src="item.logo.url" v-for="(item, index) in slice.items" :key="'item-' + index" v-lazy-load/>
+          <picture  v-for="(item, index) in slice.items" :key="'item-' + index">
+	         <img class="image" :data-src="item.logo.url" v-lazy-load/>
+          </picture>
 	    </div>
       </div>
     </div>

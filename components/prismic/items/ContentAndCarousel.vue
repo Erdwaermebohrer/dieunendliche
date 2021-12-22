@@ -6,6 +6,11 @@
     <div class="content-and-carousel__wrapper--content">
       <div class="content__wrapper">
         <div
+          class="content__wrapper--subtitle"
+          v-if="$prismic.asText(slice.primary.big_title)"
+          v-html="$prismic.asText(slice.primary.big_title)"
+        />
+        <div
           class="content__wrapper--description"
           v-html="$prismic.asText(slice.primary.description)"
         />
@@ -29,7 +34,7 @@
                     </div>
                     <a
                       class="slider-item__link"
-                      @click="clickedButton(slice.primary.featuredlink)"
+                      @click="clickedButton(slice.primary.featured_link)"
                       target="_blank"
                     >
                       <img class="icon" src="~assets/svg/arrow-right-green.svg" />

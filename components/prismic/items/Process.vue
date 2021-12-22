@@ -23,6 +23,7 @@
                 class="item__left--title"
                 v-text="$prismic.asText(item.title)"
               />
+              <div class="item__left--faker" v-html="$prismic.asHtml(item.description)"></div>
             </div>
           </div>
 
@@ -91,7 +92,7 @@ export default {
     window.scrollTo(0,newscroll);
 
     this.$refs['sticky-fake'].innerHTML = this.$refs['sticky-div'][0].innerHTML;
-     this.$refs['sticky-a'][0].classList.add('active');
+    this.$refs['sticky-a'][0].classList.add('active');
   },
   methods: {
     scrollDivs () {
@@ -124,7 +125,6 @@ export default {
           if(!this.$refs['sticky-a'][i].classList.contains('active')){
             this.$refs['sticky-a'][i].classList.add('active');
             this.$refs['sticky-fake'].innerHTML = html;
-
           }
         }
       }

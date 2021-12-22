@@ -181,7 +181,15 @@ export default {
           var elementHeight = section.getBoundingClientRect().height;
           var elementTop = section.getBoundingClientRect().top;
           var scrollPercent = (elementTop / elementHeight) * - 1.7;
-          curve_line.style.strokeDashoffset = length - scrollPercent * 5000;
+          var strokeDashOffset = length - scrollPercent * 5000;
+
+          if(strokeDashOffset <= 1){
+            curve_line.style.strokeDashoffset = 0;  
+
+          } else{
+            curve_line.style.strokeDashoffset = strokeDashOffset;  
+          }
+
 
           if (scrollPercent > circle_1_percent) {
             circle_1.style.backgroundColor = "#E8543B";
@@ -265,8 +273,14 @@ export default {
           var elementHeight = section.getBoundingClientRect().height;
           var elementTop = section.getBoundingClientRect().top;
           var scrollPercent = (elementTop / elementHeight) * - 1.7;
+          var strokeDashOffset = length - scrollPercent * 1700;
 
-          curve_line.style.strokeDashoffset = length - scrollPercent * 1700;  
+          if(strokeDashOffset <= 1){
+            curve_line.style.strokeDashoffset = 0;  
+
+          } else{
+            curve_line.style.strokeDashoffset = strokeDashOffset;  
+          }
 
           if (scrollPercent > circle_1_percent) {
             circle_1.style.backgroundColor = "#E8543B";

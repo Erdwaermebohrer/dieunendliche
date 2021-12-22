@@ -30,15 +30,30 @@
     }
   }
 
-  &--content {
-    width: 50%;
+ &--subtitle {
+    width: 100%;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 55px;
+    color: $white;
+    margin-bottom: 1em;
 
+    @include for-tablet {
+      width: 100%;
+      font-size: 30px;
+      line-height: 38px;
+    }
+  }
+
+  &--content {
+    width: 40%;
+    margin-left: auto;
     @include for-tablet {
       width: 100%;
     }
 
     .description {
-      padding: 0 40px;
+      padding: 0;
       font-size: 1em;
       font-weight: 300;
       line-height: 150%;

@@ -6,19 +6,6 @@
     <app-header :inputData="header" />
     <Nuxt />
     <app-footer :inputData="footer" />
-    <!--<video
-      v-if="showCursor"
-      class="cursor"
-      ref="cursor"
-      id="cursor"
-      autoplay
-      playsinline
-      muted
-      loop
-    >
-      <source src="~static/intro-video.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>-->
   </div>
 </template>
 

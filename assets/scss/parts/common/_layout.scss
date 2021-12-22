@@ -56,8 +56,11 @@ a {
 
 p {
   font-size: 1em;
-  line-height: 17.75px;
-
+  line-height: 150%;
+  > a{
+    border-bottom: 1px solid $white;
+    word-break: break-all;
+  }
   @include for-tablet {
   }
 }
