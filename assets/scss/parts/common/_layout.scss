@@ -58,7 +58,7 @@ p {
   font-size: 1em;
   line-height: 150%;
   > a{
-    border-bottom: 1px solid $white;
+    text-decoration: underline;
     word-break: break-all;
   }
   @include for-tablet {
