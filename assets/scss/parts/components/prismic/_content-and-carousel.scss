@@ -88,8 +88,11 @@
 
     .slider__wrapper {
       .agile{
-        width: 100%;
+        width: calc(100% - 5px);
         overflow: hidden;
+        @include for-tablet {
+          width: 100%;
+        }
       }
       &--icons {
         width: 100%;
