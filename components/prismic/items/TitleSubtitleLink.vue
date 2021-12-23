@@ -15,9 +15,17 @@
         />
         <a
           class="link__wrapper--link"
+          v-if="slice.primary.link.link_type == 'Web'"
           v-text="$prismic.asText(slice.primary.link_title)"
           @click="clickedButton(slice.primary.link)"
         />
+        <nuxt-link
+          v-if="slice.primary.link.link_type != 'Web'"
+          class="link__wrapper--link"
+          v-text="$prismic.asText(slice.primary.link_title)"
+          :to="$prismic.linkResolver(slice.primary.link)"
+        >
+        </nuxt-link>
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="intro__wrapper--content" :class="{'vertical': slice.primary.title_direction}">
-      <div class="title" v-html="$prismic.asText(slice.primary.title)" />
+      <div class="title" v-html="$newline($prismic.asText(slice.primary.title))" />
       <div
         v-if="slice.primary.title2.length > 0"
         class="title"
