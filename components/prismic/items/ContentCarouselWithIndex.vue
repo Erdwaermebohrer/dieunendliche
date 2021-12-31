@@ -12,6 +12,9 @@
       </div>
     </div>
     <div class="content-carousel-index__wrapper--slider">
+      <div class="content-carousel-index__wrapper--slider--title">
+        <h2 class="title" v-html="$newline($prismic.asText(slice.primary.title2))" />
+      </div>
       <div class="slider__wrapper">
         <div class="slider__wrapper--icons">
           <img
@@ -25,7 +28,9 @@
             @click="$refs.slider.goToNext()"
           />
         </div>
+
         <div class="slider__wrapper--content">
+
           <client-only>
             <agile ref="slider" :options="sliderOptions">
               <div
