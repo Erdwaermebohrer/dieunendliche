@@ -81,10 +81,20 @@ export default {
       if(e.percentCenter < 0.7){
         if(!e.target.element.classList.contains('active')){
           e.target.element.classList.add('active');
+          gsap.to(e.target.element, {
+            duration: 0.7,
+            ease: "power3.out",
+            opacity: 1,
+          });
         }
       } else{
         if(e.target.element.classList.contains('active')){
           e.target.element.classList.remove('active');
+          gsap.to(e.target.element, {
+            duration: 0.7,
+            ease: "power3.out",
+            opacity: 0,
+          });
         }
       }
       

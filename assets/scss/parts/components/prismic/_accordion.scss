@@ -37,12 +37,12 @@
       font-size: 1em;
 
       opacity: 0;
-      transition: 250ms ease-in-out;
+      //transition: 250ms ease;
 
       &.active,
       &.always-active{
-        opacity: 1;
-        transition: 250ms ease-in-out;
+        //opacity: 1;
+        //transition: 250ms ease;
       }
 
       @include for-tablet {
