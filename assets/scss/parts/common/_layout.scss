@@ -110,3 +110,9 @@ img {
   transform: translateY(0.24em);
   margin: 0 0.3em;
 }
+
+
+.slice__wrapper--item{
+    -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+}

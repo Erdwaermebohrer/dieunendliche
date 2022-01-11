@@ -144,6 +144,8 @@
           height: 220px;
           padding-top: 10px;
           transform: translateZ(0)!important;
+          -webkit-transform-style: preserve-3d;
+          -webkit-backface-visibility: hidden;
           &__headline{
             position: relative;
             margin: 0;

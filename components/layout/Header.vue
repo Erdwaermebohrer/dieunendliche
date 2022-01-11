@@ -24,34 +24,31 @@
           />
         </transition>
       </div>
-      <transition name="sidebar">
-        <div
-          class="navigation__wrapper--sidebar"
-          :class="{ active: isNavOpen }"
-          v-if="isNavOpen"
-        >
-          <div class="close-button__wrapper">
-            <img
-              class="icon"
-              src="~assets/svg/close.svg"
-              @click="toggleBurger"
-            />
-          </div>
-          <ul class="sidebar__wrapper">
-            <a
-              class="sidebar__wrapper--item"
-              v-for="(navigationItem, index) in inputData.navigation"
-              :key="'item-' + index"
-              @click="navigateToRoute(navigationItem.page)"
-            >
-              <li v-text="$prismic.asText(navigationItem.navigation_title)" />
-            </a>
-          </ul>
-          <div class="button__wrapper">
-            <span class="line" />
-          </div>
+      <div
+        class="navigation__wrapper--sidebar"
+        :class="{ active: isNavOpen }"
+      >
+        <div class="close-button__wrapper">
+          <img
+            class="icon"
+            src="~assets/svg/close.svg"
+            @click="toggleBurger"
+          />
         </div>
-      </transition>
+        <ul class="sidebar__wrapper">
+          <a
+            class="sidebar__wrapper--item"
+            v-for="(navigationItem, index) in inputData.navigation"
+            :key="'item-' + index"
+            @click="navigateToRoute(navigationItem.page)"
+          >
+            <li v-text="$prismic.asText(navigationItem.navigation_title)" />
+          </a>
+        </ul>
+        <div class="button__wrapper">
+          <span class="line" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -75,25 +72,25 @@ export default {
   },
   methods: {
     toggleBurger() {
-      if (this.isNavOpen) {
-        gsap.timeline().to(".video-button__wrapper--item", {
-          width: "110px",
-          height: "110px",
-          transform: "translate3d(0,0,0)",
-          ease: "expo.inOut",
-          duration: 1.5,
-          zIndex: 20,
-        });
-      } else {
-        gsap.timeline().to(".video-button__wrapper--item", {
-          width: "100%",
-          height: "80%",
-          transform: "translate3d(0,150px,0)",
-          ease: "expo.inOut",
-          duration: 1.5,
-          zIndex: 20,
-        });
-      }
+      // if (this.isNavOpen) {
+      //   gsap.timeline().to(".video-button__wrapper--item", {
+      //     width: "110px",
+      //     height: "110px",
+      //     transform: "translate3d(0,0,0)",
+      //     ease: "expo.inOut",
+      //     duration: 1.5,
+      //     zIndex: 20,
+      //   });
+      // } else {
+      //   gsap.timeline().to(".video-button__wrapper--item", {
+      //     width: "100%",
+      //     height: "80%",
+      //     transform: "translate3d(0,150px,0)",
+      //     ease: "expo.inOut",
+      //     duration: 1.5,
+      //     zIndex: 20,
+      //   });
+      // }
 
       this.isNavOpen = !this.isNavOpen;
     },

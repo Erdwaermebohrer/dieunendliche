@@ -106,7 +106,7 @@
           &:nth-child(1) {
             transform: rotate(180deg);
           }
-          
+
         }
       }
 
@@ -114,6 +114,8 @@
         .slider-item {
           height: 220px;
           transform: translateZ(0)!important;
+          -webkit-transform-style: preserve-3d;
+          -webkit-backface-visibility: hidden;
           .wrap {
             width: 95%;
             height: 80%;
