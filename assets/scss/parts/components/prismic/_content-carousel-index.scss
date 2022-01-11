@@ -106,13 +106,14 @@
           &:nth-child(1) {
             transform: rotate(180deg);
           }
+          
         }
       }
 
       &--content {
         .slider-item {
           height: 220px;
-
+          transform: translateZ(0)!important;
           .wrap {
             width: 95%;
             height: 80%;

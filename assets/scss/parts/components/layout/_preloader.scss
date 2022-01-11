@@ -12,7 +12,8 @@
   pointer-events: none;
   transition: all 1s ease-in-out;
   z-index: 9000;
-
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
   &--video {
     top: 0;
     left: 0;
@@ -22,7 +23,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
     &::before {
       content: "";
       width: 100%;
@@ -46,7 +48,8 @@
       pointer-events: none;
       z-index: 20;
       opacity: 0.5;
-
+      -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
       @include for-tablet {
         height: 60%;
       }

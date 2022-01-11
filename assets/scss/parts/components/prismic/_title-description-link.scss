@@ -77,6 +77,9 @@
         color: $white;
         cursor: pointer;
         transform: translateY(0.23em);
+        position: absolute;
+        top: 4px;
+        left: 0;
       }
 
       &--link {
@@ -85,8 +88,9 @@
         color: $white;
         margin-bottom: 1.2em;
         display: block;
-        
+        padding-left: 25px;
         cursor: pointer;
+        position: relative;
         @include for-tablet {
           margin-bottom: 2em;
           display: flex;
@@ -94,15 +98,19 @@
         }
         span{
           position: relative;
-          &:after{
-            content: '';
-            background-color: $white;
-            height: 1px;
-            width: 100%;
-            bottom: -7px;
-            left: 0;
-            position: absolute;
-          }
+          text-decoration: underline;
+          display: inline;
+          text-underline-offset: 5px;
+          line-height: 2em;
+          // &:after{
+          //   content: '';
+          //   background-color: $white;
+          //   height: 1px;
+          //   width: 100%;
+          //   bottom: -7px;
+          //   left: 0;
+          //   position: absolute;
+          // }
         }
       }
     }

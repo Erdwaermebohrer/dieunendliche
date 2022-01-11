@@ -109,6 +109,12 @@
             margin-right: auto;
             margin-left: 0;
           }
+          &--next{
+            transform: translateX(-20px);
+            @include for-mobile {
+              transform: initial;
+            }
+          }
         }
       }
 
@@ -137,7 +143,7 @@
         .slider-item {
           height: 220px;
           padding-top: 10px;
-
+          transform: translateZ(0)!important;
           &__headline{
             position: relative;
             margin: 0;

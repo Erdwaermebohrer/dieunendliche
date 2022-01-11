@@ -7,6 +7,8 @@
   top: 0;
   left: 0;
   z-index: -1;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
 }
 .background-images__wrapper {
   width: 100%;
@@ -15,6 +17,8 @@
   left: 0;
   position: absolute;
   z-index: -1;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
 
   &--item {
     width: 100%;

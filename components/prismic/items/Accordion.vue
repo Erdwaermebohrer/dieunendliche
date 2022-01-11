@@ -8,10 +8,7 @@
       v-text="$prismic.asText(slice.primary.title)"
     />
     <ul class="accordion__wrapper--list" >
-      <li
-        class="list-item list-item--spacer always-active"
-        v-view="listInView"
-        :style="'background-color:' + slice.primary.color" />
+      
       <li
         class="list-item"
         v-for="(item, index) in slice.items"

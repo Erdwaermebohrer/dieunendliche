@@ -57,7 +57,7 @@
                   @click="$refs.slider.goToPrev()"
                 />
                 <img
-                  class="icon"
+                  class="icon icon--next"
                   src="~assets/svg/arrow-right-brown.svg"
                   @click="$refs.slider.goToNext()"
                 />
