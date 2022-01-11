@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { gsap } from "gsap/dist/gsap";
+
 import BackgroundImages from "../components/layout/BackgroundImages.vue";
 import SliceWrapper from "../components/prismic/SlicesWrapper.vue";
 
@@ -118,7 +120,11 @@ export default {
         document.getElementById("background-image-before").style.height = this.pageHeight+'px';
       }
       
-      document.getElementById("background-image").style.transform =
+      gsap.set(document.getElementById("background-image"),{
+        y:(scrollChange * 1.05),
+        x:0
+      });
+      //document.getElementById("background-image").style.transform =
           "translate3d(0," + (scrollChange) + "px, 0";
     },
     redirectToInternalPage(item) {
