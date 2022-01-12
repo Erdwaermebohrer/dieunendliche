@@ -135,11 +135,11 @@ export default {
         document.getElementById("background-image-before").style.height = height+'px';
       }
       
-      gsap.set(document.getElementById("background-image"),{
-        y:(scrollChange * 1.05),
-        x:0
-      });
-      //document.getElementById("background-image").style.transform =
+      // gsap.set(document.getElementById("background-image"),{
+      //   y:(scrollChange * 1.05),
+      //   x:0
+      // });
+      document.getElementById("background-image").style.transform =
           "translate3d(0," + (scrollChange * 1.05) + "px, 0";
     },
     redirectToInternalPage(item) {
