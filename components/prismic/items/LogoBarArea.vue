@@ -7,9 +7,30 @@
       	<div class="description"  v-html="$prismic.asText(slice.primary.description)"/>
 
       	<div class="logobar">
-          <picture  v-for="(item, index) in slice.items" :key="'item-' + index">
-	         <img class="image" :data-src="item.logo.url" v-lazy-load/>
-          </picture>
+          <div  v-for="(item, index) in slice.items" :key="'item-' + index">
+            <nuxt-link
+              v-if="item.link.link_type != 'Web'"
+              :to="$prismic.linkResolver(item.link)"
+              :key="'logo-' + index"
+            >
+              <picture >
+               <img class="image" :data-src="item.logo.url" v-lazy-load/>
+              </picture>
+            </nuxt-link>
+
+            <a
+              v-if="item.link.link_type == 'Web'"
+              :href="item.link.url"
+              :target="item.link.target"
+              :key="'logo-' + index"
+            >
+              <picture>
+               <img class="image" :data-src="item.logo.url" v-lazy-load/>
+              </picture>
+            </a>
+          </div>
+
+          
 	    </div>
       </div>
     </div>

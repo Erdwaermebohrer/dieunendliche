@@ -43,11 +43,15 @@
 
     .logobar{
       margin-top: 20px;
-      picture{
+      > div{
         width: 120px;
         height: 40px;
         display: inline-block;
         margin-right: 20px;
+      }
+      picture{
+        width: 100%;
+        height: auto;
         img {
           object-fit: contain;
           object-position: center;

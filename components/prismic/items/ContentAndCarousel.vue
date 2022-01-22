@@ -53,12 +53,12 @@
               <div class="slider__wrapper--icons">
                 <img
                   class="icon icon--prev"
-                  src="~assets/svg/arrow-right-brown.svg"
+                  src="~assets/svg/arrow-right-yellow.svg"
                   @click="$refs.slider.goToPrev()"
                 />
                 <img
                   class="icon icon--next"
-                  src="~assets/svg/arrow-right-brown.svg"
+                  src="~assets/svg/arrow-right-yellow.svg"
                   @click="$refs.slider.goToNext()"
                 />
               </div>
