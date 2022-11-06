@@ -93,6 +93,12 @@
             :slice="slice"
           />
         </template>
+
+        <template v-if="slice.slice_type === 'multistepsection'">
+          <multi-step-form-section
+            :slice="slice"
+          />
+        </template>
       </div>
     </slot>
   </div>
@@ -116,6 +122,7 @@ import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
 import TitleSubtitleDescription from "./items/TitleSubtitleDescription.vue";
 import TitleSubtitleLink from "./items/TitleSubtitleLink.vue";
 import LogoBar from "./items/LogoBarArea.vue";
+import MultiStepFormSection from "./items/MultiStepFormSection.vue";
 
 export default {
   props: [
@@ -142,7 +149,8 @@ export default {
     TitleDescriptionLink,
     TitleSubtitleDescription,
     TitleSubtitleLink,
-    LogoBar
+    LogoBar,
+    MultiStepFormSection
   },
 };
 </script>

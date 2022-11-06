@@ -15,7 +15,8 @@ export default {
   },
   css: [{ src: "@assets/scss/global.scss", lang: "scss" }],
   plugins: [
-    { src: "~plugins/vue-agile.js", ssr: false },
+    { src: "~plugins/vue-agile.js", ssr: false},
+    { src: "~plugins/vue-swiper.js", ssr: false},
     { src: "~plugins/cookieconsent.js", ssr: false },
     { src: "~/plugins/prismicLinks", ssr: false },
     { src:'~plugins/global-functions.js'}

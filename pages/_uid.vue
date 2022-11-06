@@ -14,8 +14,6 @@
 </template>
 
 <script>
-import { gsap } from "gsap/dist/gsap";
-
 import BackgroundImages from "../components/layout/BackgroundImages.vue";
 import SliceWrapper from "../components/prismic/SlicesWrapper.vue";
 
