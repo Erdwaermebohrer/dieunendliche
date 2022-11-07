@@ -1,7 +1,6 @@
 <template>
 	<div class="multi-step-form-section__wrapper">
-		{{ slice }}
-		<form-slider />
+		<form-slider :steps="steps"/>
 	</div>
 </template>
 
@@ -15,6 +14,15 @@ export default {
 	},
 	components: {
 		"form-slider": FormSlider,
-	}
+	},
+  data() {
+    return {
+      steps: []
+    }
+  },
+  async fetch() {
+    const items =  await this.$prismic.api.getByID(this.slice.primary.form.id);
+    this.steps = items.data.body;
+  }
 };
 </script>

@@ -1,7 +1,11 @@
-export const state = () => ({
+import Vue from "vue";
+
+export const state=() => ({
   header: [],
   footer: {},
-  pageLoading: true
+  pageLoading: true,
+  multiForm: {
+  }
 });
 
 export const actions = {
@@ -14,7 +18,7 @@ export const actions = {
   },
   setPageLoading({ commit }, payload) {
     commit("setPageLoading", payload);
-  }
+  },
 };
 
 export const mutations = {
@@ -26,6 +30,9 @@ export const mutations = {
   },
   setPageLoading(state, payload) {
     state.pageLoading = payload;
+  },
+  setFieldValue: (state, {field, value}) => {
+    Vue.set(state.multiForm, field, value);
   }
 };
 
@@ -34,3 +41,22 @@ export const getters = {
   footer: state => state.footer,
   pageLoading: state => state.pageLoading
 };
+
+export function mapFields(fields) {
+  const computed={};
+  for(let field of fields) {
+    computed[field]=mapToAccessors(field);
+  }
+  return computed;
+}
+
+function mapToAccessors(field) {
+  return {
+    get() {
+      return this.$store.state.multiForm;
+    },
+    set(value) {
+      return this.$store.commit("setFieldValue", {field, value});
+    }
+  };
+}
