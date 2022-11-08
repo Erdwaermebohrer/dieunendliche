@@ -10,13 +10,14 @@
 				<form
 					novalidate
 					id="multi-step-form"
-					name="multi-step-form"
+					name="Multi Step Form"
 					data-netlify="true"
 					netlify
 				>
-					<input type="hidden" name="form-name" value="multi-step-form" />
+					<input type="hidden" name="form-name" value="Multi Step Form" />
 					<form-step v-if="step" :formFields="formFields" :step="step">
-						<template v-if="currentIndex === 0" v-slot:fields>
+            <template v-slot:fields>
+						<div v-show="currentIndex === 0">
 							<div
 								class="block-title"
 								v-text="$prismic.asText(step.primary.block_title)"
@@ -65,8 +66,8 @@
 									/>
 								</div>
 							</div>
-						</template>
-						<template v-else-if="currentIndex === 1" v-slot:fields>
+						</div>
+						<div v-show="currentIndex === 1">
 							<div class="fields__wrapper">
 								<div
 									class="block-title"
@@ -143,8 +144,8 @@
 									/>
 								</div>
 							</div>
-						</template>
-						<template v-else-if="currentIndex === 2" v-slot:fields>
+						</div>
+						<div v-show="currentIndex === 2">
 							<div class="fields__wrapper horizontal">
 								<div
 									class="fields__wrapper--item"
@@ -166,8 +167,8 @@
 									/>
 								</div>
 							</div>
-						</template>
-						<template v-else-if="currentIndex === 3" v-slot:fields>
+						</div>
+						<div v-show="currentIndex === 3">
 							<div class="fields__wrapper horizontal">
 								<div
 									v-for="(value, key) in step.items"
@@ -221,8 +222,8 @@
 									/>
 								</div>
 							</div>
-						</template>
-						<template v-else-if="currentIndex === 4" v-slot:fields>
+						</div>
+						<div v-show="currentIndex === 4">
 							<div class="fields__wrapper horizontal">
 								<div
 									v-for="(value, key) in step.items"
@@ -257,7 +258,8 @@
 									/>
 								</div>
 							</div>
-						</template>
+						</div>
+            </template>
 					</form-step>
 				</form>
 			</swiper-slide>
@@ -391,30 +393,18 @@ export default {
 				this.currentIndex += 1;
 				this.$refs.formSwiper.swiper.slideNext();
 			} else {
-        let myForm = document.getElementById("multi-step-form");
-        let formData = new FormData(myForm);
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "multipart/form-data" },
-          body: new URLSearchParams(formData).toString(),
-        })
-          .then(res => {
-            this.showSuccessMessage = true;
-          })
-          .catch((error) => alert(error));
-
-				// fetch("/", {
-				// 	method: "POST",
-				// 	headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				// 	body: this.encode({
-				// 		"form-name": "Multi Step Form",
-				// 		...this.formFields
-				// 	})
-				// })
-				// 	.then(() => {
-				// 		this.formFields = {};
-				// 	})
-				// 	.catch(error => alert(error));
+				fetch("/", {
+					method: "POST",
+					headers: { "Content-Type": "application/x-www-form-urlencoded" },
+					body: this.encode({
+						"form-name": "Multi Step Form",
+						...this.formFields
+					})
+				})
+					.then(() => {
+						this.formFields = {};
+					})
+					.catch(error => alert(error));
 			}
 		},
 		encode(data) {
