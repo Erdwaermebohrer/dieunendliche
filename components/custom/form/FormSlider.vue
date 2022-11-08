@@ -39,7 +39,7 @@
 								class="block-title"
 								v-text="$prismic.asText(step.primary.block_title)"
 							/>
-							<div v-show="index === 0" class="fields__wrapper">
+							<div v-if="index === 0" class="fields__wrapper">
 								<div
 									class="fields__wrapper--item"
 									v-for="(value, key) in step.items"
@@ -61,7 +61,7 @@
 									/>
 								</div>
 							</div>
-							<div v-show="index === 0" class="fields__wrapper">
+							<div v-if="index === 0" class="fields__wrapper">
 								<div
 									class="fields__wrapper--item"
 									v-for="(value, key) in step.items"
@@ -419,8 +419,8 @@ export default {
 					method: "POST"
 				})
 					.then(res => {
+						this.formFields = {};
 						console.log(res);
-						this.formSuccess = true;
 					})
 					.catch(error => alert(error));
 				// fetch("/", {
