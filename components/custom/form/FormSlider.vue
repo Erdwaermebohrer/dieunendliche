@@ -10,11 +10,11 @@
 				<form
 					novalidate
 					id="multi-step-form"
-					name="Multi Step Form"
+					name="multi-step-form"
 					data-netlify="true"
 					netlify
 				>
-					<input type="hidden" name="form-name" value="Multi Step Form" />
+					<input type="hidden" name="form-name" value="multi-step-form" />
 					<form-step v-if="step" :formFields="formFields" :step="step">
 						<template v-if="currentIndex === 0" v-slot:fields>
 							<div
@@ -391,18 +391,30 @@ export default {
 				this.currentIndex += 1;
 				this.$refs.formSwiper.swiper.slideNext();
 			} else {
-				fetch("/", {
-					method: "POST",
-					headers: { "Content-Type": "application/x-www-form-urlencoded" },
-					body: this.encode({
-						"form-name": "Multi Step Form",
-						...this.formFields
-					})
-				})
-					.then(() => {
-						this.formFields = {};
-					})
-					.catch(error => alert(error));
+        let myForm = document.getElementById("multi-step-form");
+        let formData = new FormData(myForm);
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "multipart/form-data" },
+          body: new URLSearchParams(formData).toString(),
+        })
+          .then(res => {
+            this.showSuccessMessage = true;
+          })
+          .catch((error) => alert(error));
+
+				// fetch("/", {
+				// 	method: "POST",
+				// 	headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				// 	body: this.encode({
+				// 		"form-name": "Multi Step Form",
+				// 		...this.formFields
+				// 	})
+				// })
+				// 	.then(() => {
+				// 		this.formFields = {};
+				// 	})
+				// 	.catch(error => alert(error));
 			}
 		},
 		encode(data) {
