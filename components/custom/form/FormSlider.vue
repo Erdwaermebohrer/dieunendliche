@@ -28,15 +28,38 @@
 						</div>
 						<div class="form-step__wrapper--bottom">
 							<div
+                v-show="index !== 1"
 								class="block-title"
 								v-text="$prismic.asText(step.primary.block_title)"
 							/>
-							<div class="fields__wrapper">
+							<div v-show="index === 0" class="fields__wrapper">
 								<div
 									class="fields__wrapper--item"
 									v-for="(value, key) in step.items"
 									:key="key"
 									v-show="key < 5"
+									@click="nextSlide(value.field_id, value.field_placeholder)"
+								>
+									<input
+										type="text"
+										v-if="value.field_type === 'radio'"
+										class="selector-field"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										disabled
+									/>
+								</div>
+							</div>
+							<div v-show="index === 0" class="fields__wrapper">
+								<div
+									class="fields__wrapper--item"
+									v-for="(value, key) in step.items"
+									:key="key"
+									v-show="key > 4"
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
 									<input
@@ -78,13 +101,16 @@
 									/>
 								</div>
 							</div>
-							<div class="fields__wrapper">
+							<div v-show="index === 1" class="fields__wrapper">
+								<div
+									class="block-title"
+									v-text="$prismic.asText(inputData.block_title_b)"
+								/>
 								<div
 									class="fields__wrapper--item"
-									v-for="(value, key) in step.items"
+									v-for="(value, key) in inputData.step_2_repeatable_b"
 									:key="key"
-									v-show="key > 4"
-									@click="nextSlide(value.field_id, value.field_placeholder)"
+									@click="selectItem(value.field_id, value.field_placeholder)"
 								>
 									<input
 										type="text"
@@ -100,12 +126,92 @@
 									/>
 								</div>
 							</div>
-							<div class="fields__wrapper">
+              <div v-show="index === 1" class="fields__wrapper">
+								<div
+									class="block-title"
+									v-text="$prismic.asText(step.primary.block_title)"
+								/>
+								<div
+									v-for="(value, key) in step.items"
+									:key="key"
+									class="fields__wrapper--item"
+								>
+									<input
+										v-if="value.field_type === 'radio'"
+										@paste.prevent
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										class="input"
+										:type="'text'"
+										@input="validationFields[currentIndex].input = true"
+									/>
+								</div>
+							</div>
+              <div v-show="index === 2" class="fields__wrapper horizontal">
 								<div
 									class="fields__wrapper--item"
 									v-for="(value, key) in step.items"
 									:key="key"
+									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
+									<input
+										type="text"
+										v-if="value.field_type === 'radio'"
+										class="selector-field"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										disabled
+									/>
+								</div>
+							</div>
+
+							<div v-show="index === 3" class="fields__wrapper horizontal">
+								<div
+									v-for="(value, key) in step.items"
+									:key="key"
+									class="fields__wrapper--item"
+								>
+									<label
+										v-if="
+											value.field_type === 'text' ||
+											value.field_type === 'number' ||
+											value.field_type === 'email' ||
+											value.field_type === 'textarea' ||
+											value.field_type === 'file'
+										"
+										:for="value.field_placeholder"
+										v-text="value.field_placeholder + '*'"
+									>
+									</label>
+									<input
+										v-if="value.field_type === 'file'"
+										:type="value.field_type"
+										ref="file"
+										accept="application/pdf"
+										v-on:change="validateSize"
+										max-size="20"
+										name="cv"
+										placeholder=""
+									/>
+									<input
+										v-if="
+											value.field_type === 'text' ||
+											value.field_type === 'number' ||
+											value.field_type === 'email'
+										"
+										@paste.prevent
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										class="input"
+										:type="value.field_type"
+									/>
 									<textarea
 										v-if="value.field_type === 'textarea'"
 										@paste.prevent
@@ -115,6 +221,41 @@
 										class="input"
 										:type="value.field_type"
 										@input="validationFields[currentIndex].input = true"
+									/>
+								</div>
+							</div>
+
+              <div v-show="index === 4" class="fields__wrapper horizontal">
+								<div
+									v-for="(value, key) in step.items"
+									:key="key"
+									class="fields__wrapper--item"
+								>
+									<label
+										v-if="
+											value.field_type === 'text' ||
+											value.field_type === 'number' ||
+											value.field_type === 'email'
+										"
+										:for="value.field_label"
+										v-text="value.field_label"
+									>
+									</label>
+									<input
+										v-if="
+											value.field_type === 'text' ||
+											value.field_type === 'number' ||
+											value.field_type === 'email'
+										"
+										@paste.prevent
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										class="input"
+										:type="value.field_type"
+										@input="
+											validationFields[currentIndex][value.field_label] = true
+										"
 									/>
 								</div>
 							</div>
