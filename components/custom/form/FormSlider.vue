@@ -435,6 +435,7 @@ export default {
 			//    alert("File is too big – Max 1 MB");
 			//    this.$refs['file'].value = "";
 			// };
+      
 		}
 	}
 };
