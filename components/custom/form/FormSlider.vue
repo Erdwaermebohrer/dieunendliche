@@ -75,6 +75,24 @@
 									/>
 								</div>
 							</div>
+              <div class="fields__wrapper">
+								<div
+									class="fields__wrapper--item"
+									v-for="(value, key) in step.items"
+									:key="key"
+								>
+									<textarea
+										v-if="value.field_type === 'textarea'"
+										@paste.prevent
+										v-model="formFields[value.field_placeholder]"
+										:name="value.field_placeholder"
+										:placeholder="value.field_placeholder"
+										class="input"
+										:type="value.field_type"
+										@input="validationFields[currentIndex].input = true"
+									/>
+								</div>
+							</div>
 						</div>
 					</div>
 
