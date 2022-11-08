@@ -13,7 +13,9 @@
 					name="Multi Step Form"
 					data-netlify="true"
 					netlify
+					@submit.prevent="formSubmit"
 				>
+					<input type="hidden" name="form-name" value="Multi Step Form" />
 					<form-step v-if="step" :formFields="formFields" :step="step">
 						<template v-if="currentIndex === 0" v-slot:fields>
 							<div
@@ -36,7 +38,8 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_placeholder"
+                    v-model="formFields[value.field_id]"
+										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
 									/>
@@ -58,7 +61,8 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_placeholder"
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
 									/>
@@ -85,7 +89,8 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_placeholder"
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
 									/>
@@ -110,7 +115,8 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_placeholder"
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
 									/>
@@ -159,7 +165,8 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_placeholder"
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
 									/>
@@ -202,8 +209,8 @@
 											value.field_type === 'email'
 										"
 										@paste.prevent
-										v-model="formFields[value.field_placeholder]"
-										:name="value.field_placeholder"
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										class="input"
 										:type="value.field_type"
@@ -258,6 +265,13 @@
 							</div>
 						</template>
 					</form-step>
+					<button
+						type="submit"
+						v-if="currentIndex === 4"
+						@click="handleNextSlide"
+					>
+						<span>{{ $prismic.asText(buttonNextLabel) }}</span>
+					</button>
 				</form>
 			</swiper-slide>
 			<div class="swiper-pagination" slot="pagination"></div>
@@ -270,7 +284,7 @@
 				<span>{{ $prismic.asText(buttonPrevLabel) }}</span>
 			</button>
 			<button
-				v-if="buttonNextLabel && buttonNextLabel.length > 0"
+				v-if="buttonNextLabel && buttonNextLabel.length > 0 && currentIndex < 4"
 				@click="handleNextSlide"
 			>
 				<span>{{ $prismic.asText(buttonNextLabel) }}</span>
@@ -435,7 +449,20 @@ export default {
 			//    alert("File is too big – Max 1 MB");
 			//    this.$refs['file'].value = "";
 			// };
-      
+		},
+		formSubmit(e) {
+			let myForm = document.getElementById("multi-step-form");
+			let formData = new FormData(myForm);
+			console.log(e.target);
+			fetch("/", {
+				body: new FormData(e.target),
+				method: "POST"
+			})
+				.then(res => {
+					console.log(res);
+					this.formSuccess = true;
+				})
+				.catch(error => alert(error));
 		}
 	}
 };
