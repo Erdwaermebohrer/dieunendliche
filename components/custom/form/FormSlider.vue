@@ -67,7 +67,30 @@
 								</div>
 							</div>
 						</div>
-						<div v-show="currentIndex === 1">
+            <div v-show="currentIndex === 1">
+							<div class="fields__wrapper horizontal">
+								<div
+									class="fields__wrapper--item"
+									v-for="(value, key) in step.items"
+									:key="key"
+									@click="nextSlide(value.field_id, value.field_placeholder)"
+								>
+									<input
+										type="text"
+										v-if="value.field_type === 'radio'"
+										class="selector-field"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										disabled
+									/>
+								</div>
+							</div>
+						</div>
+						<!-- <div v-show="currentIndex === 1">
 							<div class="fields__wrapper">
 								<div
 									class="block-title"
@@ -130,13 +153,17 @@
 								>
 									<input
 										v-if="
-											value.field_type === 'text'
+											value.field_type === 'text' ||
+											value.field_type === 'number' ||
+											value.field_type === 'email'
 										"
-                    class="input"
-                    :type="value.field_type"
-                    value=""
-                    :name="value.field_id"
+										@paste.prevent
 										v-model="formFields[value.field_id]"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										class="input"
+										:type="value.field_type"
+										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
 							</div>
@@ -254,7 +281,7 @@
 									/>
 								</div>
 							</div>
-						</div>
+						</div> -->
             </template>
 					</form-step>
 				</form>
