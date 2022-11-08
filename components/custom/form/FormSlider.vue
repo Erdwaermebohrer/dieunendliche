@@ -16,7 +16,10 @@
 			>
 				<swiper-slide v-for="(step, index) in steps" :key="index">
 					<div class="form-step__wrapper">
-						<div class="form-step__wrapper--top">
+						<div
+							class="form-step__wrapper--top"
+							:class="{ 'modified-top': currentIndex === 3 }"
+						>
 							<div
 								class="title"
 								v-text="$prismic.asText(step.primary.title)"
@@ -240,6 +243,7 @@
 											value.field_type === 'email'
 										"
 										:for="value.field_label"
+										class="label"
 										v-text="value.field_label"
 									>
 									</label>
@@ -467,9 +471,14 @@ export default {
 }
 
 .form-step__wrapper {
-	min-height: 500px;
+	min-height: 480px;
+
+	.modified-top {
+		height: 280px;
+	}
 
 	&--top {
+		height: 200px;
 		margin-top: 60px;
 
 		.title {
@@ -516,7 +525,7 @@ export default {
 
 .block-title {
 	position: absolute;
-	top: 0;
+	top: -10px;
 	font-size: 14px;
 	line-height: 17px;
 	letter-spacing: 0.05em;
@@ -560,10 +569,13 @@ export default {
 		}
 
 		.label {
+			top: -5px;
+			position: relative;
 			font-size: 14px;
 			font-weight: 600;
 			line-height: 17.75px;
 			letter-spacing: 0.05em;
+			text-transform: uppercase;
 			color: #857373;
 		}
 
