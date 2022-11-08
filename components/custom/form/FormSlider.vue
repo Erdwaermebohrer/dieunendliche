@@ -1,20 +1,20 @@
 <template>
 	<div class="form-slider__wrapper">
-		<swiper
-			v-show="showSlider"
-			class="swiper"
-			ref="formSwiper"
-			:options="swiperOption"
+		<form
+			novalidate
+			id="multi-step-form"
+			name="Multi Step Form"
+			data-netlify="true"
+			netlify
 		>
-			<swiper-slide v-for="(step, index) in steps" :key="index">
-				<form
-					novalidate
-					id="multi-step-form"
-					name="Multi Step Form"
-					data-netlify="true"
-					netlify
-				>
-					<input type="hidden" name="form-name" value="Multi Step Form" />
+			<input type="hidden" name="form-name" value="Multi Step Form" />
+			<swiper
+				v-show="showSlider"
+				class="swiper"
+				ref="formSwiper"
+				:options="swiperOption"
+			>
+				<swiper-slide v-for="(step, index) in steps" :key="index">
 					<form-step v-if="step" :formFields="formFields" :step="step">
 						<template v-if="currentIndex === 0" v-slot:fields>
 							<div
@@ -128,9 +128,7 @@
 									class="fields__wrapper--item"
 								>
 									<input
-										v-if="
-											value.field_type === 'radio'
-										"
+										v-if="value.field_type === 'radio'"
 										@paste.prevent
 										v-model="formFields[value.field_id]"
 										:name="value.field_id"
@@ -258,10 +256,10 @@
 							</div>
 						</template>
 					</form-step>
-				</form>
-			</swiper-slide>
-			<div class="swiper-pagination" slot="pagination"></div>
-		</swiper>
+				</swiper-slide>
+				<div class="swiper-pagination" slot="pagination"></div>
+			</swiper>
+		</form>
 		<div class="pagination__wrapper">
 			<button
 				v-if="buttonPrevLabel && buttonPrevLabel.length > 0"
