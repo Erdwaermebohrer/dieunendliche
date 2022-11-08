@@ -15,99 +15,8 @@
 					netlify
 				>
 					<input type="hidden" name="form-name" value="Multi Step Form" />
-          <div class="form-step__wrapper">
-            <div class="form-step__wrapper--top">
-              <div class="title" v-text="$prismic.asText(step.primary.title)"></div>
-              <div
-                class="description"
-                v-html="$prismic.asHtml(step.primary.description)"
-              ></div>
-            </div>
-            <div class="form-step__wrapper--bottom">
-              <div v-show="currentIndex === 0">
-							<div
-								class="block-title"
-								v-text="$prismic.asText(step.primary.block_title)"
-							/>
-							<div class="fields__wrapper">
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in step.items"
-									:key="key"
-									v-show="key < 5"
-									@click="nextSlide(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-							<div class="fields__wrapper">
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in step.items"
-									:key="key"
-									v-show="key > 4"
-									@click="nextSlide(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-						</div>
-            <div v-show="currentIndex === 1">
-              <div
-								class="block-title"
-								v-text="'Some Title'"
-							/>
-							<div class="fields__wrapper">
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in step.items"
-									:key="key"
-									v-show="key < 5"
-									@click="nextSlide(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-						</div>
-            </div>
-          </div>
-
-
 					<form-step v-if="step" :formFields="formFields" :step="step">
-            <!-- <template v-slot:fields>
+            <template v-slot:fields>
 						<div v-show="currentIndex === 0">
 							<div
 								class="block-title"
@@ -158,30 +67,7 @@
 								</div>
 							</div>
 						</div>
-            <div v-show="currentIndex === 1">
-							<div class="fields__wrapper horizontal">
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in step.items"
-									:key="key"
-									@click="nextSlide(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-						</div> -->
-						<!-- <div v-show="currentIndex === 1">
+						<div v-show="currentIndex === 1">
 							<div class="fields__wrapper">
 								<div
 									class="block-title"
@@ -249,8 +135,8 @@
 											value.field_type === 'email'
 										"
 										@paste.prevent
-										v-model="formFields[value.field_id]"
-										:name="value.field_id"
+										v-model="formFields.ad"
+										:name="formFields.ad"
 										:placeholder="value.field_placeholder"
 										class="input"
 										:type="value.field_type"
@@ -372,8 +258,8 @@
 									/>
 								</div>
 							</div>
-						</div> -->
-            <!-- </template> -->
+						</div>
+            </template>
 					</form-step>
 				</form>
 			</swiper-slide>
@@ -459,7 +345,9 @@ export default {
 	data() {
 		return {
 			currentIndex: 0,
-			formFields: {},
+			formFields: {
+        ad: 'Title'
+      },
 			showSlider: true,
 			swiperOption: {
 				allowTouchMove: false,
