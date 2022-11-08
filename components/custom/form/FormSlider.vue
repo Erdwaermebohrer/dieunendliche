@@ -53,6 +53,31 @@
 									/>
 								</div>
 							</div>
+							<div v-show="index === 1" class="fields__wrapper">
+								<div
+									class="block-title"
+									v-text="$prismic.asText(inputData.block_title_a)"
+								/>
+								<div
+									class="fields__wrapper--item"
+									v-for="(value, key) in inputData.step_2_repeatable_a"
+									:key="key"
+									@click="selectItem(value.field_id, value.field_placeholder)"
+								>
+									<input
+										type="text"
+										v-if="value.field_type === 'radio'"
+										class="selector-field"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										disabled
+									/>
+								</div>
+							</div>
 							<div class="fields__wrapper">
 								<div
 									class="fields__wrapper--item"
@@ -75,7 +100,7 @@
 									/>
 								</div>
 							</div>
-              <div class="fields__wrapper">
+							<div class="fields__wrapper">
 								<div
 									class="fields__wrapper--item"
 									v-for="(value, key) in step.items"
