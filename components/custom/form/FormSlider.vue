@@ -130,10 +130,12 @@
 								>
 									<input
                     type="text"
+										v-if="
+											value.field_type === 'text'
+										"
                     class="input"
 										v-model="formFields[value.field_placeholder]"
 										:name="value.field_placeholder"
-										:placeholder="value.field_placeholder"
 										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
