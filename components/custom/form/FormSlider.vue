@@ -129,18 +129,12 @@
 									class="fields__wrapper--item"
 								>
 									<input
-										v-if="
-											value.field_type === 'text' ||
-											value.field_type === 'number' ||
-											value.field_type === 'email'
-										"
-										@paste.prevent
-										v-model="formFields.ad"
-										:name="formFields.ad"
-										:placeholder="value.field_placeholder"
+                    type="text"
+										v-if="value.field_type === 'radio'"
 										class="input"
-										:type="value.field_type"
-										@input="validationFields[currentIndex].input = true"
+										:name="value.field_id"
+										v-model="formFields[value.field_id]"
+										:placeholder="value.field_placeholder"
 									/>
 								</div>
 							</div>
@@ -345,9 +339,7 @@ export default {
 	data() {
 		return {
 			currentIndex: 0,
-			formFields: {
-        ad: 'Title'
-      },
+			formFields: {},
 			showSlider: true,
 			swiperOption: {
 				allowTouchMove: false,
