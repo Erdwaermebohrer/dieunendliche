@@ -16,9 +16,8 @@
 			>
 				<div class="form-slider__wrapper__section" v-for="(step, index) in steps" :key="index" :data-section="index" :style="checkStatus(index)">
 					<div class="form-step__wrapper">
-
+						
 						<div
-              v-if="index"
 							class="form-step__wrapper--top"
 							:class="{ 'modified-top': index === 3 }"
 						>
