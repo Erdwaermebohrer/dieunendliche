@@ -47,17 +47,16 @@
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
 									<input
-										type="text"
+										type="radio"
 										v-if="value.field_type === 'radio'"
 										class="selector-field"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
+										:value="value.field_placeholder"
+										:name="$prismic.asText(step.primary.block_title)"
+									/>{{value.field_placeholder}}
 								</div>
 							</div>
 							<div v-if="index === 0" class="fields__wrapper">
@@ -69,17 +68,16 @@
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
 									<input
-										type="text"
+										type="radio"
 										v-if="value.field_type === 'radio'"
 										class="selector-field"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
+										:value="value.field_placeholder"
+										:name="$prismic.asText(step.primary.block_title)"
+									/>{{value.field_placeholder}}
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper">
@@ -94,17 +92,16 @@
 									@click="selectItem(value.field_id, value.field_placeholder)"
 								>
 									<input
-										type="text"
+										type="radio"
 										v-if="value.field_type === 'radio'"
 										class="selector-field"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
+										:value="value.field_placeholder"
+										:name="$prismic.asText(inputData.block_title_a)"
+									/>{{value.field_placeholder}}
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper">
@@ -119,17 +116,16 @@
 									@click="selectItem(value.field_id, value.field_placeholder)"
 								>
 									<input
-										type="text"
+										type="radio"
 										v-if="value.field_type === 'radio'"
 										class="selector-field"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
+										:value="value.field_placeholder"
+										:name="$prismic.asText(inputData.block_title_b)"
+									/>{{value.field_placeholder}}
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper full-width">
@@ -160,7 +156,7 @@
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
 									<input
-										type="text"
+										type="radio"
 										v-if="value.field_type === 'radio'"
 										class="selector-field"
 										:class="{
@@ -168,10 +164,9 @@
 												value.field_placeholder === formFields[value.field_id],
 										}"
 										v-model="formFields[value.field_id]"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
+										:value="value.field_placeholder"
+										:name="$prismic.asText(step.primary.block_title)"
+									/>{{value.field_placeholder}}
 								</div>
 							</div>
 							<div
@@ -413,9 +408,7 @@ export default {
 				let myForm = document.getElementById("multi-step-form");
 				let formData = new FormData(myForm);
 
-				for (const value of formData.values()) {
-				  console.log(value);
-				}
+			
 				console.log(formData);
 				fetch("/", {
 					body: formData,
