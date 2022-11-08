@@ -13,9 +13,10 @@
     "@nuxtjs/prismic": "^1.2.6",
     "@nuxtjs/pwa": "^3.3.5",
     "gsap": "^3.6.1",
-    "node-sass": "^6.0.0",
+    "node-sass": "^7.0.3",
     "nuxt": "^2.15.3",
     "nuxt-lazy-load": "^1.2.6",
+    "postcss-custom-properties": "^12.1.7",
     "prismic-dom": "^2.2.4",
     "prismic-javascript": "^3.0.2",
     "sass-loader": "^10.0.1",
@@ -26,6 +27,5 @@
     "vue-check-view": "^0.3.0",
     "vue-lazy-hydration": "^2.0.0-beta.4",
     "vue-parallax-js": "^0.2.3"
-  },
-  "devDependencies": {}
+  }
 }

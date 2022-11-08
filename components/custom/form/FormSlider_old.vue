@@ -8,13 +8,13 @@
 			netlify
 		>
 			<input type="hidden" name="form-name" value="Multi Step Form" />
-			<div
+			<swiper
 				v-show="showSlider"
 				class="swiper"
 				ref="formSwiper"
 				:options="swiperOption"
 			>
-				<div class="form-slider__wrapper__section" v-for="(step, index) in steps" :key="index" :data-section="index" :style="checkStatus(index)">
+				<swiper-slide v-for="(step, index) in steps" :key="index">
 					<div class="form-step__wrapper">
 
 						<div
@@ -32,7 +32,7 @@
 						</div>
 
 						<div class="form-step__wrapper--bottom">
-
+							
 							<div
 								v-show="index !== 1"
 								class="block-title"
@@ -274,12 +274,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="swiper-pagination">
-					<div class="swiper-pagination-progressbar" :style="barStatus(steps.length)">
-					</div>
-				</div>
-			</div>
+				</swiper-slide>
+				<div class="swiper-pagination" slot="pagination"></div>
+			</swiper>
 		</form>
 		<div class="pagination__wrapper">
 			<button
@@ -304,7 +301,7 @@
 	</div>
 </template>
 <script>
-//import "swiper/dist/css/swiper.css";
+import "swiper/dist/css/swiper.css";
 import FormStep from "@/components/custom/form/FormStep.vue";
 export default {
 	name: "FormSlider",
@@ -400,43 +397,30 @@ export default {
 		prevSlide() {
 			if (this.currentIndex > 0) {
 				this.currentIndex -= 1;
-				//this.$refs.formSwiper.swiper.slidePrev();
+				this.$refs.formSwiper.swiper.slidePrev();
 			}
 		},
 		handleNextSlide() {
 			if (!this.isStepValidated) {
 				return;
 			}
-			console.log(this.currentIndex+' / '+(this.steps.length - 1));
+
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
-				//this.$refs.formSwiper.swiper.slideNext();
+				this.$refs.formSwiper.swiper.slideNext();
 			} else {
-				console.log(this.formFields);
-				let myForm = document.getElementById("multi-step-form");
-				let formData = new FormData(myForm);
-				console.log(formData);
 				fetch("/", {
-					body: formData,
-					method: "POST"
+					method: "POST",
+					headers: { "Content-Type": "application/x-www-form-urlencoded" },
+					body: this.encode({
+						"form-name": "Multi Step Form",
+						...this.formFields
+					})
 				})
-					.then(res => {
-						console.log(res);
-						this.formSuccess = true;
+					.then(() => {
+						this.formFields = {};
 					})
 					.catch(error => alert(error));
-				// fetch("/", {
-				// 	method: "POST",
-				// 	headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				// 	body: this.encode({
-				// 		"form-name": "Multi Step Form",
-				// 		...this.formFields
-				// 	})
-				// })
-				// 	.then(() => {
-				// 		this.formFields = {};
-				// 	})
-				// 	.catch(error => alert(error));
 			}
 		},
 		encode(data) {
@@ -451,10 +435,8 @@ export default {
 
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
-				//this.$refs.formSwiper.swiper.slideNext();
+				this.$refs.formSwiper.swiper.slideNext();
 			}
-
-
 		},
 		selectItem(field_id, value) {
 			this.formFields[field_id] = value;
@@ -467,17 +449,6 @@ export default {
 				});
 			}
 		},
-		barStatus(total){
-			var barWidth = (this.currentIndex/(total-1))*100;
-
-			return 'width:'+barWidth+'%';
-		},
-		checkStatus(index){
-			if(index == this.currentIndex){
-				return 'display:block;'
-			}
-			return 'display:none;'
-		},
 		validateSize(e) {
 			// if(this.$refs['file'].files[0].size > 1000000){
 			//    alert("File is too big – Max 1 MB");
@@ -485,7 +456,7 @@ export default {
 			// };
 		},
 		formSubmit(e) {
-			let myForm = document.getElementById("multi-step-	");
+			let myForm = document.getElementById("multi-step-form");
 			let formData = new FormData(myForm);
 			console.log(e.target);
 			fetch("/", {
@@ -505,38 +476,8 @@ export default {
 };
 </script>
 <style lang="scss">
-
-
-
-.swiper{
-	position: relative;
-}
-.swiper-pagination{
-	position: absolute;
-	top: -30px;
-	left: 0;
-	width: 100%;
-	height: 5px;
-	overflow: hidden;
-	&:after{
-		background: #618787;
-		width: 100%;
-		top: 50%;
-		left: 0;
-		height: 2px;
-		transform: translateY(-1px);
-		position: absolute;
-		content:''
-	}
-	&-progressbar{
-		background: #618787;
-		width: 0%;
-		top: 0;
-		left: 0;
-		height: 100%;
-		position: absolute;
-		transition: 0.4s all ease-in;
-	}
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill {
+	background: #618787;
 }
 
 .form-step__wrapper {
