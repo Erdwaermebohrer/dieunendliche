@@ -16,8 +16,7 @@
 				>
 					<input type="hidden" name="form-name" value="Multi Step Form" />
 					<form-step v-if="step" :formFields="formFields" :step="step">
-            <template v-slot:fields>
-						<div v-show="currentIndex === 0">
+						<template v-if="currentIndex === 0" v-slot:fields>
 							<div
 								class="block-title"
 								v-text="$prismic.asText(step.primary.block_title)"
@@ -66,8 +65,8 @@
 									/>
 								</div>
 							</div>
-						</div>
-						<div v-show="currentIndex === 1">
+						</template>
+						<template v-else-if="currentIndex === 1" v-slot:fields>
 							<div class="fields__wrapper">
 								<div
 									class="block-title"
@@ -129,17 +128,21 @@
 									class="fields__wrapper--item"
 								>
 									<input
-                    type="text"
-										v-if="value.field_type === 'radio'"
-										class="input"
-										:name="value.field_id"
+										v-if="
+											value.field_type === 'radio'
+										"
+										@paste.prevent
 										v-model="formFields[value.field_id]"
+										:name="value.field_id"
 										:placeholder="value.field_placeholder"
+										class="input"
+										:type="'text'"
+										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
 							</div>
-						</div>
-						<div v-show="currentIndex === 2">
+						</template>
+						<template v-else-if="currentIndex === 2" v-slot:fields>
 							<div class="fields__wrapper horizontal">
 								<div
 									class="fields__wrapper--item"
@@ -155,14 +158,15 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
+										v-model="formFields[value.field_id]"
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
 									/>
 								</div>
 							</div>
-						</div>
-						<div v-show="currentIndex === 3">
+						</template>
+						<template v-else-if="currentIndex === 3" v-slot:fields>
 							<div class="fields__wrapper horizontal">
 								<div
 									v-for="(value, key) in step.items"
@@ -216,8 +220,8 @@
 									/>
 								</div>
 							</div>
-						</div>
-						<div v-show="currentIndex === 4">
+						</template>
+						<template v-else-if="currentIndex === 4" v-slot:fields>
 							<div class="fields__wrapper horizontal">
 								<div
 									v-for="(value, key) in step.items"
@@ -252,8 +256,7 @@
 									/>
 								</div>
 							</div>
-						</div>
-            </template>
+						</template>
 					</form-step>
 				</form>
 			</swiper-slide>
