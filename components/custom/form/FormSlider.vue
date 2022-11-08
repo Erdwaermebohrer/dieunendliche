@@ -15,8 +15,71 @@
 				:options="swiperOption"
 			>
 				<swiper-slide v-for="(step, index) in steps" :key="index">
-					<form-step v-if="step" :formFields="formFields" :step="step">
-						<!-- <template v-if="currentIndex === 0" v-slot:fields>
+					<div class="form-step__wrapper">
+						<div class="form-step__wrapper--top">
+							<div
+								class="title"
+								v-text="$prismic.asText(step.primary.title)"
+							></div>
+							<div
+								class="description"
+								v-html="$prismic.asHtml(step.primary.description)"
+							></div>
+						</div>
+						<div class="form-step__wrapper--bottom">
+							<div
+								class="block-title"
+								v-text="$prismic.asText(step.primary.block_title)"
+							/>
+							<div class="fields__wrapper">
+								<div
+									class="fields__wrapper--item"
+									v-for="(value, key) in step.items"
+									:key="key"
+									v-show="key < 5"
+									@click="nextSlide(value.field_id, value.field_placeholder)"
+								>
+									<input
+										type="text"
+										v-if="value.field_type === 'radio'"
+										class="selector-field"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										disabled
+									/>
+								</div>
+							</div>
+							<div class="fields__wrapper">
+								<div
+									class="fields__wrapper--item"
+									v-for="(value, key) in step.items"
+									:key="key"
+									v-show="key > 4"
+									@click="nextSlide(value.field_id, value.field_placeholder)"
+								>
+									<input
+										type="text"
+										v-if="value.field_type === 'radio'"
+										class="selector-field"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										:name="value.field_id"
+										:placeholder="value.field_placeholder"
+										disabled
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- <form-step v-if="step" :formFields="formFields" :step="step">
+						<template v-if="currentIndex === 0" v-slot:fields>
 							<div
 								class="block-title"
 								v-text="$prismic.asText(step.primary.block_title)"
@@ -254,8 +317,8 @@
 									/>
 								</div>
 							</div>
-						</template> -->
-					</form-step>
+						</template>
+					</form-step> -->
 				</swiper-slide>
 				<div class="swiper-pagination" slot="pagination"></div>
 			</swiper>
