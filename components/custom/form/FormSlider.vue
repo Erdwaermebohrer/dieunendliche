@@ -13,7 +13,6 @@
 					name="Multi Step Form"
 					data-netlify="true"
 					netlify
-					@submit.prevent="formSubmit"
 				>
 					<input type="hidden" name="form-name" value="Multi Step Form" />
 					<form-step v-if="step" :formFields="formFields" :step="step">
@@ -38,7 +37,6 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-                    v-model="formFields[value.field_id]"
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
@@ -61,7 +59,6 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										v-model="formFields[value.field_id]"
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
@@ -89,7 +86,6 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										v-model="formFields[value.field_id]"
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
@@ -115,7 +111,6 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										v-model="formFields[value.field_id]"
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
@@ -165,7 +160,6 @@
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										v-model="formFields[value.field_id]"
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										disabled
@@ -265,13 +259,6 @@
 							</div>
 						</template>
 					</form-step>
-					<button
-						type="submit"
-						v-if="currentIndex === 4"
-						@click="handleNextSlide"
-					>
-						<span>{{ $prismic.asText(buttonNextLabel) }}</span>
-					</button>
 				</form>
 			</swiper-slide>
 			<div class="swiper-pagination" slot="pagination"></div>
@@ -284,7 +271,7 @@
 				<span>{{ $prismic.asText(buttonPrevLabel) }}</span>
 			</button>
 			<button
-				v-if="buttonNextLabel && buttonNextLabel.length > 0 && currentIndex < 4"
+				v-if="buttonNextLabel && buttonNextLabel.length > 0"
 				@click="handleNextSlide"
 			>
 				<span>{{ $prismic.asText(buttonNextLabel) }}</span>
