@@ -133,7 +133,7 @@
 											value.field_type === 'text'
 										"
                     class="input"
-                    :type="field.type"
+                    :type="value.field_type"
                     value=""
                     :name="value.field_id"
 										v-model="formFields[value.field_id]"
