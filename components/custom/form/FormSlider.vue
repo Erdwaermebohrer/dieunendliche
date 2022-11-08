@@ -126,7 +126,7 @@
 									/>
 								</div>
 							</div>
-							<div v-show="index === 1" class="fields__wrapper">
+							<div v-show="index === 1" class="fields__wrapper full-width">
 								<div
 									class="block-title"
 									v-text="$prismic.asText(step.primary.block_title)"
@@ -134,16 +134,14 @@
 								<div
 									v-for="(value, key) in step.items"
 									:key="key"
-									class="fields__wrapper--item"
+									class="fields__wrapper--item textarea"
 								>
-									<input
-										v-if="value.field_type === 'radio'"
-										@paste.prevent
+									<textarea
+										v-if="value.field_type === 'textarea'"
 										v-model="formFields[value.field_id]"
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										class="input"
-										:type="'text'"
 										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
@@ -170,11 +168,15 @@
 									/>
 								</div>
 							</div>
-							<div v-show="index === 3" class="fields__wrapper horizontal">
+							<div
+								v-show="index === 3"
+								class="fields__wrapper horizontal horizontal-with-textarea"
+							>
 								<div
 									v-for="(value, key) in step.items"
 									:key="key"
 									class="fields__wrapper--item"
+									:class="{ textarea: value.field_type === 'textarea' }"
 								>
 									<label
 										v-if="
@@ -184,8 +186,9 @@
 											value.field_type === 'textarea' ||
 											value.field_type === 'file'
 										"
+										class="label"
 										:for="value.field_placeholder"
-										v-text="value.field_placeholder + '*'"
+										v-text="value.field_placeholder"
 									>
 									</label>
 									<input
@@ -193,9 +196,9 @@
 										:type="value.field_type"
 										ref="file"
 										accept="application/pdf"
-										v-on:change="validateSize"
+										@change="validateSize"
 										max-size="20"
-										name="cv"
+										name="file-1"
 										placeholder=""
 									/>
 									<input
@@ -213,21 +216,22 @@
 									/>
 									<textarea
 										v-if="value.field_type === 'textarea'"
-										@paste.prevent
-										v-model="formFields[value.field_placeholder]"
-										:name="value.field_placeholder"
+										v-model="formFields[value.field_id]"
+										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										class="input"
-										:type="value.field_type"
 										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
 							</div>
-							<div v-show="index === 4" class="fields__wrapper horizontal">
+							<div
+								v-show="index === 4"
+								class="fields__wrapper horizontal text-field__wrapper"
+							>
 								<div
 									v-for="(value, key) in step.items"
 									:key="key"
-									class="fields__wrapper--item"
+									class="fields__wrapper--item text-field"
 								>
 									<label
 										v-if="
@@ -259,248 +263,6 @@
 							</div>
 						</div>
 					</div>
-
-					<!-- <form-step v-if="step" :formFields="formFields" :step="step">
-						<template v-if="currentIndex === 0" v-slot:fields>
-							<div
-								class="block-title"
-								v-text="$prismic.asText(step.primary.block_title)"
-							/>
-							<div class="fields__wrapper">
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in step.items"
-									:key="key"
-									v-show="key < 5"
-									@click="nextSlide(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-							<div class="fields__wrapper">
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in step.items"
-									:key="key"
-									v-show="key > 4"
-									@click="nextSlide(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-						</template>
-						<template v-else-if="currentIndex === 1" v-slot:fields>
-							<div class="fields__wrapper">
-								<div
-									class="block-title"
-									v-text="$prismic.asText(inputData.block_title_a)"
-								/>
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in inputData.step_2_repeatable_a"
-									:key="key"
-									@click="selectItem(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-							<div class="fields__wrapper">
-								<div
-									class="block-title"
-									v-text="$prismic.asText(inputData.block_title_b)"
-								/>
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in inputData.step_2_repeatable_b"
-									:key="key"
-									@click="selectItem(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-							<div class="fields__wrapper">
-								<div
-									class="block-title"
-									v-text="$prismic.asText(step.primary.block_title)"
-								/>
-								<div
-									v-for="(value, key) in step.items"
-									:key="key"
-									class="fields__wrapper--item"
-								>
-									<input
-										v-if="value.field_type === 'radio'"
-										@paste.prevent
-										v-model="formFields[value.field_id]"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										class="input"
-										:type="'text'"
-										@input="validationFields[currentIndex].input = true"
-									/>
-								</div>
-							</div>
-						</template>
-						<template v-else-if="currentIndex === 2" v-slot:fields>
-							<div class="fields__wrapper horizontal">
-								<div
-									class="fields__wrapper--item"
-									v-for="(value, key) in step.items"
-									:key="key"
-									@click="nextSlide(value.field_id, value.field_placeholder)"
-								>
-									<input
-										type="text"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
-										:class="{
-											'selector-active':
-												value.field_placeholder === formFields[value.field_id],
-										}"
-										v-model="formFields[value.field_id]"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										disabled
-									/>
-								</div>
-							</div>
-						</template>
-						<template v-else-if="currentIndex === 3" v-slot:fields>
-							<div class="fields__wrapper horizontal">
-								<div
-									v-for="(value, key) in step.items"
-									:key="key"
-									class="fields__wrapper--item"
-								>
-									<label
-										v-if="
-											value.field_type === 'text' ||
-											value.field_type === 'number' ||
-											value.field_type === 'email' ||
-											value.field_type === 'textarea' ||
-											value.field_type === 'file'
-										"
-										:for="value.field_placeholder"
-										v-text="value.field_placeholder + '*'"
-									>
-									</label>
-									<input
-										v-if="value.field_type === 'file'"
-										:type="value.field_type"
-										ref="file"
-										accept="application/pdf"
-										v-on:change="validateSize"
-										max-size="20"
-										name="cv"
-										placeholder=""
-									/>
-									<input
-										v-if="
-											value.field_type === 'text' ||
-											value.field_type === 'number' ||
-											value.field_type === 'email'
-										"
-										@paste.prevent
-										v-model="formFields[value.field_id]"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										class="input"
-										:type="value.field_type"
-									/>
-									<textarea
-										v-if="value.field_type === 'textarea'"
-										@paste.prevent
-										v-model="formFields[value.field_placeholder]"
-										:name="value.field_placeholder"
-										:placeholder="value.field_placeholder"
-										class="input"
-										:type="value.field_type"
-										@input="validationFields[currentIndex].input = true"
-									/>
-								</div>
-							</div>
-						</template>
-						<template v-else-if="currentIndex === 4" v-slot:fields>
-							<div class="fields__wrapper horizontal">
-								<div
-									v-for="(value, key) in step.items"
-									:key="key"
-									class="fields__wrapper--item"
-								>
-									<label
-										v-if="
-											value.field_type === 'text' ||
-											value.field_type === 'number' ||
-											value.field_type === 'email'
-										"
-										:for="value.field_label"
-										v-text="value.field_label"
-									>
-									</label>
-									<input
-										v-if="
-											value.field_type === 'text' ||
-											value.field_type === 'number' ||
-											value.field_type === 'email'
-										"
-										@paste.prevent
-										v-model="formFields[value.field_id]"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										class="input"
-										:type="value.field_type"
-										@input="
-											validationFields[currentIndex][value.field_label] = true
-										"
-									/>
-								</div>
-							</div>
-						</template>
-					</form-step> -->
 				</swiper-slide>
 				<div class="swiper-pagination" slot="pagination"></div>
 			</swiper>
@@ -512,15 +274,18 @@
 			>
 				<span>{{ $prismic.asText(buttonPrevLabel) }}</span>
 			</button>
-			<button
-				v-if="buttonNextLabel && buttonNextLabel.length > 0"
-				@click="handleNextSlide"
-			>
-				<span>{{ $prismic.asText(buttonNextLabel) }}</span>
-			</button>
-		</div>
-		<div v-if="!isStepValidated" class="pagination__wrapper">
-			Warning Message
+			<div class="wrapper">
+				<div v-if="!isStepValidated" class="warning">
+					Bitte füllen sie alle Felder vollständig aus
+				</div>
+				<button
+					v-if="buttonNextLabel && buttonNextLabel.length > 0"
+					@click="handleNextSlide"
+					class="btn-next"
+				>
+					<span>{{ $prismic.asText(buttonNextLabel) }}</span>
+				</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -701,6 +466,54 @@ export default {
 	background: #618787;
 }
 
+.form-step__wrapper {
+	min-height: 500px;
+
+	&--top {
+		margin-top: 60px;
+
+		.title {
+			font-size: 46px;
+			font-weight: 300;
+			line-height: 58px;
+			color: #857373;
+		}
+
+		.description {
+			font-size: 22px;
+			font-weight: 400;
+			line-height: 27.9px;
+			color: #857373;
+
+			p {
+				max-width: 620px;
+			}
+
+			p,
+			ul,
+			li {
+				font-size: 22px;
+				font-weight: 400;
+				line-height: 27.9px;
+				color: #857373;
+			}
+		}
+	}
+
+	&--bottom {
+		position: relative;
+		display: flex;
+	}
+}
+
+.full-width {
+	width: 100%;
+
+	.textarea {
+		width: 100% !important;
+	}
+}
+
 .block-title {
 	position: absolute;
 	top: 0;
@@ -713,16 +526,16 @@ export default {
 }
 
 .fields__wrapper {
-	margin: 20px 70px 0 0;
+	margin: 10px 70px 0 0;
 
 	&--item {
-		width: 15vw;
-		height: 47px;
+		width: 17vw;
+		height: 40px;
 		margin: 10px 0;
 
 		.input {
 			width: 100%;
-			height: 150px;
+			height: 100%;
 			padding: 0;
 			margin: 0;
 			text-align: center;
@@ -746,11 +559,19 @@ export default {
 			}
 		}
 
+		.label {
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 17.75px;
+			letter-spacing: 0.05em;
+			color: #857373;
+		}
+
 		.selector-field {
 			width: 100%;
 			height: 100%;
 			padding: 0;
-			padding-top: 7px;
+			padding-top: 2px;
 			margin: 0;
 			text-align: center;
 			background: transparent;
@@ -769,7 +590,7 @@ export default {
 
 			&::placeholder {
 				transition: 0.4s all ease-in;
-				font-size: 22px;
+				font-size: 1.3vw;
 				font-weight: 500;
 			}
 
@@ -789,6 +610,51 @@ export default {
 			}
 		}
 	}
+
+	.textarea {
+		width: 340px;
+		height: 140px;
+
+		.input {
+			width: 100%;
+			height: 100%;
+			padding: 10px;
+			font-size: 1.3vw;
+			text-align: left;
+			resize: none;
+
+			&::placeholder {
+				transition: 0.4s all ease-in;
+				font-size: 1.3vw;
+				font-weight: 300;
+				font-style: italic;
+				opacity: 0.5;
+			}
+
+			&:focus,
+			&:active {
+				outline: none;
+			}
+		}
+	}
+}
+
+.text-field {
+	width: 25% !important;
+	height: 83px !important;
+	margin: 0 !important;
+
+	.input {
+		font-size: 18px;
+
+		&::placeholder {
+			transition: 0.4s all ease-in;
+			font-size: 1.3vw;
+			font-weight: 300;
+			font-style: italic;
+			opacity: 0.5;
+		}
+	}
 }
 
 .horizontal {
@@ -798,6 +664,20 @@ export default {
 		margin-right: 70px;
 		width: 12vw;
 	}
+
+	.textarea {
+		width: 100%;
+	}
+}
+
+.text-field__wrapper {
+	justify-content: space-between;
+	width: 100%;
+}
+
+.horizontal-with-textarea {
+	width: 100%;
+	margin-right: 0;
 }
 
 .pagination__wrapper {
@@ -813,6 +693,8 @@ export default {
 		transition: 0.4s all ease-in;
 
 		span {
+			font-size: 18px;
+			line-height: 22px;
 			position: relative;
 			color: #9cadbd;
 			transition: 0.4s all ease-in;
@@ -831,6 +713,18 @@ export default {
 			span {
 				color: #857373;
 			}
+		}
+	}
+
+	.wrapper {
+		margin-right: 70px;
+		display: flex;
+
+		.warning {
+			margin-right: 35px;
+			font-size: 18px;
+			line-height: 22px;
+			color: #e8543b;
 		}
 	}
 }
