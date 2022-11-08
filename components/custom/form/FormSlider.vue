@@ -410,31 +410,35 @@ export default {
 				this.currentIndex += 1;
 				//this.$refs.formSwiper.swiper.slideNext();
 			} else {
-				console.log(this.formFields);
-				let myForm = document.getElementById("multi-step-form");
-				let formData = new FormData(myForm);
-				console.log(formData);
-				fetch("/", {
-					body: formData,
-					method: "POST"
-				})
-					.then(res => {
-						this.formFields = {};
-						console.log(res);
-					})
-					.catch(error => alert(error));
+				// console.log(this.formFields);
+				// let myForm = document.getElementById("multi-step-form");
+				// let formData = new FormData(myForm);
+
+				// for (const value of formData.values()) {
+				//   console.log(value);
+				// }
+				// console.log(formData);
 				// fetch("/", {
-				// 	method: "POST",
-				// 	headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				// 	body: this.encode({
-				// 		"form-name": "Multi Step Form",
-				// 		...this.formFields
-				// 	})
+				// 	body: formData,
+				// 	method: "POST"
 				// })
-				// 	.then(() => {
+				// 	.then(res => {
 				// 		this.formFields = {};
+				// 		console.log(res);
 				// 	})
 				// 	.catch(error => alert(error));
+				fetch("/", {
+					method: "POST",
+					headers: { "Content-Type": "application/x-www-form-urlencoded" },
+					body: this.encode({
+						"form-name": "Multi Step Form",
+						...this.formFields
+					})
+				})
+					.then(() => {
+						this.formFields = {};
+					})
+					.catch(error => alert(error));
 			}
 		},
 		encode(data) {
