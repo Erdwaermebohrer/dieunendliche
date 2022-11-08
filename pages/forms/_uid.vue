@@ -1,11 +1,5 @@
 <template>
   <div id="page" :class="'page page__' + uid">
-    <background-images
-      :desktop="page.desktop_background_images"
-      :mobile="page.mobile_background_images"
-    />
-
-
     <div class="multi-step-form-section__wrapper">
       <form-slider :inputData="inputData" :steps="steps"/>
     </div>

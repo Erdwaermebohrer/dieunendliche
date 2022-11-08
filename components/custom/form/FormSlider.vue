@@ -16,7 +16,7 @@
 			>
 				<div class="form-slider__wrapper__section" v-for="(step, index) in steps" :key="index" :data-section="index" :style="checkStatus(index)">
 					<div class="form-step__wrapper">
-						
+
 						<div
 							class="form-step__wrapper--top"
 							:class="{ 'modified-top': index === 3 }"
@@ -426,6 +426,8 @@ export default {
 				// 		console.log(res);
 				// 	})
 				// 	.catch(error => alert(error));
+
+				console.log(this.formFields);
 				fetch("/", {
 					method: "POST",
 					headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -500,8 +502,8 @@ export default {
 				.catch(error => alert(error));
 		},
     onDocumentChange(event, objectName) {
-      // this.formFields[objectName] = event.target.files[0];
-      // this.fileName = event.target.files[0].name;
+      this.formFields[objectName] = event.target.files[0];
+      this.fileName = event.target.files[0].name;
     }
 	}
 };
