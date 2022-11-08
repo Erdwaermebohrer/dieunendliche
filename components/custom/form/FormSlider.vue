@@ -132,7 +132,7 @@
                     type="text"
                     class="input"
 										v-model="formFields[value.field_placeholder]"
-										:name="value.value.field_placeholder"
+										:name="value.field_placeholder"
 										:placeholder="value.field_placeholder"
 										@input="validationFields[currentIndex].input = true"
 									/>
