@@ -390,8 +390,26 @@ export default {
 				this.currentIndex += 1;
 				this.$refs.formSwiper.swiper.slideNext();
 			} else {
-				alert("Submit");
+				fetch("/", {
+					method: "POST",
+					headers: { "Content-Type": "application/x-www-form-urlencoded" },
+					body: this.encode({
+						"form-name": "Multi Step Form",
+						...this.formFields
+					})
+				})
+					.then(() => {
+						this.formFields = {};
+					})
+					.catch(error => alert(error));
 			}
+		},
+		encode(data) {
+			return Object.keys(data)
+				.map(
+					key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+				)
+				.join("&");
 		},
 		nextSlide(field_id, value) {
 			this.formFields[field_id] = value;
@@ -399,8 +417,6 @@ export default {
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
 				this.$refs.formSwiper.swiper.slideNext();
-			} else {
-				alert("Submit");
 			}
 		},
 		selectItem(field_id, value) {
