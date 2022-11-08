@@ -52,8 +52,20 @@ export default {
     endpoint: process.env.PRISMIC_API_ENDPOINT,
     disableGenerator: false,
     modern: true,
-    preview: false,
-    components: false
+    preview: '/preview',
+    components: false,
+    apiOptions: {
+      routes: [
+        {
+          type: 'page',
+          path: '/:uid',
+        },
+        {
+          type: 'custom-form',
+          path: '/forms/:uid',
+        }
+      ]
+    },
   },
   buildModules: ["@nuxtjs/prismic"],
   build: {
