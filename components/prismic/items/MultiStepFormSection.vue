@@ -1,6 +1,6 @@
 <template>
 	<div class="multi-step-form-section__wrapper">
-		<form-slider :steps="steps"/>
+		<form-slider :inputData="inputData" :steps="steps"/>
 	</div>
 </template>
 
@@ -17,12 +17,14 @@ export default {
 	},
   data() {
     return {
+      inputData: {},
       steps: []
     }
   },
   async fetch() {
     const items =  await this.$prismic.api.getByID(this.slice.primary.form.id);
     this.steps = items.data.body;
+    this.inputData = items.data;
   }
 };
 </script>

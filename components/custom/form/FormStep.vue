@@ -1,48 +1,24 @@
 <template>
 	<div class="form-step__wrapper">
 		<div class="form-step__wrapper--top">
-			<div v-text="$prismic.asText(step.primary.title)"></div>
-			<div v-html="$prismic.asHtml(step.primary.description)"></div>
+			<div class="title" v-text="$prismic.asText(step.primary.title)"></div>
+			<div
+				class="description"
+				v-html="$prismic.asHtml(step.primary.description)"
+			></div>
 		</div>
 		<div class="form-step__wrapper--bottom">
-			<div class="fields__wrapper">
-				<div
-					v-for="(value, key) in step.items"
-					:key="key"
-					class="fields__wrapper--item"
-				>
-					<div
-						class="radio__wrapper"
-            :class="{'radio-active': value.field_placeholder === multiForm[value.field_id] }"
-						v-if="value.field_type === 'radio'"
-						@click="handleClick(value.field_id, value.field_placeholder)"
-					>
-						<div class="radio__wrapper--text">
-							{{ value.field_placeholder }}
-						</div>
-					</div>
-				</div>
-			</div>
+			<slot name="fields"> </slot>
 		</div>
 	</div>
 </template>
 
 <script>
-import { mapFields } from "../../../store/index";
 export default {
 	name: "form-step",
 	props: {
 		step: {
 			type: Object
-		}
-	},
-  computed: {
-    ...mapFields(["multiForm"]),
-  },
-	methods: {
-		handleClick(field_id, value) {
-      this.multiForm[field_id] = value
-			this.$emit("handle-click");
 		}
 	}
 };
@@ -53,48 +29,39 @@ export default {
 	min-height: 500px;
 
 	&--top {
+		margin-top: 60px;
+
+		.title {
+			font-size: 46px;
+			font-weight: 300;
+			line-height: 58px;
+			color: #857373;
+		}
+
+		.description {
+			font-size: 22px;
+			font-weight: 400;
+			line-height: 27.9px;
+			color: #857373;
+
+      p {
+        max-width: 620px;
+      }
+
+			p,
+			ul,
+			li {
+				font-size: 22px;
+				font-weight: 400;
+				line-height: 27.9px;
+				color: #857373;
+			}
+		}
 	}
 
 	&--bottom {
-		.fields__wrapper {
-			&--item {
-				.radio__wrapper {
-					width: 340px;
-					height: 35px;
-					display: flex;
-					justify-content: center;
-					background: transparent;
-					border: 1px solid #857373;
-					cursor: pointer;
-					transition: 0.4s all ease-in;
-
-					&--text {
-						font-size: 22px;
-						font-weight: 500;
-						line-height: 27.9px;
-						text-align: center;
-						color: #857373;
-						transition: 0.4s all ease-in;
-					}
-
-					&:hover {
-						background: #857373;
-
-						.radio__wrapper--text {
-							color: white;
-						}
-					}
-				}
-
-        .radio-active {
-          background: #857373!important;
-
-          .radio__wrapper--text {
-            color: white;
-          }
-        }
-			}
-		}
+    position: relative;
+		display: flex;
 	}
 }
 </style>
