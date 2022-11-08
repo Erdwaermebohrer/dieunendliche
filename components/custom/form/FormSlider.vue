@@ -18,8 +18,9 @@
 					<div class="form-step__wrapper">
 
 						<div
+              v-if="index"
 							class="form-step__wrapper--top"
-							:class="{ 'modified-top': currentIndex === 3 }"
+							:class="{ 'modified-top': index === 3 }"
 						>
 							<div
 								class="title"
@@ -34,12 +35,10 @@
 						<div class="form-step__wrapper--bottom">
 
 							<div
-								v-show="index !== 1"
+								v-if="index !== 1"
 								class="block-title"
 								v-text="$prismic.asText(step.primary.block_title)"
 							/>
-
-
 							<div v-show="index === 0" class="fields__wrapper">
 								<div
 									class="fields__wrapper--item"
@@ -62,8 +61,6 @@
 									/>
 								</div>
 							</div>
-
-
 							<div v-show="index === 0" class="fields__wrapper">
 								<div
 									class="fields__wrapper--item"
@@ -86,7 +83,7 @@
 									/>
 								</div>
 							</div>
-							<div v-show="index === 1" class="fields__wrapper">
+							<div v-if="index === 1" class="fields__wrapper">
 								<div
 									class="block-title"
 									v-text="$prismic.asText(inputData.block_title_a)"
@@ -111,7 +108,7 @@
 									/>
 								</div>
 							</div>
-							<div v-show="index === 1" class="fields__wrapper">
+							<div v-if="index === 1" class="fields__wrapper">
 								<div
 									class="block-title"
 									v-text="$prismic.asText(inputData.block_title_b)"
@@ -136,7 +133,7 @@
 									/>
 								</div>
 							</div>
-							<div v-show="index === 1" class="fields__wrapper full-width">
+							<div v-if="index === 1" class="fields__wrapper full-width">
 								<div
 									class="block-title"
 									v-text="$prismic.asText(step.primary.block_title)"
@@ -156,7 +153,7 @@
 									/>
 								</div>
 							</div>
-							<div v-show="index === 2" class="fields__wrapper horizontal">
+							<div v-if="index === 2" class="fields__wrapper horizontal">
 								<div
 									class="fields__wrapper--item"
 									v-for="(value, key) in step.items"
@@ -179,7 +176,7 @@
 								</div>
 							</div>
 							<div
-								v-show="index === 3"
+								v-if="index === 3"
 								class="fields__wrapper horizontal horizontal-with-textarea"
 							>
 								<div
@@ -235,7 +232,7 @@
 								</div>
 							</div>
 							<div
-								v-show="index === 4"
+								v-if="index === 4"
 								class="fields__wrapper horizontal text-field__wrapper"
 							>
 								<div
@@ -365,6 +362,7 @@ export default {
 		return {
 			currentIndex: 0,
 			formFields: {},
+      fileName: '',
 			showSlider: true,
 			swiperOption: {
 				allowTouchMove: false,
@@ -499,7 +497,8 @@ export default {
 				.catch(error => alert(error));
 		},
     onDocumentChange(event, objectName) {
-      this.formFields[objectName] = event.target.files[0];
+      // this.formFields[objectName] = event.target.files[0];
+      // this.fileName = event.target.files[0].name;
     }
 	}
 };
