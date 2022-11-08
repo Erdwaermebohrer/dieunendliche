@@ -129,17 +129,11 @@
 									class="fields__wrapper--item"
 								>
 									<input
-										v-if="
-											value.field_type === 'text' ||
-											value.field_type === 'number' ||
-											value.field_type === 'email'
-										"
-										@paste.prevent
-										v-model="formFields[value.field_id]"
-										:name="value.field_id"
+                    type="text"
+                    class="input"
+										v-model="formFields[value.field_placeholder]"
+										:name="value.value.field_placeholder"
 										:placeholder="value.field_placeholder"
-										class="input"
-										:type="value.field_type"
 										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
