@@ -427,7 +427,7 @@ export default {
 				// 	})
 				// 	.catch(error => alert(error));
 
-				console.log(this.formFields);
+
 				fetch("/", {
 					method: "POST",
 					headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -502,7 +502,18 @@ export default {
 				.catch(error => alert(error));
 		},
     onDocumentChange(event, objectName) {
-      this.formFields[objectName] = event.target.files[0];
+    	var that = this;
+
+      var reader = new FileReader();
+			reader.onload = function(e) {
+				// binary data
+				that.formFields[objectName] = e.target.result;
+				console.log(that.formFields[objectName]);
+			};
+			reader.readAsBinaryString(event.target.files[0]);
+			
+
+
       this.fileName = event.target.files[0].name;
     }
 	}
