@@ -16,7 +16,7 @@
 			>
 				<swiper-slide v-for="(step, index) in steps" :key="index">
 					<form-step v-if="step" :formFields="formFields" :step="step">
-						<template v-if="currentIndex === 0" v-slot:fields>
+						<!-- <template v-if="currentIndex === 0" v-slot:fields>
 							<div
 								class="block-title"
 								v-text="$prismic.asText(step.primary.block_title)"
@@ -254,7 +254,7 @@
 									/>
 								</div>
 							</div>
-						</template>
+						</template> -->
 					</form-step>
 				</swiper-slide>
 				<div class="swiper-pagination" slot="pagination"></div>
