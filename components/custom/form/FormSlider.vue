@@ -199,9 +199,9 @@
 										:type="value.field_type"
 										ref="file"
 										accept="application/pdf"
-										@change="validateSize"
+										@change="onDocumentChange($event, value.field_id)"
 										max-size="20"
-										name="file-1"
+										:name="value.field_id"
 										placeholder=""
 									/>
 									<input
@@ -461,7 +461,10 @@ export default {
 					this.formSuccess = true;
 				})
 				.catch(error => alert(error));
-		}
+		},
+    onDocumentChange(event, objectName) {
+      this.formFields[objectName] = event.target.files[0];
+    }
 	}
 };
 </script>
