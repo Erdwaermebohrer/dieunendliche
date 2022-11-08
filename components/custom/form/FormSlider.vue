@@ -28,7 +28,7 @@
 						</div>
 						<div class="form-step__wrapper--bottom">
 							<div
-                v-show="index !== 1"
+								v-show="index !== 1"
 								class="block-title"
 								v-text="$prismic.asText(step.primary.block_title)"
 							/>
@@ -126,7 +126,7 @@
 									/>
 								</div>
 							</div>
-              <div v-show="index === 1" class="fields__wrapper">
+							<div v-show="index === 1" class="fields__wrapper">
 								<div
 									class="block-title"
 									v-text="$prismic.asText(step.primary.block_title)"
@@ -148,7 +148,7 @@
 									/>
 								</div>
 							</div>
-              <div v-show="index === 2" class="fields__wrapper horizontal">
+							<div v-show="index === 2" class="fields__wrapper horizontal">
 								<div
 									class="fields__wrapper--item"
 									v-for="(value, key) in step.items"
@@ -170,7 +170,6 @@
 									/>
 								</div>
 							</div>
-
 							<div v-show="index === 3" class="fields__wrapper horizontal">
 								<div
 									v-for="(value, key) in step.items"
@@ -224,8 +223,7 @@
 									/>
 								</div>
 							</div>
-
-              <div v-show="index === 4" class="fields__wrapper horizontal">
+							<div v-show="index === 4" class="fields__wrapper horizontal">
 								<div
 									v-for="(value, key) in step.items"
 									:key="key"
