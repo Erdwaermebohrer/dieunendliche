@@ -130,7 +130,7 @@
 								>
                   <label
                     class="label"
-                    v-text="$prismic.asText(value.field_placeholder)"
+                    v-text="value.field_placeholder"
                   />
 									<input
                     type="text"
