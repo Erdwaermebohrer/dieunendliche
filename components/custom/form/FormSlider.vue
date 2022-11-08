@@ -128,19 +128,15 @@
 									:key="key"
 									class="fields__wrapper--item"
 								>
-                  <label
-                    class="label"
-                    v-text="value.field_placeholder"
-                  />
 									<input
-                    type="text"
 										v-if="
-											value.field_type == 'text'
+											value.field_type === 'text'
 										"
                     class="input"
-										v-model="formFields[value.field_placeholder]"
-										:name="value.field_placeholder"
-										@input="validationFields[currentIndex].input = true"
+                    :type="field.type"
+                    value=""
+                    :name="value.field_id"
+										v-model="formFields[value.field_id]"
 									/>
 								</div>
 							</div>
