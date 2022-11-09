@@ -2,6 +2,38 @@
   position: relative;
 }
 
+.logo__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include for-tablet {
+    padding-top: 40px;
+  }
+
+  &--image {
+    @include for-tablet {
+      width: 180px;
+    }
+  }
+
+  &--text {
+    .text-title {
+      font-family: $font-primary;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 21px;
+      color: black;
+
+      @include for-tablet {
+        font-size: 11px;
+        line-height: 13px;
+      }
+    }
+  }
+}
+
 .swiper-pagination {
   position: absolute;
   top: -30px;

@@ -1,5 +1,12 @@
 <template>
 	<div class="form-slider__wrapper">
+		<div class="logo__wrapper">
+			<img class="logo__wrapper--image" src="~assets/svg/new-logo.svg" />
+			<div class="logo__wrapper--text">
+				<div class="text-title">Dein Partner</div>
+        <div class="text-title">für Die Unendliche Energie</div>
+			</div>
+		</div>
 		<form
 			novalidate
 			id="multi-step-form"
@@ -213,9 +220,7 @@
 									<div class="file__wrapper" v-if="value.field_type === 'file'">
 										<span
 											class="file__wrapper--placeholder"
-											v-text="
-												'Datei hochladen'
-											"
+											v-text="'Datei hochladen'"
 										/>
 										<input
 											v-if="value.field_type === 'file'"
@@ -235,9 +240,7 @@
 									>
 										<span
 											class="file__wrapper--placeholder"
-											v-text="
-												'Datei hochladen'
-											"
+											v-text="'Datei hochladen'"
 										/>
 										<input
 											v-if="value.field_type === 'file'"
@@ -257,9 +260,7 @@
 									>
 										<span
 											class="file__wrapper--placeholder"
-											v-text="
-												'Datei hochladen'
-											"
+											v-text="'Datei hochladen'"
 										/>
 										<input
 											v-if="value.field_type === 'file'"
@@ -278,7 +279,7 @@
 									>
 										<div class="top">
 											<div @click="addFileField" class="icon" v-text="'+'" />
-                      <div v-text="'Datei hinzufügen'" class="text" />
+											<div v-text="'Datei hinzufügen'" class="text" />
 										</div>
 										<div class="bottom">
 											<div class="format" v-text="'*PDF, JPG oder PNG'" />
@@ -376,8 +377,12 @@
 				@click="prevSlide"
 				class="btn-prev"
 			>
-				<img v-if="!isMobile" class="rotate" src="~assets/svg/arrow-slider.svg" />
-        <img v-else class="rotate" src="~assets/svg/arrow-slider-white.svg" />
+				<img
+					v-if="!isMobile"
+					class="rotate"
+					src="~assets/svg/arrow-slider.svg"
+				/>
+				<img v-else class="rotate" src="~assets/svg/arrow-slider-white.svg" />
 				<span>{{ $prismic.asText(buttonPrevLabel) }}</span>
 			</button>
 			<div class="wrapper">
@@ -390,8 +395,12 @@
 					class="btn-next"
 				>
 					<span>{{ $prismic.asText(buttonNextLabel) }}</span>
-					<img v-if="!isMobile" class="rotate" src="~assets/svg/arrow-slider.svg" />
-          <img v-else class="rotate" src="~assets/svg/arrow-slider-white.svg" />
+					<img
+						v-if="!isMobile"
+						class="rotate"
+						src="~assets/svg/arrow-slider.svg"
+					/>
+					<img v-else class="rotate" src="~assets/svg/arrow-slider-white.svg" />
 				</button>
 			</div>
 		</div>
@@ -433,9 +442,9 @@ export default {
 				return null;
 			}
 		},
-    isMobile() {
-      return this.currentResolution <= 990;
-    },
+		isMobile() {
+			return this.currentResolution <= 990;
+		},
 		isStepValidated() {
 			if (this.initStep) {
 				return true;
@@ -470,7 +479,7 @@ export default {
 	data() {
 		return {
 			currentIndex: 0,
-      currentResolution: 1200,
+			currentResolution: 1200,
 			files: {
 				showFileTwo: false,
 				showFileThree: false
@@ -516,7 +525,7 @@ export default {
 				)
 				.join("&");
 		},
-    getCurrentResolution() {
+		getCurrentResolution() {
 			this.currentResolution = innerWidth;
 		},
 		navigateToHomePage() {
@@ -614,13 +623,13 @@ export default {
 			// };
 		}
 	},
-  beforeMount() {
-		window.addEventListener('load', this.getCurrentResolution);
-		window.addEventListener('resize', this.getCurrentResolution);
+	beforeMount() {
+		window.addEventListener("load", this.getCurrentResolution);
+		window.addEventListener("resize", this.getCurrentResolution);
 	},
 	beforeDestroy() {
-		window.removeEventListener('load', this.getCurrentResolution);
-		window.removeEventListener('resize', this.getCurrentResolution);
+		window.removeEventListener("load", this.getCurrentResolution);
+		window.removeEventListener("resize", this.getCurrentResolution);
 	}
 };
 </script>

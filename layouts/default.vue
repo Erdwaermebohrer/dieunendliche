@@ -1,9 +1,9 @@
 <template>
   <div  class="container">
-    <transition name="fade-preloader" mode="in-out">
+    <transition v-if="currentRoute !== '/form'" name="fade-preloader" mode="in-out">
       <app-preloader v-if="pageLoading" />
     </transition>
-    <app-header :inputData="header" />
+    <app-header v-if="currentRoute !== '/form'" :inputData="header" />
     <Nuxt />
     <app-footer :inputData="footer" />
   </div>
@@ -22,9 +22,19 @@ export default {
     "app-footer": Footer,
     "app-preloader": Preloader,
   },
+  watch: {
+    $route: {
+      handler(value) {
+        this.currentRoute = value.path;
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
   data() {
     return {
       showCursor: false,
+      currentRoute: ''
     };
   },
   computed: {
