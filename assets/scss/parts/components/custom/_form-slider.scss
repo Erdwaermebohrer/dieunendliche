@@ -118,8 +118,8 @@
       color: #857373;
 
       @include for-tablet {
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 16px!important;
+        line-height: 20px!important;
       }
 
       p {
@@ -135,8 +135,8 @@
         color: #857373;
 
         @include for-tablet {
-          font-size: 16px;
-          line-height: 20px;
+          font-size: 16px!important;
+          line-height: 20px!important;
         }
       }
     }
