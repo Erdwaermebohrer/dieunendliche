@@ -105,8 +105,8 @@
       color: #857373;
 
       @include for-tablet {
-        font-size: 28px;
-        line-height: 35px;
+        font-size: 28px!important;
+        line-height: 35px!important;
       }
     }
 
