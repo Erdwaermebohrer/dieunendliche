@@ -106,17 +106,23 @@
 									:key="key"
 									@click="selectItem(value.field_id, value.field_placeholder)"
 								>
-									<input
-										type="radio"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
+									<label
+										class="custom-radio"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:value="value.field_placeholder"
-										:name="$prismic.asText(inputData.block_title_a)"
-									/>{{ value.field_placeholder }}
+										v-if="value.field_type === 'radio'"
+									>
+										<input
+											type="radio"
+											v-if="value.field_type === 'radio'"
+											class="selector-field"
+											:value="value.field_placeholder"
+											:name="$prismic.asText(step.primary.block_title)"
+										/>
+										{{ value.field_placeholder }}
+									</label>
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper">
@@ -130,17 +136,23 @@
 									:key="key"
 									@click="selectItem(value.field_id, value.field_placeholder)"
 								>
-									<input
-										type="radio"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
+									<label
+										class="custom-radio"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:value="value.field_placeholder"
-										:name="$prismic.asText(inputData.block_title_b)"
-									/>{{ value.field_placeholder }}
+										v-if="value.field_type === 'radio'"
+									>
+										<input
+											type="radio"
+											v-if="value.field_type === 'radio'"
+											class="selector-field"
+											:value="value.field_placeholder"
+											:name="$prismic.asText(step.primary.block_title)"
+										/>
+										{{ value.field_placeholder }}
+									</label>
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper full-width">
@@ -170,18 +182,23 @@
 									:key="key"
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
-									<input
-										type="radio"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
+									<label
+										class="custom-radio"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										v-model="formFields[value.field_id]"
-										:value="value.field_placeholder"
-										:name="$prismic.asText(step.primary.block_title)"
-									/>{{ value.field_placeholder }}
+										v-if="value.field_type === 'radio'"
+									>
+										<input
+											type="radio"
+											v-if="value.field_type === 'radio'"
+											class="selector-field"
+											:value="value.field_placeholder"
+											:name="$prismic.asText(step.primary.block_title)"
+										/>
+										{{ value.field_placeholder }}
+									</label>
 								</div>
 							</div>
 							<div
