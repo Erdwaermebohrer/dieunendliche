@@ -64,7 +64,7 @@
 									</label>
 								</div>
 							</div>
-							<div v-if="index === 0" class="fields__wrapper">
+							<div v-if="index === 0" class="fields__wrapper second-wrapper">
 								<div
 									class="fields__wrapper--item"
 									v-for="(value, key) in step.items"
@@ -120,7 +120,7 @@
 									</label>
 								</div>
 							</div>
-							<div v-if="index === 1" class="fields__wrapper">
+							<div v-if="index === 1" class="fields__wrapper second-step-second-wrapper">
 								<div
 									class="block-title"
 									v-text="$prismic.asText(inputData.block_title_b)"
