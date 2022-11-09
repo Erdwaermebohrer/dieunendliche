@@ -8,12 +8,7 @@
 			netlify
 		>
 			<input type="hidden" name="form-name" value="Multi Step Form" />
-			<div
-				v-show="showSlider"
-				class="swiper"
-				ref="formSwiper"
-				:options="swiperOption"
-			>
+			<div class="swiper" v-show="showSlider">
 				<div
 					class="form-slider__wrapper__section"
 					v-for="(step, index) in steps"
@@ -171,7 +166,6 @@
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										class="input"
-										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
 							</div>
@@ -253,7 +247,6 @@
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										class="input"
-										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
 							</div>
@@ -289,9 +282,6 @@
 										:placeholder="value.field_placeholder"
 										class="input"
 										:type="value.field_type"
-										@input="
-											validationFields[currentIndex][value.field_label] = true
-										"
 									/>
 								</div>
 							</div>
@@ -319,7 +309,7 @@
 				</div>
 				<button
 					v-if="buttonNextLabel && buttonNextLabel.length > 0"
-					@click="handleNextSlide"
+					@click="validateStep"
 					class="btn-next"
 				>
 					<span>{{ $prismic.asText(buttonNextLabel) }}</span>
@@ -359,25 +349,29 @@ export default {
 			}
 		},
 		isStepValidated() {
+			if (this.initStep) {
+				return true;
+			}
+
 			if (this.currentIndex === 1) {
 				if (
 					!this.validationFields[this.currentIndex].Gebäudetyp ||
 					!this.validationFields[this.currentIndex].Bauvorhaben ||
-					!this.validationFields[this.currentIndex].input
+					!this.formFields.Addresse
 				) {
 					return false;
 				}
 			}
 			if (this.currentIndex === 3) {
-				if (!this.validationFields[this.currentIndex].input) {
+				if (!this.formFields.sonstige_informationen) {
 					return false;
 				}
 			}
 			if (this.currentIndex === 4) {
 				if (
-					!this.validationFields[this.currentIndex].Name ||
-					!this.validationFields[this.currentIndex].Telefonnummer ||
-					!this.validationFields[this.currentIndex].Email
+					!this.formFields.name ||
+					!this.formFields.telefonnummer ||
+					!this.formFields.email
 				) {
 					return false;
 				}
@@ -389,36 +383,17 @@ export default {
 		return {
 			currentIndex: 0,
 			formFields: {},
-			fileName: "",
 			showSlider: true,
-			swiperOption: {
-				allowTouchMove: false,
-				autoHeight: true,
-				pagination: {
-					el: ".swiper-pagination",
-					type: "progressbar"
-				},
-				simulateTouch: false,
-				slidesPerView: 1,
-				spaceBetween: 25,
-				speed: 700
-			},
 			validationFields: {
 				1: {
 					Gebäudetyp: false,
 					Bauvorhaben: false,
-					input: false
 				},
 				3: {
 					file: true,
-					input: false
-				},
-				4: {
-					Name: false,
-					Telefonnummer: false,
-					Email: false
 				}
-			}
+			},
+			initStep: true
 		};
 	},
 	methods: {
@@ -432,28 +407,6 @@ export default {
 			}
 			return "display:none;";
 		},
-		handleNextSlide() {
-			if (!this.isStepValidated) {
-				return;
-			}
-			console.log(this.currentIndex + " / " + (this.steps.length - 1));
-			if (this.currentIndex < this.steps.length - 1) {
-				this.currentIndex += 1;
-			} else {
-				let myForm = document.getElementById("multi-step-form");
-				let formData = new FormData(myForm);
-
-				fetch("/", {
-					body: formData,
-					method: "POST"
-				})
-					.then(res => {
-						this.formFields = {};
-						console.log(res);
-					})
-					.catch(error => alert(error));
-			}
-		},
 		encode(data) {
 			return Object.keys(data)
 				.map(
@@ -462,6 +415,7 @@ export default {
 				.join("&");
 		},
 		nextSlide(field_id, value) {
+			this.initStep = true;
 			this.formFields[field_id] = value;
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
@@ -477,6 +431,38 @@ export default {
 
 			if (this.currentIndex === 1) {
 				this.validationFields[this.currentIndex][field_id] = true;
+				this.showSlider = false;
+				this.$nextTick(() => {
+					this.showSlider = true;
+				});
+			}
+		},
+    validateInput(event, id) {
+      console.log(event)
+      console.log(id)
+    },
+		validateStep() {
+			this.initStep = false;
+			if (!this.isStepValidated) {
+				return;
+			}
+
+			if (this.currentIndex < this.steps.length - 1) {
+				this.currentIndex += 1;
+        this.initStep = true;
+			} else {
+				let myForm = document.getElementById("multi-step-form");
+				let formData = new FormData(myForm);
+
+				fetch("/", {
+					body: formData,
+					method: "POST"
+				})
+					.then(res => {
+						this.formFields = {};
+						console.log(res);
+					})
+					.catch(error => alert(error));
 			}
 		},
 		validateSize(e) {
@@ -492,6 +478,7 @@ export default {
 .swiper {
 	position: relative;
 }
+
 .swiper-pagination {
 	position: absolute;
 	top: -30px;
