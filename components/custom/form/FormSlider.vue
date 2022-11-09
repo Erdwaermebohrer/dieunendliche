@@ -8,15 +8,15 @@
 			netlify
 		>
 			<input type="hidden" name="form-name" value="Multi Step Form" />
-			<div
-				v-show="showSlider"
-				class="swiper"
-				ref="formSwiper"
-				:options="swiperOption"
-			>
-				<div class="form-slider__wrapper__section" v-for="(step, index) in steps" :key="index" :data-section="index" :style="checkStatus(index)">
+			<div class="swiper" v-show="showSlider">
+				<div
+					class="form-slider__wrapper__section"
+					v-for="(step, index) in steps"
+					:key="index"
+					:data-section="index"
+					:style="checkStatus(index)"
+				>
 					<div class="form-step__wrapper">
-
 						<div
 							class="form-step__wrapper--top"
 							:class="{ 'modified-top': index === 3 }"
@@ -32,7 +32,6 @@
 						</div>
 
 						<div class="form-step__wrapper--bottom">
-
 							<div
 								v-if="index !== 1"
 								class="block-title"
@@ -46,13 +45,14 @@
 									v-show="key < 5"
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
-
-									<label class="custom-radio" 
-												:class="{
-													'selector-active':
-														value.field_placeholder === formFields[value.field_id],
-												}" 
-												v-if="value.field_type === 'radio'">
+									<label
+										class="custom-radio"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										v-if="value.field_type === 'radio'"
+									>
 										<input
 											type="radio"
 											v-if="value.field_type === 'radio'"
@@ -60,7 +60,7 @@
 											:value="value.field_placeholder"
 											:name="$prismic.asText(step.primary.block_title)"
 										/>
-										{{value.field_placeholder}}
+										{{ value.field_placeholder }}
 									</label>
 								</div>
 							</div>
@@ -72,19 +72,21 @@
 									v-show="key > 4"
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
-									<label class="custom-radio" 
-												:class="{
-													'selector-active':
-														value.field_placeholder === formFields[value.field_id],
-												}" 
-												v-if="value.field_type === 'radio'">
+									<label
+										class="custom-radio"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										v-if="value.field_type === 'radio'"
+									>
 										<input
 											type="radio"
 											class="selector-field"
 											:value="value.field_placeholder"
 											:name="$prismic.asText(step.primary.block_title)"
 										/>
-										{{value.field_placeholder}}
+										{{ value.field_placeholder }}
 									</label>
 								</div>
 							</div>
@@ -99,17 +101,23 @@
 									:key="key"
 									@click="selectItem(value.field_id, value.field_placeholder)"
 								>
-									<input
-										type="radio"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
+									<label
+										class="custom-radio"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:value="value.field_placeholder"
-										:name="$prismic.asText(inputData.block_title_a)"
-									/>{{value.field_placeholder}}
+										v-if="value.field_type === 'radio'"
+									>
+										<input
+											type="radio"
+											v-if="value.field_type === 'radio'"
+											class="selector-field"
+											:value="value.field_placeholder"
+											:name="$prismic.asText(inputData.block_title_a)"
+										/>
+										{{ value.field_placeholder }}
+									</label>
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper">
@@ -123,17 +131,23 @@
 									:key="key"
 									@click="selectItem(value.field_id, value.field_placeholder)"
 								>
-									<input
-										type="radio"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
+									<label
+										class="custom-radio"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										:value="value.field_placeholder"
-										:name="$prismic.asText(inputData.block_title_b)"
-									/>{{value.field_placeholder}}
+										v-if="value.field_type === 'radio'"
+									>
+										<input
+											type="radio"
+											v-if="value.field_type === 'radio'"
+											class="selector-field"
+											:value="value.field_placeholder"
+											:name="$prismic.asText(inputData.block_title_b)"
+										/>
+										{{ value.field_placeholder }}
+									</label>
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper full-width">
@@ -152,7 +166,6 @@
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										class="input"
-										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
 							</div>
@@ -163,18 +176,23 @@
 									:key="key"
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
-									<input
-										type="radio"
-										v-if="value.field_type === 'radio'"
-										class="selector-field"
+									<label
+										class="custom-radio"
 										:class="{
 											'selector-active':
 												value.field_placeholder === formFields[value.field_id],
 										}"
-										v-model="formFields[value.field_id]"
-										:value="value.field_placeholder"
-										:name="$prismic.asText(step.primary.block_title)"
-									/>{{value.field_placeholder}}
+										v-if="value.field_type === 'radio'"
+									>
+										<input
+											type="radio"
+											v-if="value.field_type === 'radio'"
+											class="selector-field"
+											:value="value.field_placeholder"
+											:name="$prismic.asText(step.primary.block_title)"
+										/>
+										{{ value.field_placeholder }}
+									</label>
 								</div>
 							</div>
 							<div
@@ -229,7 +247,6 @@
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
 										class="input"
-										@input="validationFields[currentIndex].input = true"
 									/>
 								</div>
 							</div>
@@ -265,9 +282,6 @@
 										:placeholder="value.field_placeholder"
 										class="input"
 										:type="value.field_type"
-										@input="
-											validationFields[currentIndex][value.field_label] = true
-										"
 									/>
 								</div>
 							</div>
@@ -275,8 +289,10 @@
 					</div>
 				</div>
 				<div class="swiper-pagination">
-					<div class="swiper-pagination-progressbar" :style="barStatus(steps.length)">
-					</div>
+					<div
+						class="swiper-pagination-progressbar"
+						:style="barStatus(steps.length)"
+					></div>
 				</div>
 			</div>
 		</form>
@@ -293,7 +309,7 @@
 				</div>
 				<button
 					v-if="buttonNextLabel && buttonNextLabel.length > 0"
-					@click="handleNextSlide"
+					@click="validateStep"
 					class="btn-next"
 				>
 					<span>{{ $prismic.asText(buttonNextLabel) }}</span>
@@ -303,7 +319,6 @@
 	</div>
 </template>
 <script>
-//import "swiper/dist/css/swiper.css";
 import FormStep from "@/components/custom/form/FormStep.vue";
 export default {
 	name: "FormSlider",
@@ -334,25 +349,29 @@ export default {
 			}
 		},
 		isStepValidated() {
+			if (this.initStep) {
+				return true;
+			}
+
 			if (this.currentIndex === 1) {
 				if (
 					!this.validationFields[this.currentIndex].Gebäudetyp ||
 					!this.validationFields[this.currentIndex].Bauvorhaben ||
-					!this.validationFields[this.currentIndex].input
+					!this.formFields.Addresse
 				) {
 					return false;
 				}
 			}
 			if (this.currentIndex === 3) {
-				if (!this.validationFields[this.currentIndex].input) {
+				if (!this.formFields.sonstige_informationen) {
 					return false;
 				}
 			}
 			if (this.currentIndex === 4) {
 				if (
-					!this.validationFields[this.currentIndex].Name ||
-					!this.validationFields[this.currentIndex].Telefonnummer ||
-					!this.validationFields[this.currentIndex].Email
+					!this.formFields.name ||
+					!this.formFields.telefonnummer ||
+					!this.formFields.email
 				) {
 					return false;
 				}
@@ -364,60 +383,77 @@ export default {
 		return {
 			currentIndex: 0,
 			formFields: {},
-      fileName: '',
 			showSlider: true,
-			swiperOption: {
-				allowTouchMove: false,
-				autoHeight: true,
-				pagination: {
-					el: ".swiper-pagination",
-					type: "progressbar"
-				},
-				simulateTouch: false,
-				slidesPerView: 1,
-				spaceBetween: 25,
-				speed: 700
-			},
 			validationFields: {
 				1: {
 					Gebäudetyp: false,
 					Bauvorhaben: false,
-					input: false
 				},
 				3: {
 					file: true,
-					input: false
-				},
-				4: {
-					Name: false,
-					Telefonnummer: false,
-					Email: false
 				}
-			}
+			},
+			initStep: true
 		};
 	},
 	methods: {
+		barStatus(total) {
+			var barWidth = (this.currentIndex / (total - 1)) * 100;
+			return "width:" + barWidth + "%";
+		},
+		checkStatus(index) {
+			if (index == this.currentIndex) {
+				return "display:block;";
+			}
+			return "display:none;";
+		},
+		encode(data) {
+			return Object.keys(data)
+				.map(
+					key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+				)
+				.join("&");
+		},
+		nextSlide(field_id, value) {
+			this.initStep = true;
+			this.formFields[field_id] = value;
+			if (this.currentIndex < this.steps.length - 1) {
+				this.currentIndex += 1;
+			}
+		},
 		prevSlide() {
 			if (this.currentIndex > 0) {
 				this.currentIndex -= 1;
-				//this.$refs.formSwiper.swiper.slidePrev();
 			}
 		},
-		handleNextSlide() {
+		selectItem(field_id, value) {
+			this.formFields[field_id] = value;
+
+			if (this.currentIndex === 1) {
+				this.validationFields[this.currentIndex][field_id] = true;
+				this.showSlider = false;
+				this.$nextTick(() => {
+					this.showSlider = true;
+				});
+			}
+		},
+    validateInput(event, id) {
+      console.log(event)
+      console.log(id)
+    },
+		validateStep() {
+			this.initStep = false;
 			if (!this.isStepValidated) {
 				return;
 			}
-			console.log(this.currentIndex+' / '+(this.steps.length - 1));
+
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
-				//this.$refs.formSwiper.swiper.slideNext();
+        this.initStep = true;
 			} else {
-				// console.log(this.formFields);
 				let myForm = document.getElementById("multi-step-form");
 				let formData = new FormData(myForm);
 
-			
-				console.log(formData);
 				fetch("/", {
 					body: formData,
 					method: "POST"
@@ -429,36 +465,6 @@ export default {
 					.catch(error => alert(error));
 			}
 		},
-		encode(data) {
-			return Object.keys(data)
-				.map(
-					key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-				)
-				.join("&");
-		},
-		nextSlide(field_id, value) {
-			this.formFields[field_id] = value;
-			if (this.currentIndex < this.steps.length - 1) {
-				this.currentIndex += 1;
-			}
-		},
-		selectItem(field_id, value) {
-			this.formFields[field_id] = value;
-
-			if (this.currentIndex === 1) {
-				this.validationFields[this.currentIndex][field_id] = true;
-			}
-		},
-		barStatus(total){
-			var barWidth = (this.currentIndex/(total-1))*100;
-			return 'width:'+barWidth+'%';
-		},
-		checkStatus(index){
-			if(index == this.currentIndex){
-				return 'display:block;'
-			}
-			return 'display:none;'
-		},
 		validateSize(e) {
 			// if(this.$refs['file'].files[0].size > 1000000){
 			//    alert("File is too big – Max 1 MB");
@@ -469,20 +475,18 @@ export default {
 };
 </script>
 <style lang="scss">
-
-
-
-.swiper{
+.swiper {
 	position: relative;
 }
-.swiper-pagination{
+
+.swiper-pagination {
 	position: absolute;
 	top: -30px;
 	left: 0;
 	width: 100%;
 	height: 5px;
 	overflow: hidden;
-	&:after{
+	&:after {
 		background: #618787;
 		width: 100%;
 		top: 50%;
@@ -490,9 +494,9 @@ export default {
 		height: 2px;
 		transform: translateY(-1px);
 		position: absolute;
-		content:''
+		content: "";
 	}
-	&-progressbar{
+	&-progressbar {
 		background: #618787;
 		width: 0%;
 		top: 0;
@@ -774,7 +778,7 @@ export default {
 	}
 }
 
-.custom-radio{
+.custom-radio {
 	position: relative;
 	border: 1px solid #857373;
 	width: 100%;
@@ -793,7 +797,7 @@ export default {
 			opacity: 1; /* Firefox */
 		}
 	}
-	input{
+	input {
 		opacity: 0;
 		position: absolute;
 		width: 100%;
