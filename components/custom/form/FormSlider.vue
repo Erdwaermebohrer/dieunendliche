@@ -197,67 +197,89 @@
 							</div>
 							<div
 								v-if="index === 3"
-								class="fields__wrapper horizontal horizontal-with-textarea"
+								class="step-4__wrapper"
 							>
 								<div
 									v-for="(value, key) in step.items"
 									:key="key"
-									class="fields__wrapper--item"
-									:class="{ textarea: value.field_type === 'textarea' }"
+									class="step-4__wrapper--item"
 								>
-									<label
-										v-if="
-											value.field_type === 'text' ||
-											value.field_type === 'number' ||
-											value.field_type === 'email' ||
-											value.field_type === 'textarea' ||
-											value.field_type === 'file'
-										"
-										class="label"
+                  <label
+										class="input-label"
 										:for="value.field_placeholder"
 										v-text="value.field_placeholder"
 									>
 									</label>
-									<input
-										v-if="value.field_type === 'file'"
-										:type="value.field_type"
-										ref="file"
-										accept="application/pdf"
-										@change="onDocumentChange($event, value.field_id)"
-										max-size="20"
-										:name="value.field_id"
-										placeholder=""
-									/>
-									<input
-										v-if="
-											value.field_type === 'text' ||
-											value.field_type === 'number' ||
-											value.field_type === 'email'
-										"
-										@paste.prevent
-										v-model="formFields[value.field_id]"
-										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										class="input"
-										:type="value.field_type"
-									/>
+                  <div class="file__wrapper" v-if="value.field_type === 'file'">
+                    <span class="file__wrapper--placeholder" v-text="'Hier bitte Ihre Dateien per Drag & Drop uploaden '" />
+                    <input
+                      v-if="value.field_type === 'file'"
+                      :type="value.field_type"
+                      ref="file"
+                      accept="application/pdf,image/jpeg,image/png"
+                      @change="onDocumentChange($event)"
+                      max-size="20"
+                      :name="value.field_id + '1'"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="file__wrapper" v-if="value.field_type === 'file' && files.showFileTwo">
+                    <span class="file__wrapper--placeholder" v-text="'Hier bitte Ihre Dateien per Drag & Drop uploaden '" />
+                    <input
+                      v-if="value.field_type === 'file'"
+                      :type="value.field_type"
+                      ref="file"
+                      accept="application/pdf,image/jpeg,image/png"
+                      @change="onDocumentChange($event)"
+                      max-size="20"
+                      :name="value.field_id + '2'"
+                      placeholder=""
+                    />
+                  </div>
+                  <div class="file__wrapper" v-if="value.field_type === 'file' && files.showFileThree">
+                    <span class="file__wrapper--placeholder" v-text="'Hier bitte Ihre Dateien per Drag & Drop uploaden '" />
+                    <input
+                      v-if="value.field_type === 'file'"
+                      :type="value.field_type"
+                      ref="file"
+                      accept="application/pdf,image/jpeg,image/png"
+                      @change="onDocumentChange($event)"
+                      max-size="20"
+                      :name="value.field_id + '3'"
+                      placeholder=""
+                    />
+                  </div>
+                  <div v-if="value.field_type === 'file'" class="file__wrapper--bottom">
+                    <div class="top">
+                      <div @click="addFileField" class="icon" v-text="'+'" />
+                    </div>
+                    <div class="bottom">
+                      <div class="format" v-text="'*PDF, JPG oder PNG'" />
+                      <div class="file-names__wrapper">
+                        <div class="file-names" v-for="(fileName, index) in fileNames" :key="index">
+                          <div class="delete-icon">X</div>
+                          <div class="name">{{ fileName }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 									<textarea
 										v-if="value.field_type === 'textarea'"
 										v-model="formFields[value.field_id]"
 										:name="value.field_id"
-										:placeholder="value.field_placeholder"
-										class="input"
+										:placeholder="'Ihre Nachricht an uns ...'"
+										class="text-area"
 									/>
 								</div>
 							</div>
 							<div
 								v-if="index === 4"
-								class="fields__wrapper horizontal text-field__wrapper"
+								class="step-5__wrapper"
 							>
 								<div
 									v-for="(value, key) in step.items"
 									:key="key"
-									class="fields__wrapper--item text-field"
+									class="step-5__wrapper--item"
 								>
 									<label
 										v-if="
@@ -266,7 +288,7 @@
 											value.field_type === 'email'
 										"
 										:for="value.field_label"
-										class="label"
+										class="input-label"
 										v-text="value.field_label"
 									>
 									</label>
@@ -280,7 +302,7 @@
 										v-model="formFields[value.field_id]"
 										:name="value.field_id"
 										:placeholder="value.field_placeholder"
-										class="input"
+										class="text-input"
 										:type="value.field_type"
 									/>
 								</div>
@@ -382,6 +404,13 @@ export default {
 	data() {
 		return {
 			currentIndex: 0,
+      files: {
+        showFileTwo: false,
+        showFileThree: false
+      },
+      fileNames: [
+
+      ],
 			formFields: {},
 			showSlider: true,
 			validationFields: {
@@ -397,6 +426,13 @@ export default {
 		};
 	},
 	methods: {
+    addFileField() {
+      if (!this.files.showFileTwo) {
+        this.files.showFileTwo = true;
+      } else if (this.files.showFileTwo && !this.files.showFileThree) {
+        this.files.showFileThree = true;
+      }
+    },
 		barStatus(total) {
 			var barWidth = (this.currentIndex / (total - 1)) * 100;
 			return "width:" + barWidth + "%";
@@ -421,6 +457,9 @@ export default {
 				this.currentIndex += 1;
 			}
 		},
+    onDocumentChange(event) {
+        this.fileNames.push(event.target.files[0].name);
+    },
 		prevSlide() {
 			if (this.currentIndex > 0) {
 				this.currentIndex -= 1;
@@ -510,7 +549,7 @@ export default {
 	min-height: 480px;
 
 	.modified-top {
-		height: 280px;
+		height: 290px;
 	}
 
 	&--top {

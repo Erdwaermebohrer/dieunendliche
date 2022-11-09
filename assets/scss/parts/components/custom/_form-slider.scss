@@ -1,0 +1,195 @@
+.step-4__wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &--item {
+    width: 32%;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+
+    .input-label {
+      margin-bottom: 10px;
+      position: relative;
+      font-family: $font-primary;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 17.75px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #857373;
+    }
+
+    .text-area {
+      padding: 10px 10px 100px;
+      background: transparent;
+      border: 1px solid #857373;
+      transition: 0.4s all ease-in;
+      color: #857373;
+      font-family: $font-primary;
+      font-size: 18px;
+      font-weight: 300;
+      resize: none;
+
+      &::placeholder {
+        transition: 0.4s all ease-in;
+        font-family: $font-primary;
+        font-size: 18px;
+        font-weight: 300;
+        font-style: italic;
+        opacity: 0.5;
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+    }
+
+    .file__wrapper {
+      position: relative;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      background: transparent;
+      border: 1px solid #857373;
+      transition: 0.4s all ease-in;
+      color: #857373;
+      font-family: $font-primary;
+      font-size: 18px;
+      font-weight: 300;
+
+      &--placeholder {
+        font-family: $font-primary;
+        font-size: 18px;
+        font-weight: 300;
+        font-style: italic;
+        opacity: 0.5;
+      }
+
+      input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      &--bottom {
+        .top {
+          .icon {
+            font-family: $font-primary;
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 26px;
+            color: $black;
+            cursor: pointer;
+          }
+        }
+
+        .bottom {
+          margin-top: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .format {
+            font-family: $font-primary;
+            font-size: 12px;
+            line-height: 15px;
+            color: #857373;
+          }
+
+          .file-names__wrapper {
+            .file-names {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              .delete-icon {
+                margin-right: 5px;
+                font-family: $font-primary;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: 15px;
+                color: #e8543b;
+                cursor: pointer;
+              }
+
+              .name {
+                font-family: $font-primary;
+                font-size: 12px;
+                line-height: 15px;
+                color: #857373;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &:nth-child(2) {
+      width: 60%;
+    }
+  }
+}
+
+.step-5__wrapper {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &--item {
+    width: 28%;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: column;
+
+    .input-label {
+      margin-bottom: 5px;
+      position: relative;
+      font-family: $font-primary;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 17.75px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #857373;
+    }
+
+    .text-input {
+      padding: 10px 10px 50px;
+      background: transparent;
+      border: 1px solid #857373;
+      transition: 0.4s all ease-in;
+      color: #857373;
+      font-family: $font-primary;
+      font-size: 18px;
+      font-weight: 300;
+
+      &::placeholder {
+        transition: 0.4s all ease-in;
+        font-family: $font-primary;
+        font-size: 18px;
+        font-weight: 300;
+        font-style: italic;
+        opacity: 0.5;
+      }
+
+      &:focus,
+      &:active {
+        outline: none;
+      }
+    }
+
+    &:nth-child(4) {
+      margin-top: 20px;
+    }
+  }
+}
