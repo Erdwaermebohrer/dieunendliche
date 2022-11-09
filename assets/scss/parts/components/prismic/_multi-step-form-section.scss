@@ -1,6 +1,8 @@
 .multi-step-form-section__wrapper {
   padding: 1vw 5vw 7vw;
   background: $brand-yelowish;
+  position: relative;
+  z-index: 9999;
 
   @include for-tablet {
     width: 100%;
