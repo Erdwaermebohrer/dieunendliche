@@ -351,7 +351,9 @@
 			<button
 				v-if="buttonPrevLabel && buttonPrevLabel.length > 0"
 				@click="prevSlide"
+        class="btn-prev"
 			>
+        <img class="rotate" src="~assets/svg/arrow-slider.svg" />
 				<span>{{ $prismic.asText(buttonPrevLabel) }}</span>
 			</button>
 			<div class="wrapper">
@@ -364,6 +366,7 @@
 					class="btn-next"
 				>
 					<span>{{ $prismic.asText(buttonNextLabel) }}</span>
+          <img class="rotate" src="~assets/svg/arrow-slider.svg" />
 				</button>
 			</div>
 		</div>
