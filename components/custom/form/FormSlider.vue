@@ -217,13 +217,32 @@
 										v-text="value.field_placeholder"
 									>
 									</label>
-									<div class="file__wrapper" v-if="value.field_type === 'file'">
+
+									<div class="file-names__wrapper" v-if="value.field_placeholder == 'Datenupload'">
+										<div
+											class="file-names"
+											v-for="(fileName, index) in fileNames"
+											:key="index"
+											:class="{'active':(fileNames.length - 1) == index}"
+										>
+											<div
+												@click="removeFileField(fileName.id)"
+												class="delete-icon"
+											>
+												X
+											</div>
+											<div class="name">{{ fileName.name }}</div>
+										</div>
+									</div>
+
+
+									<div class="file__wrapper" v-if="value.field_type === 'file' && !files.showFileFour">
 										<span
 											class="file__wrapper--placeholder"
-											v-text="'Datei hochladen'"
+											v-text="'+ Datei hochladen'"
 										/>
 										<input
-											v-if="value.field_type === 'file'"
+											v-show="!files.showFileTwo"
 											:type="value.field_type"
 											ref="file"
 											accept="application/pdf,image/jpeg,image/png"
@@ -232,18 +251,9 @@
 											:name="value.field_id + '1'"
 											placeholder=""
 										/>
-									</div>
-									<div
-										v-show="files.showFileTwo"
-										class="file__wrapper"
-										v-if="value.field_type === 'file'"
-									>
-										<span
-											class="file__wrapper--placeholder"
-											v-text="'Datei hochladen'"
-										/>
+
 										<input
-											v-if="value.field_type === 'file'"
+											v-show="files.showFileTwo && !files.showFileThree"
 											:type="value.field_type"
 											ref="file"
 											accept="application/pdf,image/jpeg,image/png"
@@ -252,18 +262,9 @@
 											:name="value.field_id + '2'"
 											placeholder=""
 										/>
-									</div>
-									<div
-										v-show="files.showFileThree"
-										class="file__wrapper"
-										v-if="value.field_type === 'file'"
-									>
-										<span
-											class="file__wrapper--placeholder"
-											v-text="'Datei hochladen'"
-										/>
+
 										<input
-											v-if="value.field_type === 'file'"
+											v-show="files.showFileThree && !files.showFileFour"
 											:type="value.field_type"
 											ref="file"
 											accept="application/pdf,image/jpeg,image/png"
@@ -272,32 +273,17 @@
 											:name="value.field_id + '3'"
 											placeholder=""
 										/>
+
+										
+
 									</div>
 									<div
 										v-if="value.field_type === 'file'"
 										class="file__wrapper--bottom"
 									>
-										<div class="top">
-											<div @click="addFileField" class="icon" v-text="'+'" />
-											<div v-text="'Datei hinzufügen'" class="text" />
-										</div>
+										
 										<div class="bottom">
 											<div class="format" v-text="'*PDF, JPG oder PNG'" />
-											<div class="file-names__wrapper">
-												<div
-													class="file-names"
-													v-for="(fileName, index) in fileNames"
-													:key="index"
-												>
-													<div
-														@click="removeFileField(fileName.id)"
-														class="delete-icon"
-													>
-														X
-													</div>
-													<div class="name">{{ fileName.name }}</div>
-												</div>
-											</div>
 										</div>
 									</div>
 									<textarea
@@ -482,7 +468,8 @@ export default {
 			currentResolution: 1200,
 			files: {
 				showFileTwo: false,
-				showFileThree: false
+				showFileThree: false,
+				showFileFour: false
 			},
 			fileNames: [],
 			formFields: {},
@@ -506,6 +493,8 @@ export default {
 				this.files.showFileTwo = true;
 			} else if (this.files.showFileTwo && !this.files.showFileThree) {
 				this.files.showFileThree = true;
+			} else if (this.files.showFileThree && !this.files.showFileFour) {
+				this.files.showFileFour = true;
 			}
 		},
 		barStatus(total) {
@@ -555,8 +544,10 @@ export default {
 
 				this.fileNames = arr;
 				this.fileNames.push(obj);
+				this.addFileField()
 			} else {
 				this.fileNames.push(obj);
+				this.addFileField()
 			}
 		},
 		prevSlide() {
@@ -574,10 +565,18 @@ export default {
 
 			this.fileNames = arr;
 
-			if (id === "datenupload-12") {
+			if (id === "datenupload-11") {
 				this.files.showFileTwo = false;
-			} else if (id === "datenupload-13") {
 				this.files.showFileThree = false;
+				this.files.showFileFour = false;
+			} else if (id === "datenupload-12") {
+				this.files.showFileTwo = true;
+				this.files.showFileThree = false;
+				this.files.showFileFour = false;
+			} else if (id === "datenupload-13") {
+				this.files.showFileTwo = true;
+				this.files.showFileThree = true;
+				this.files.showFileFour = false;
 			}
 		},
 		selectItem(field_id, value) {

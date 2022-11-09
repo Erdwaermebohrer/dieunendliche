@@ -99,9 +99,9 @@
     }
 
     .title {
-      font-size: 46px;
+      font-size: 36px;
       font-weight: 300;
-      line-height: 58px;
+      line-height: 130%;
       color: #857373;
 
       @include for-tablet {
@@ -112,9 +112,9 @@
 
     .description {
       font-family: $font-primary;
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 400;
-      line-height: 27.9px;
+      line-height: 130%;
       color: #857373;
 
       @include for-tablet {
@@ -129,9 +129,9 @@
       p,
       ul,
       li {
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 400;
-        line-height: 27.9px;
+        line-height: 130%;
         color: #857373;
 
         @include for-tablet {
@@ -360,14 +360,15 @@
 
 .horizontal {
   display: flex;
-
+  width: 100%;
   @include for-tablet {
     flex-direction: column;
   }
 
   .fields__wrapper--item {
     margin-right: 70px;
-    width: 12vw;
+   // width: 12vw;
+    width: 100%;
 
     @include for-tablet {
       margin-right: 0;
@@ -645,17 +646,51 @@
       }
     }
 
+    .file-names__wrapper {
+      .file-names {
+        display: flex;
+        align-items: center;
+        padding-left: 14px;
+
+        .delete-icon {
+          margin-right: 5px;
+          font-family: $font-primary;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 15px;
+          color: #e8543b;
+          cursor: pointer;
+          display: none;
+        }
+
+        .name {
+          font-family: $font-primary;
+          font-size: 12px;
+          line-height: 15px;
+          color: #857373;
+        }
+        &.active{
+          padding-left: 0;
+          .delete-icon{
+            display: block;
+          }
+        }
+      }
+    }
+
     .file__wrapper {
       position: relative;
       padding: 5px 10px;
-      margin-bottom: 5px;
-      background: transparent;
+      margin: 5px 0;
+      background: #857373;
       border: 1px solid #857373;
       transition: 0.4s all ease-in;
-      color: #857373;
+      color: #fff;
       font-family: $font-primary;
       font-size: 18px;
       font-weight: 300;
+      display: inline-block;
+      width: 190px;
 
       @include for-tablet {
         background: #857373;
@@ -665,8 +700,7 @@
         font-family: $font-primary;
         font-size: 18px;
         font-weight: 300;
-        font-style: italic;
-        opacity: 0.5;
+        opacity: 1;
 
         @include for-tablet {
           color: $white;
@@ -684,6 +718,8 @@
         opacity: 0;
         cursor: pointer;
       }
+
+
 
       &--bottom {
         .top {
@@ -715,6 +751,8 @@
           }
         }
 
+
+
         .bottom {
           margin-top: 5px;
           display: flex;
@@ -728,29 +766,7 @@
             color: #857373;
           }
 
-          .file-names__wrapper {
-            .file-names {
-              display: flex;
-              align-items: center;
-
-              .delete-icon {
-                margin-right: 5px;
-                font-family: $font-primary;
-                font-size: 12px;
-                font-weight: 600;
-                line-height: 15px;
-                color: #e8543b;
-                cursor: pointer;
-              }
-
-              .name {
-                font-family: $font-primary;
-                font-size: 12px;
-                line-height: 15px;
-                color: #857373;
-              }
-            }
-          }
+          
         }
       }
     }

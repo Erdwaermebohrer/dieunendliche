@@ -3,6 +3,15 @@
   background: $brand-yelowish;
   position: relative;
   z-index: 9999;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  > div{
+    width: 100%;
+    max-width: 1600px;
+  }
 
   @include for-tablet {
     width: 100%;
@@ -13,5 +22,6 @@
     position: fixed;
     overflow-y: scroll;
     z-index: 99;
+        align-items: flex-start;
   }
 }
