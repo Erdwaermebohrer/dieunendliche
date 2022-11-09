@@ -14,9 +14,14 @@
 				ref="formSwiper"
 				:options="swiperOption"
 			>
-				<div class="form-slider__wrapper__section" v-for="(step, index) in steps" :key="index" :data-section="index" :style="checkStatus(index)">
+				<div
+					class="form-slider__wrapper__section"
+					v-for="(step, index) in steps"
+					:key="index"
+					:data-section="index"
+					:style="checkStatus(index)"
+				>
 					<div class="form-step__wrapper">
-
 						<div
 							class="form-step__wrapper--top"
 							:class="{ 'modified-top': index === 3 }"
@@ -32,7 +37,6 @@
 						</div>
 
 						<div class="form-step__wrapper--bottom">
-
 							<div
 								v-if="index !== 1"
 								class="block-title"
@@ -46,13 +50,14 @@
 									v-show="key < 5"
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
-
-									<label class="custom-radio" 
-												:class="{
-													'selector-active':
-														value.field_placeholder === formFields[value.field_id],
-												}" 
-												v-if="value.field_type === 'radio'">
+									<label
+										class="custom-radio"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										v-if="value.field_type === 'radio'"
+									>
 										<input
 											type="radio"
 											v-if="value.field_type === 'radio'"
@@ -60,7 +65,7 @@
 											:value="value.field_placeholder"
 											:name="$prismic.asText(step.primary.block_title)"
 										/>
-										{{value.field_placeholder}}
+										{{ value.field_placeholder }}
 									</label>
 								</div>
 							</div>
@@ -72,19 +77,21 @@
 									v-show="key > 4"
 									@click="nextSlide(value.field_id, value.field_placeholder)"
 								>
-									<label class="custom-radio" 
-												:class="{
-													'selector-active':
-														value.field_placeholder === formFields[value.field_id],
-												}" 
-												v-if="value.field_type === 'radio'">
+									<label
+										class="custom-radio"
+										:class="{
+											'selector-active':
+												value.field_placeholder === formFields[value.field_id],
+										}"
+										v-if="value.field_type === 'radio'"
+									>
 										<input
 											type="radio"
 											class="selector-field"
 											:value="value.field_placeholder"
 											:name="$prismic.asText(step.primary.block_title)"
 										/>
-										{{value.field_placeholder}}
+										{{ value.field_placeholder }}
 									</label>
 								</div>
 							</div>
@@ -109,7 +116,7 @@
 										}"
 										:value="value.field_placeholder"
 										:name="$prismic.asText(inputData.block_title_a)"
-									/>{{value.field_placeholder}}
+									/>{{ value.field_placeholder }}
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper">
@@ -133,7 +140,7 @@
 										}"
 										:value="value.field_placeholder"
 										:name="$prismic.asText(inputData.block_title_b)"
-									/>{{value.field_placeholder}}
+									/>{{ value.field_placeholder }}
 								</div>
 							</div>
 							<div v-if="index === 1" class="fields__wrapper full-width">
@@ -174,7 +181,7 @@
 										v-model="formFields[value.field_id]"
 										:value="value.field_placeholder"
 										:name="$prismic.asText(step.primary.block_title)"
-									/>{{value.field_placeholder}}
+									/>{{ value.field_placeholder }}
 								</div>
 							</div>
 							<div
@@ -275,8 +282,10 @@
 					</div>
 				</div>
 				<div class="swiper-pagination">
-					<div class="swiper-pagination-progressbar" :style="barStatus(steps.length)">
-					</div>
+					<div
+						class="swiper-pagination-progressbar"
+						:style="barStatus(steps.length)"
+					></div>
 				</div>
 			</div>
 		</form>
@@ -303,7 +312,6 @@
 	</div>
 </template>
 <script>
-//import "swiper/dist/css/swiper.css";
 import FormStep from "@/components/custom/form/FormStep.vue";
 export default {
 	name: "FormSlider",
@@ -364,7 +372,7 @@ export default {
 		return {
 			currentIndex: 0,
 			formFields: {},
-      fileName: '',
+			fileName: "",
 			showSlider: true,
 			swiperOption: {
 				allowTouchMove: false,
@@ -397,27 +405,27 @@ export default {
 		};
 	},
 	methods: {
-		prevSlide() {
-			if (this.currentIndex > 0) {
-				this.currentIndex -= 1;
-				//this.$refs.formSwiper.swiper.slidePrev();
+		barStatus(total) {
+			var barWidth = (this.currentIndex / (total - 1)) * 100;
+			return "width:" + barWidth + "%";
+		},
+		checkStatus(index) {
+			if (index == this.currentIndex) {
+				return "display:block;";
 			}
+			return "display:none;";
 		},
 		handleNextSlide() {
 			if (!this.isStepValidated) {
 				return;
 			}
-			console.log(this.currentIndex+' / '+(this.steps.length - 1));
+			console.log(this.currentIndex + " / " + (this.steps.length - 1));
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
-				//this.$refs.formSwiper.swiper.slideNext();
 			} else {
-				// console.log(this.formFields);
 				let myForm = document.getElementById("multi-step-form");
 				let formData = new FormData(myForm);
 
-			
-				console.log(formData);
 				fetch("/", {
 					body: formData,
 					method: "POST"
@@ -427,20 +435,6 @@ export default {
 						console.log(res);
 					})
 					.catch(error => alert(error));
-
-
-				// fetch("/", {
-				// 	method: "POST",
-				// 	headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				// 	body: this.encode({
-				// 		"form-name": "Multi Step Form",
-				// 		...this.formFields
-				// 	})
-				// })
-				// 	.then(() => {
-				// 		this.formFields = {};
-				// 	})
-				// 	.catch(error => alert(error));
 			}
 		},
 		encode(data) {
@@ -452,89 +446,43 @@ export default {
 		},
 		nextSlide(field_id, value) {
 			this.formFields[field_id] = value;
-
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
-				//this.$refs.formSwiper.swiper.slideNext();
 			}
-
-
+		},
+		prevSlide() {
+			if (this.currentIndex > 0) {
+				this.currentIndex -= 1;
+			}
 		},
 		selectItem(field_id, value) {
 			this.formFields[field_id] = value;
 
 			if (this.currentIndex === 1) {
-				this.showSlider = false;
 				this.validationFields[this.currentIndex][field_id] = true;
-				this.$nextTick(() => {
-					this.showSlider = true;
-				});
 			}
-		},
-		barStatus(total){
-			var barWidth = (this.currentIndex/(total-1))*100;
-
-			return 'width:'+barWidth+'%';
-		},
-		checkStatus(index){
-			if(index == this.currentIndex){
-				return 'display:block;'
-			}
-			return 'display:none;'
 		},
 		validateSize(e) {
 			// if(this.$refs['file'].files[0].size > 1000000){
 			//    alert("File is too big – Max 1 MB");
 			//    this.$refs['file'].value = "";
 			// };
-		},
-		formSubmit(e) {
-			let myForm = document.getElementById("multi-step-	");
-			let formData = new FormData(myForm);
-			console.log(e.target);
-			fetch("/", {
-				body: new FormData(e.target),
-				method: "POST"
-			})
-				.then(res => {
-					console.log(res);
-					this.formSuccess = true;
-				})
-				.catch(error => alert(error));
-		},
-    onDocumentChange(event, objectName) {
-   //  	var that = this;
-
-   //    var reader = new FileReader();
-			// reader.onload = function(e) {
-			// 	// binary data
-			// 	that.formFields[objectName] = e.target.result;
-			// 	console.log(that.formFields[objectName]);
-			// };
-			// reader.readAsBinaryString(event.target.files[0]);
-			
-
-
-   //    this.fileName = event.target.files[0].name;
-    }
+		}
 	}
 };
 </script>
 <style lang="scss">
-
-
-
-.swiper{
+.swiper {
 	position: relative;
 }
-.swiper-pagination{
+.swiper-pagination {
 	position: absolute;
 	top: -30px;
 	left: 0;
 	width: 100%;
 	height: 5px;
 	overflow: hidden;
-	&:after{
+	&:after {
 		background: #618787;
 		width: 100%;
 		top: 50%;
@@ -542,9 +490,9 @@ export default {
 		height: 2px;
 		transform: translateY(-1px);
 		position: absolute;
-		content:''
+		content: "";
 	}
-	&-progressbar{
+	&-progressbar {
 		background: #618787;
 		width: 0%;
 		top: 0;
@@ -826,7 +774,7 @@ export default {
 	}
 }
 
-.custom-radio{
+.custom-radio {
 	position: relative;
 	border: 1px solid #857373;
 	width: 100%;
@@ -845,7 +793,7 @@ export default {
 			opacity: 1; /* Firefox */
 		}
 	}
-	input{
+	input {
 		opacity: 0;
 		position: absolute;
 		width: 100%;
