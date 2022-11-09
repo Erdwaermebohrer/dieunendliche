@@ -446,9 +446,9 @@ export default {
 				}
 			}
 			if (this.currentIndex === 3) {
-				if (!this.formFields.sonstige_informationen) {
-					return false;
-				}
+				// if (!this.formFields.sonstige_informationen) {
+				// 	return false;
+				// }
 			}
 			if (this.currentIndex === 4) {
 				if (
