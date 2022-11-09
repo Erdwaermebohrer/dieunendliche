@@ -44,7 +44,11 @@
 }
 
 .form-step__wrapper {
-  min-height: 480px;
+  min-height: 490px;
+
+  @include for-tablet {
+    min-height: 480px;
+  }
 
   .modified-top {
     height: 290px;
