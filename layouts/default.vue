@@ -1,6 +1,6 @@
 <template>
   <div  class="container">
-    <transition v-if="currentRoute !== '/form'" name="fade-preloader" mode="in-out">
+    <transition name="fade-preloader" mode="in-out">
       <app-preloader v-if="pageLoading" />
     </transition>
     <app-header v-if="currentRoute !== '/form'" :inputData="header" />
