@@ -223,7 +223,7 @@
                       placeholder=""
                     />
                   </div>
-                  <div class="file__wrapper" v-if="value.field_type === 'file' && files.showFileTwo">
+                  <div class="file__wrapper" v-if="value.field_type === 'file'">
                     <span class="file__wrapper--placeholder" v-text="'Hier bitte Ihre Dateien per Drag & Drop uploaden '" />
                     <input
                       v-if="value.field_type === 'file'"
@@ -236,7 +236,7 @@
                       placeholder=""
                     />
                   </div>
-                  <div class="file__wrapper" v-if="value.field_type === 'file' && files.showFileThree">
+                  <div class="file__wrapper" v-if="value.field_type === 'file'">
                     <span class="file__wrapper--placeholder" v-text="'Hier bitte Ihre Dateien per Drag & Drop uploaden '" />
                     <input
                       v-if="value.field_type === 'file'"
