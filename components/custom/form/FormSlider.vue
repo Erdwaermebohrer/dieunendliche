@@ -214,7 +214,7 @@
 										<span
 											class="file__wrapper--placeholder"
 											v-text="
-												'Hier bitte Ihre Dateien per Drag & Drop uploaden '
+												'Datei hochladen'
 											"
 										/>
 										<input
@@ -236,7 +236,7 @@
 										<span
 											class="file__wrapper--placeholder"
 											v-text="
-												'Hier bitte Ihre Dateien per Drag & Drop uploaden '
+												'Datei hochladen'
 											"
 										/>
 										<input
@@ -258,7 +258,7 @@
 										<span
 											class="file__wrapper--placeholder"
 											v-text="
-												'Hier bitte Ihre Dateien per Drag & Drop uploaden '
+												'Datei hochladen'
 											"
 										/>
 										<input
@@ -278,6 +278,7 @@
 									>
 										<div class="top">
 											<div @click="addFileField" class="icon" v-text="'+'" />
+                      <div v-text="'Datei hinzufügen'" class="text" />
 										</div>
 										<div class="bottom">
 											<div class="format" v-text="'*PDF, JPG oder PNG'" />
