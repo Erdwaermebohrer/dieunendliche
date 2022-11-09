@@ -387,10 +387,10 @@ export default {
 			validationFields: {
 				1: {
 					Gebäudetyp: false,
-					Bauvorhaben: false,
+					Bauvorhaben: false
 				},
 				3: {
-					file: true,
+					file: true
 				}
 			},
 			initStep: true
@@ -437,10 +437,6 @@ export default {
 				});
 			}
 		},
-    validateInput(event, id) {
-      console.log(event)
-      console.log(id)
-    },
 		validateStep() {
 			this.initStep = false;
 			if (!this.isStepValidated) {
@@ -449,7 +445,7 @@ export default {
 
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
-        this.initStep = true;
+				this.initStep = true;
 			} else {
 				let myForm = document.getElementById("multi-step-form");
 				let formData = new FormData(myForm);
@@ -460,9 +456,12 @@ export default {
 				})
 					.then(res => {
 						this.formFields = {};
-						console.log(res);
+						this.initStep = true;
+						setTimeout(() => {
+							this.currentIndex = 0;
+						}, 1000);
 					})
-					.catch(error => alert(error));
+					.catch(error => console.log(error));
 			}
 		},
 		validateSize(e) {
