@@ -120,7 +120,10 @@
 									</label>
 								</div>
 							</div>
-							<div v-if="index === 1" class="fields__wrapper second-step-second-wrapper">
+							<div
+								v-if="index === 1"
+								class="fields__wrapper second-step-second-wrapper"
+							>
 								<div
 									class="block-title"
 									v-text="$prismic.asText(inputData.block_title_b)"
@@ -346,8 +349,8 @@
 					></div>
 				</div>
 			</div>
-      <div class="swiper" v-if="submitted">
-        <div
+			<div class="swiper" v-if="submitted">
+				<div
 					class="form-slider__wrapper__section"
 					v-for="(step, index) in steps"
 					:key="index"
@@ -355,13 +358,8 @@
 					:style="checkStatus(index)"
 				>
 					<div class="form-step__wrapper submitted__wrapper">
-						<div
-							class="form-step__wrapper--top"
-						>
-							<div
-								class="title"
-								v-text="'Vielen Dank für Ihre Anfrage!'"
-							></div>
+						<div class="form-step__wrapper--top">
+							<div class="title" v-text="'Vielen Dank für Ihre Anfrage!'"></div>
 							<div
 								class="description"
 								v-html="'Wir werden uns bald bei Ihnen melden.'"
@@ -369,15 +367,16 @@
 						</div>
 					</div>
 				</div>
-      </div>
+			</div>
 		</form>
 		<div v-if="!submitted" class="pagination__wrapper">
 			<button
 				v-if="buttonPrevLabel && buttonPrevLabel.length > 0"
 				@click="prevSlide"
-        class="btn-prev"
+				class="btn-prev"
 			>
-        <img class="rotate" src="~assets/svg/arrow-slider.svg" />
+				<img v-if="!isMobile" class="rotate" src="~assets/svg/arrow-slider.svg" />
+        <img v-else class="rotate" src="~assets/svg/arrow-slider-white.svg" />
 				<span>{{ $prismic.asText(buttonPrevLabel) }}</span>
 			</button>
 			<div class="wrapper">
@@ -390,16 +389,14 @@
 					class="btn-next"
 				>
 					<span>{{ $prismic.asText(buttonNextLabel) }}</span>
-          <img class="rotate" src="~assets/svg/arrow-slider.svg" />
+					<img v-if="!isMobile" class="rotate" src="~assets/svg/arrow-slider.svg" />
+          <img v-else class="rotate" src="~assets/svg/arrow-slider-white.svg" />
 				</button>
 			</div>
 		</div>
-    <div v-else class="pagination__wrapper">
-			<button
-				@click="navigateToHomePage()"
-        class="btn-prev"
-			>
-        <img class="rotate" src="~assets/svg/arrow-slider.svg" />
+		<div v-else class="pagination__wrapper">
+			<button @click="navigateToHomePage()" class="btn-prev">
+				<img class="rotate" src="~assets/svg/arrow-slider.svg" />
 				<span>zurück zur Website</span>
 			</button>
 		</div>
@@ -435,6 +432,9 @@ export default {
 				return null;
 			}
 		},
+    isMobile() {
+      return this.currentResolution <= 990;
+    },
 		isStepValidated() {
 			if (this.initStep) {
 				return true;
@@ -469,6 +469,7 @@ export default {
 	data() {
 		return {
 			currentIndex: 0,
+      currentResolution: 1200,
 			files: {
 				showFileTwo: false,
 				showFileThree: false
@@ -476,7 +477,7 @@ export default {
 			fileNames: [],
 			formFields: {},
 			showSlider: true,
-      submitted: false,
+			submitted: false,
 			validationFields: {
 				1: {
 					Gebäudetyp: false,
@@ -514,9 +515,12 @@ export default {
 				)
 				.join("&");
 		},
-    navigateToHomePage() {
-      this.$router.push('/');
-    },
+    getCurrentResolution() {
+			this.currentResolution = innerWidth;
+		},
+		navigateToHomePage() {
+			this.$router.push("/");
+		},
 		nextSlide(field_id, value) {
 			this.initStep = true;
 			this.formFields[field_id] = value;
@@ -546,6 +550,9 @@ export default {
 			}
 		},
 		prevSlide() {
+			if (this.currentIndex === 0) {
+				this.$router.push("/");
+			}
 			if (this.currentIndex > 0) {
 				this.currentIndex -= 1;
 			}
@@ -593,7 +600,7 @@ export default {
 				})
 					.then(res => {
 						this.initStep = true;
-            this.showSlider = false;
+						this.showSlider = false;
 						this.submitted = true;
 					})
 					.catch(error => console.log(error));
@@ -605,6 +612,14 @@ export default {
 			//    this.$refs['file'].value = "";
 			// };
 		}
+	},
+  beforeMount() {
+		window.addEventListener('load', this.getCurrentResolution);
+		window.addEventListener('resize', this.getCurrentResolution);
+	},
+	beforeDestroy() {
+		window.removeEventListener('load', this.getCurrentResolution);
+		window.removeEventListener('resize', this.getCurrentResolution);
 	}
 };
 </script>

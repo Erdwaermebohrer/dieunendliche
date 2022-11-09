@@ -36,6 +36,10 @@
     height: 100%;
     position: absolute;
     transition: 0.4s all ease-in;
+
+    @include for-tablet {
+      top: 2px;
+    }
   }
 }
 
@@ -359,7 +363,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: 10px;
+    padding: 18px;
     background: #9cadbd;
   }
 
@@ -373,6 +377,10 @@
     cursor: pointer;
     transition: 0.4s all ease-in;
 
+    @include for-tablet {
+      transition: none;
+    }
+
     span {
       font-family: $font-primary;
       font-size: 18px;
@@ -384,6 +392,7 @@
 
       @include for-tablet {
         color: $white;
+        transition: none;
       }
 
       &:before {
@@ -404,6 +413,12 @@
       span {
         color: #857373;
       }
+
+      @include for-tablet {
+        span {
+          color: $white;
+        }
+      }
     }
 
     img {
@@ -417,6 +432,10 @@
     margin-right: 25px;
     display: flex;
 
+    @include for-tablet {
+      margin-right: 0;
+    }
+
     .warning {
       position: relative;
       top: 4px;
@@ -426,6 +445,19 @@
       font-weight: 400;
       line-height: 22px;
       color: #e8543b;
+
+      @include for-tablet {
+        position: absolute;
+        bottom: 60px;
+        top: auto;
+        background: #E8543B;
+        color: $white;
+        width: 100%;
+        left: 0;
+        padding: 10px 20px;
+        font-size: 13px;
+        text-align: center;
+      }
     }
   }
 
