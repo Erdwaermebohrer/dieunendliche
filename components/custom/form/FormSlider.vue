@@ -346,8 +346,32 @@
 					></div>
 				</div>
 			</div>
+      <div class="swiper" v-if="submitted">
+        <div
+					class="form-slider__wrapper__section"
+					v-for="(step, index) in steps"
+					:key="index"
+					:data-section="index"
+					:style="checkStatus(index)"
+				>
+					<div class="form-step__wrapper submitted__wrapper">
+						<div
+							class="form-step__wrapper--top"
+						>
+							<div
+								class="title"
+								v-text="'Vielen Dank für Ihre Anfrage!'"
+							></div>
+							<div
+								class="description"
+								v-html="'Wir werden uns bald bei Ihnen melden.'"
+							></div>
+						</div>
+					</div>
+				</div>
+      </div>
 		</form>
-		<div class="pagination__wrapper">
+		<div v-if="!submitted" class="pagination__wrapper">
 			<button
 				v-if="buttonPrevLabel && buttonPrevLabel.length > 0"
 				@click="prevSlide"
@@ -369,6 +393,15 @@
           <img class="rotate" src="~assets/svg/arrow-slider.svg" />
 				</button>
 			</div>
+		</div>
+    <div v-else class="pagination__wrapper">
+			<button
+				@click="navigateToHomePage()"
+        class="btn-prev"
+			>
+        <img class="rotate" src="~assets/svg/arrow-slider.svg" />
+				<span>zurück zur Website</span>
+			</button>
 		</div>
 	</div>
 </template>
@@ -443,6 +476,7 @@ export default {
 			fileNames: [],
 			formFields: {},
 			showSlider: true,
+      submitted: false,
 			validationFields: {
 				1: {
 					Gebäudetyp: false,
@@ -480,6 +514,9 @@ export default {
 				)
 				.join("&");
 		},
+    navigateToHomePage() {
+      this.$router.push('/');
+    },
 		nextSlide(field_id, value) {
 			this.initStep = true;
 			this.formFields[field_id] = value;
@@ -555,11 +592,9 @@ export default {
 					method: "POST"
 				})
 					.then(res => {
-						this.formFields = {};
 						this.initStep = true;
-						setTimeout(() => {
-							this.currentIndex = 0;
-						}, 1000);
+            this.showSlider = false;
+						this.submitted = true;
 					})
 					.catch(error => console.log(error));
 			}
