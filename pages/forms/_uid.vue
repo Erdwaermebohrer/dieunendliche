@@ -1,8 +1,6 @@
 <template>
   <div id="page" :class="'page page__' + uid">
-    <div class="multi-step-form-section__wrapper">
-      <form-slider :inputData="inputData" :steps="steps"/>
-    </div>
+    <form-slider :inputData="inputData" :steps="steps"/>
   </div>
 </template>
 
