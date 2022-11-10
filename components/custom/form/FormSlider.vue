@@ -1,10 +1,18 @@
 <template>
 	<div class="form-slider__wrapper">
-		<div class="logo__wrapper">
-			<img class="logo__wrapper--image" src="~assets/svg/new-logo.svg" />
-			<div class="logo__wrapper--text">
-				<div class="text-title">Dein Partner</div>
-        <div class="text-title">für Die Unendliche Energie</div>
+		<div class="form-slider__wrapper__header">
+			<div class="logo__wrapper">
+				<img class="logo__wrapper--image" src="~assets/svg/new-logo.svg" />
+				<div class="logo__wrapper--text">
+					<div class="text-title">Dein Partner</div>
+	        		<div class="text-title">für Die Unendliche Energie</div>
+				</div>
+			</div>
+			<div class="swiper-pagination">
+				<div
+					class="swiper-pagination-progressbar"
+					:style="barStatus(steps.length)"
+				></div>
 			</div>
 		</div>
 		<form
@@ -329,12 +337,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="swiper-pagination">
-					<div
-						class="swiper-pagination-progressbar"
-						:style="barStatus(steps.length)"
-					></div>
 				</div>
 			</div>
 			<div class="swiper" v-if="submitted">

@@ -11,17 +11,18 @@
   > div{
     width: 100%;
     max-width: 1600px;
+    padding-top: 70px;
   }
 
   @include for-tablet {
     width: 100%;
     height: 100vh;
-    padding-bottom: 80px;
+    padding-bottom: 200px;
     top: 0;
     left: 0;
     position: fixed;
     overflow-y: scroll;
     z-index: 99;
-        align-items: flex-start;
+    align-items: flex-start;
   }
 }
