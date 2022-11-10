@@ -605,6 +605,8 @@ export default {
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
 				this.initStep = true;
+				this.$refs['scrollWrapper'].scrollTo(0, 0);
+
 			} else {
 				let myForm = document.getElementById("multi-step-form");
 				let formData = new FormData(myForm);
