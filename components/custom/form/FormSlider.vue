@@ -53,6 +53,7 @@
 									class="block-title"
 									v-text="$prismic.asText(step.primary.block_title)"
 								/>
+
 								<div v-if="index === 0" class="fields__wrapper">
 									<div
 										class="fields__wrapper--item"
@@ -335,6 +336,22 @@
 											:type="value.field_type"
 										/>
 									</div>
+
+									<div class="step-5__wrapper--item step-5__wrapper--item--double" >
+
+										<label class="checkbox">
+								            <span class="checkbox__box" :class="{'active': formFields['terms']}">
+								              <input
+								                class="input"
+								                type="checkbox"
+								                name="terms"
+								                v-model="formFields['terms']"
+								              />
+								            </span>
+
+								            <div v-html="$prismic.asHtml(inputData.data_privacy_label)" />
+							          	</label>
+							        </div>
 								</div>
 							</div>
 						</div>
@@ -458,7 +475,8 @@ export default {
 				if (
 					!this.formFields.name ||
 					!this.formFields.telefonnummer ||
-					!this.formFields.email
+					!this.formFields.email ||
+					!this.formFields['terms']
 				) {
 					return false;
 				}
