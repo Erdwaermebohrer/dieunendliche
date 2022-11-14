@@ -2,6 +2,18 @@
   <div class="form-fields__wrapper">
     <div class="form-fields__wrapper--title">
       <h2 class="title" v-text="$prismic.asText(slice.primary.title1)" />
+      <a 
+        v-if="slice.primary.further_link && $prismic.asText(slice.primary.further_link_title)"
+        class="link__wrapper--link"
+        target="_blank"
+        :href="$prismic.linkResolver(slice.primary.further_link)"
+      >
+        <img
+              class="link__wrapper--icon"
+              src="~assets/svg/arrow-right-white.svg"
+            />
+        <span>{{$prismic.asText(slice.primary.further_link_title)}}</span>
+      </a>
     </div>
     <form class="form-fields__wrapper--content"
       name="Contact form Unendliche"

@@ -17,7 +17,7 @@
             v-if="slice.primary.link && $prismic.asText(slice.primary.link_title)"
             class="link__wrapper--link"
             target="_blank"
-            @click="clickedButton(slice.primary.link)"
+            :href="$prismic.linkResolver(slice.primary.link)"
           >
             <img
               class="link__wrapper--icon"
@@ -29,7 +29,7 @@
             <a
               class="link__wrapper--link"
               target="_blank"
-              @click="clickedButton(item.link_url)">
+              :href="$prismic.linkResolver(item.link_url)">
               <img
                 class="link__wrapper--icon"
                 src="~assets/svg/arrow-right-white.svg"
