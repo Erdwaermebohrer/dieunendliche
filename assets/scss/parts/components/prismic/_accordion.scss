@@ -79,9 +79,9 @@
       &__title {
         width: 90%;
         cursor: pointer;
-        font-size: 2.125em;
+        font-size: 1.8em;
         @include for-tablet {
-          font-size: 1.7em;
+          font-size: 1.6em;
           line-height: 120%;
         }
       }
