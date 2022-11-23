@@ -9,6 +9,17 @@
   </head>
   <body {{ BODY_ATTRS }}>
 
+    <!-- Google tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91846216-2">
+    </script>
+    <script type="text/plain" data-cookiecategory="analytics">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-91846216-2');
+    </script>
+
     {{ APP }}
 
     <script>
@@ -23,27 +34,28 @@
         theme_css: "/cookieconsent.css",
         autorun: true,
         delay: 1000,
+        page_scripts: true,
 
-        onAccept: function(cookies) {
-          if (cookieconsent.allowedCategory("analytics")) {
+        // onAccept: function(cookies) {
+        //   if (cookieconsent.allowedCategory("analytics")) {
 
-            var gID = '{{ process.env.GTAG_TRACKING_ID }}';
-            if(gID != 'xxx' && gID != ''){
-              cookieconsent.loadScript(
-                "https://www.googletagmanager.com/gtag/js?id="+gID,
-                function() {
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag() {
-                    dataLayer.push(arguments);
-                  }
-                  gtag("js", new Date());
+        //     var gID = '{{ process.env.GTAG_TRACKING_ID }}';
+        //     if(gID != 'xxx' && gID != ''){
+        //       cookieconsent.loadScript(
+        //         "https://www.googletagmanager.com/gtag/js?id="+gID,
+        //         function() {
+        //           window.dataLayer = window.dataLayer || [];
+        //           function gtag() {
+        //             dataLayer.push(arguments);
+        //           }
+        //           gtag("js", new Date());
                   
-                  gtag("config", gID, { 'anonymize_ip': true });
-                }
-              );
-            }
-          }
-        },
+        //           gtag("config", gID, { 'anonymize_ip': true });
+        //         }
+        //       );
+        //     }
+        //   }
+        // },
 
         languages: {
           de: {
@@ -77,7 +89,7 @@
                     "Dies beinhaltet grundlegende Funktionen, wie die Seiten-Navigation oder das Login. Die Webseite wird ohne diese Funktion nicht funktionieren.",
                   toggle: {
                     value: "necessary",
-                    enabled: false,
+                    enabled: true,
                     readonly: true
                   }
                 },

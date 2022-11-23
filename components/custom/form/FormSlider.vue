@@ -24,6 +24,7 @@
 				netlify
 			>
 				<input type="hidden" name="form-name" value="Multi Step Form" />
+				<input type="hidden" name="Source" value="" ref="formSource" />
 				<div class="swiper" v-show="showSlider">
 					<div
 						class="form-slider__wrapper__section"
@@ -633,12 +634,14 @@ export default {
 					body: formData,
 					method: "POST"
 				})
-					.then(res => {
-						this.initStep = true;
-						this.showSlider = false;
-						this.submitted = true;
-					})
-					.catch(error => console.log(error));
+				.then(res => {
+					this.initStep = true;
+					this.showSlider = false;
+					this.submitted = true;
+
+
+				})
+				.catch(error => console.log(error));
 			}
 		},
 		validateSize(e) {
@@ -648,6 +651,25 @@ export default {
 			// };
 		}
 	},
+	mounted() {
+	    const params = new Proxy(new URLSearchParams(window.location.search), {
+		  get: (searchParams, prop) => searchParams.get(prop),
+		});
+
+		if(params.source){
+			this.$refs['formSource'].value = params.source;
+		}
+
+		if (typeof gtag === 'function') {
+			gtag('event', 'form_sent', 
+	            {'event_category': 'Contact', 'event_label': 'form_sent'}
+          	);
+          	gtag('config', 'UA-91846216-2', {
+	            'page_title' : 'Multi Step form sent',
+	            'page_path': '/form/success'
+          	});
+		} 
+	  },
 	beforeMount() {
 		window.addEventListener("load", this.getCurrentResolution);
 		window.addEventListener("resize", this.getCurrentResolution);
