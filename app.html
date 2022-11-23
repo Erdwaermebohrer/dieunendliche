@@ -8,6 +8,7 @@
     </style>
   </head>
   <body {{ BODY_ATTRS }}>
+
     {{ APP }}
 
     <script>
@@ -26,19 +27,21 @@
         onAccept: function(cookies) {
           if (cookieconsent.allowedCategory("analytics")) {
 
-            var GId = '00';
-            // cookieconsent.loadScript(
-            //   "https://www.googletagmanager.com/gtag/js?id="+GId,
-            //   function() {
-            //     window.dataLayer = window.dataLayer || [];
-            //     function gtag() {
-            //       dataLayer.push(arguments);
-            //     }
-            //     gtag("js", new Date());
-
-            //     gtag("config", GId);
-            //   }
-            // );
+            var gID = '{{ process.env.GTAG_TRACKING_ID }}';
+            if(gID != 'xxx' && gID != ''){
+              cookieconsent.loadScript(
+                "https://www.googletagmanager.com/gtag/js?id="+gID,
+                function() {
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag() {
+                    dataLayer.push(arguments);
+                  }
+                  gtag("js", new Date());
+                  
+                  gtag("config", gID, { 'anonymize_ip': true });
+                }
+              );
+            }
           }
         },
 
