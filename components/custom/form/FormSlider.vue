@@ -247,7 +247,7 @@
 										</div>
 
 
-										<div class="file__wrapper" v-if="value.field_type === 'file' && !files.showFileFour">
+										<div class="file__wrapper" v-show="value.field_type === 'file' && !files.showFileFour">
 											<span
 												class="file__wrapper--placeholder"
 												v-text="'+ Datei hochladen'"
