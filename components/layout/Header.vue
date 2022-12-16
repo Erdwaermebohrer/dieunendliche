@@ -5,14 +5,27 @@
     </a>
     <div class="header__wrapper--navigation">
       <ul class="navigation__wrapper--desktop">
-        <nuxt-link
-          class="link-item"
-          v-for="(navigationItem, index) in inputData.navigation"
-          :key="'item-' + index"
-          :to="$prismic.linkResolver(navigationItem.page)"
-        >
-          <li v-text="$prismic.asText(navigationItem.navigation_title)" />
-        </nuxt-link>
+        <li v-for="(navigationItem, index) in inputData.navigation">
+          <nuxt-link
+            v-if="navigationItem.page.link_type != 'Web'"
+            class="link-item"
+            :key="'item-' + index"
+            :to="$prismic.linkResolver(navigationItem.page)"
+            v-text="$prismic.asText(navigationItem.navigation_title)" 
+          >
+          </nuxt-link>
+
+           <a
+            v-if="navigationItem.page.link_type == 'Web'"
+            class="link-item"
+            :key="'item-' + index"
+            :href="$prismic.linkResolver(navigationItem.page.url)"
+            v-text="$prismic.asText(navigationItem.navigation_title)" 
+          >
+          </a>
+          
+        </li>
+        
       </ul>
       <div class="navigation__wrapper--mobile">
         <transition name="menu-button">
@@ -36,14 +49,26 @@
           />
         </div>
         <ul class="sidebar__wrapper">
-          <a
-            class="sidebar__wrapper--item"
-            v-for="(navigationItem, index) in inputData.navigation"
-            :key="'item-' + index"
-            @click="navigateToRoute(navigationItem.page)"
-          >
-            <li v-text="$prismic.asText(navigationItem.navigation_title)" />
-          </a>
+          <li v-for="(navigationItem, index) in inputData.navigation" @click="closeNav">
+            <nuxt-link
+              v-if="navigationItem.page.link_type != 'Web'"
+              class="sidebar__wrapper--item"
+              :key="'item-' + index"
+              :to="$prismic.linkResolver(navigationItem.page)"
+              v-text="$prismic.asText(navigationItem.navigation_title)" 
+            >
+            </nuxt-link>
+
+             <a
+              v-if="navigationItem.page.link_type == 'Web'"
+              class="sidebar__wrapper--item"
+              :key="'item-' + index"
+              :href="$prismic.linkResolver(navigationItem.page.url)"
+              v-text="$prismic.asText(navigationItem.navigation_title)" 
+            >
+            </a>
+            
+          </li>
         </ul>
         <div class="button__wrapper">
           <span class="line" />
@@ -110,6 +135,10 @@ export default {
     navigateToRoute(item) {
       this.isNavOpen = false;
       this.$router.push(this.$prismic.linkResolver(item));
+    },
+
+    closeNav() {
+      this.isNavOpen = false;
     },
     navigateToHome() {
       this.isNavOpen = false;
