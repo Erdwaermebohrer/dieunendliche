@@ -6,23 +6,22 @@
     <div class="header__wrapper--navigation">
       <ul class="navigation__wrapper--desktop">
         <li v-for="(navigationItem, index) in inputData.navigation">
-          <nuxt-link
-            v-if="navigationItem.page.link_type != 'Web'"
-            class="link-item"
-            :key="'item-' + index"
-            :to="$prismic.linkResolver(navigationItem.page)"
-            v-text="$prismic.asText(navigationItem.navigation_title)" 
-          >
-          </nuxt-link>
 
-           <a
-            v-if="navigationItem.page.link_type == 'Web'"
+          <a
             class="link-item"
-            :key="'item-' + index"
-            :href="$prismic.linkResolver(navigationItem.page.url)"
-            v-text="$prismic.asText(navigationItem.navigation_title)" 
-          >
-          </a>
+            v-if="navigationItem.page.link_type == 'Web'"
+            :href="navigationItem.page.url"
+            :target="navigationItem.page.target"
+             v-text="$prismic.asText(navigationItem.navigation_title)"
+          />
+          <nuxt-link
+            class="link-item"
+            v-if="navigationItem.page.link_type == 'Document'"
+            :to="$prismic.linkResolver(navigationItem.page)"
+             v-text="$prismic.asText(navigationItem.navigation_title)"
+          />  
+
+
           
         </li>
         
@@ -50,23 +49,22 @@
         </div>
         <ul class="sidebar__wrapper">
           <li v-for="(navigationItem, index) in inputData.navigation" @click="closeNav">
-            <nuxt-link
-              v-if="navigationItem.page.link_type != 'Web'"
-              class="sidebar__wrapper--item"
-              :key="'item-' + index"
-              :to="$prismic.linkResolver(navigationItem.page)"
-              v-text="$prismic.asText(navigationItem.navigation_title)" 
-            >
-            </nuxt-link>
 
-             <a
-              v-if="navigationItem.page.link_type == 'Web'"
+
+            <a
               class="sidebar__wrapper--item"
-              :key="'item-' + index"
-              :href="$prismic.linkResolver(navigationItem.page.url)"
-              v-text="$prismic.asText(navigationItem.navigation_title)" 
-            >
-            </a>
+              v-if="navigationItem.page.link_type == 'Web'"
+              :href="navigationItem.page.url"
+              :target="navigationItem.page.target"
+               v-text="$prismic.asText(navigationItem.navigation_title)"
+            />
+            <nuxt-link
+              class="sidebar__wrapper--item"
+              v-if="navigationItem.page.link_type == 'Document'"
+              :to="$prismic.linkResolver(navigationItem.page)"
+               v-text="$prismic.asText(navigationItem.navigation_title)"
+            />  
+
             
           </li>
         </ul>
