@@ -544,12 +544,17 @@ export default {
 			this.$router.push("/");
 		},
 		nextSlide(field_id, value) {
+			
+
 			this.initStep = true;
 			this.formFields[field_id] = value;
 			if (this.currentIndex < this.steps.length - 1) {
 				this.currentIndex += 1;
+
+				this.trackStep(this.currentIndex);
 			}
 			this.$refs['scrollWrapper'].scrollTo(0, 0);
+			
 		},
 		onDocumentChange(event, id) {
 			const obj = {
@@ -616,6 +621,7 @@ export default {
 			}
 		},
 		validateStep() {
+			
 			this.initStep = false;
 			if (!this.isStepValidated) {
 				return;
@@ -625,6 +631,7 @@ export default {
 				this.currentIndex += 1;
 				this.initStep = true;
 				this.$refs['scrollWrapper'].scrollTo(0, 0);
+				this.trackStep(this.currentIndex);
 
 			} else {
 				let myForm = document.getElementById("multi-step-form");
@@ -649,9 +656,24 @@ export default {
 			//    alert("File is too big – Max 1 MB");
 			//    this.$refs['file'].value = "";
 			// };
+		},
+		trackStep(step){
+			var readableStep = parseInt(step) + 1;
+			//console.log('Step: '+readableStep);
+
+			if (typeof gtag === 'function') {
+				gtag('event', 'form_steps', 
+		            {'event_category': 'Step', 'event_label': readableStep}
+	          	);
+	          	gtag('config', 'UA-91846216-2', {
+		            'page_title' : 'Go to step: '+readableStep,
+		            'page_path': '/form/steps/'+readableStep
+	          	});
+			} 
 		}
 	},
 	mounted() {
+		this.trackStep(this.currentIndex);
 	    const params = new Proxy(new URLSearchParams(window.location.search), {
 		  get: (searchParams, prop) => searchParams.get(prop),
 		});
