@@ -1,6 +1,11 @@
 <template>
   <div class="contact-module__wrapper">
-    {{  slice }}
+    <div class="contact-module__wrapper--left">
+      Left
+    </div>
+    <div class="contact-module__wrapper--right">
+      Right
+    </div>
   </div>
 </template>
 

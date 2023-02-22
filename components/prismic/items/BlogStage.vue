@@ -1,12 +1,10 @@
 <template>
   <div :id="slice.primary.id" class="stage-component__wrapper">
     <div class="stage-component__wrapper--left">
-      <div class="content__wrapper--top">
+      <div class="content__wrapper--bottom">
         <div class="subtitle">
           <headline-component :inputData="slice.primary.subtitle" />
         </div>
-      </div>
-      <div class="content__wrapper--bottom">
         <div class="title">
           <headline-component :inputData="slice.primary.title" :className="'h3'"/>
         </div>
@@ -14,7 +12,6 @@
           class="description"
           v-html="$prismic.asHtml(slice.primary.description)"
         />
-        <!-- <link-component :linkObject="slice.primary" /> -->
       </div>
     </div>
     <div class="stage-component__wrapper--right">
