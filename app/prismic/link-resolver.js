@@ -3,7 +3,7 @@
  * https://prismic.io/docs/vuejs/beyond-the-api/link-resolving
  */
 
-export default function (doc,hash) {
+export default function (doc, category, hash=null, pagination=null) {
 
   if(doc.link_type != 'Media'){
     var lang = 'de';
@@ -30,8 +30,20 @@ export default function (doc,hash) {
       return `${locale}/${theHash}`
     }
 
-    if (doc.type === 'page') {
-      return `${locale}/${doc.uid}${theHash}`
+    if(doc.type==='blog_post'&&hash===null) {
+      return `${locale}/blog/${category.uid}/${doc.uid}/`;
+    }
+
+    if(doc.type==='blog_post'&&hash!==null) {
+      return `${locale}/blog/${category.uid}/${doc.uid}/#${theHash}`;
+    }
+
+    if(doc.type==='page'||doc.type==='blog') {
+      if(doc.uid==='homepage') {
+        return `${locale}/${theHash}`
+      } else {
+        return `${locale}/${doc.uid}/${theHash}`
+      }
     }
 
     if (doc.type === 'top_menu') {

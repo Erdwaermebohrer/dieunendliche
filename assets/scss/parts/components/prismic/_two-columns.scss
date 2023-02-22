@@ -1,0 +1,17 @@
+.two-columns__wrapper {
+  width: 100%;
+  padding: 0px 12vw;
+  background: $white;
+
+  &--content {
+    display: flex;
+    gap: 7vw;
+    color: $brand-secondary;
+
+    p {
+      font-size: 16.8px;
+      line-height: 23.52px;
+      margin-bottom: 30px;
+    }
+  }
+}

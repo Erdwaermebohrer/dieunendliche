@@ -6,6 +6,35 @@
         v-for="(slice, index) in slices"
         :key="'slice-' + index"
       >
+
+        <template v-if="slice.slice_type === 'articles'">
+          <articles :slice="slice" />
+        </template>
+
+        <template v-if="slice.slice_type === 'blogstage'">
+          <blog-stage :slice="slice" />
+        </template>
+
+        <template v-if="slice.slice_type === 'blog_post_stage'">
+          <blog-post-stage :slice="slice" :page="page" />
+        </template>
+
+        <template v-if="slice.slice_type === 'blogpostcontent'">
+          <blog-post-content :slice="slice" />
+        </template>
+
+        <template v-if="slice.slice_type === 'contactmodule'">
+          <contact-module :slice="slice" />
+        </template>
+
+        <template v-if="slice.slice_type === 'twocolumns'">
+          <two-columns :slice="slice" />
+        </template>
+
+        <template v-if="slice.slice_type === 'choose_articles'">
+          <choose-articles :slice="slice" :page="page"/>
+        </template>
+
         <template v-if="slice.slice_type === 'list'">
           <accordion :slice="slice" />
         </template>
@@ -106,8 +135,14 @@
 
 <script>
 import Accordion from "./items/Accordion.vue";
+import Articles from "./items/Articles.vue";
+import BlogStage from "./items/BlogStage.vue";
+import BlogPostStage from "./items/BlogPostStage.vue";
+import BlogPostContent from "./items/BlogPostContent.vue";
+import ContactModule from "./items/ContactModule.vue";
 import ContentAndCarousel from "./items/ContentAndCarousel.vue";
 import ContentCarouselWithIndex from "./items/ContentCarouselWithIndex.vue";
+import ChooseArticles from "./items/ChooseArticles.vue";
 import FormFields from "./items/FormFields.vue";
 import Intro from "./items/Intro.vue";
 import ImageWithContent from "./items/ImageWithContent.vue";
@@ -121,11 +156,13 @@ import TitleDescription from "./items/TitleDescription.vue";
 import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
 import TitleSubtitleDescription from "./items/TitleSubtitleDescription.vue";
 import TitleSubtitleLink from "./items/TitleSubtitleLink.vue";
+import TwoColumns from "./items/TwoColumns.vue";
 import LogoBar from "./items/LogoBarArea.vue";
 import MultiStepFormSection from "./items/MultiStepFormSection.vue";
 
 export default {
   props: [
+    "page",
     "slices",
     "redirectToInternalPage",
     "redirectToExternalPage",
@@ -134,8 +171,14 @@ export default {
   name: "slices-wrapper",
   components: {
     Accordion,
+    Articles,
+    BlogStage,
+    BlogPostStage,
+    BlogPostContent,
+    ContactModule,
     ContentAndCarousel,
     ContentCarouselWithIndex,
+    ChooseArticles,
     FormFields,
     Intro,
     ImageWithContent,
@@ -149,6 +192,7 @@ export default {
     TitleDescriptionLink,
     TitleSubtitleDescription,
     TitleSubtitleLink,
+    TwoColumns,
     LogoBar,
     MultiStepFormSection
   },

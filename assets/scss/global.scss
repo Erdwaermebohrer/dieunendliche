@@ -28,6 +28,12 @@
 
 //prismic components
 @import "./parts/components/prismic/accordion";
+@import "./parts/components/prismic/articles";
+@import "./parts/components/prismic/blog-stage";
+@import "./parts/components/prismic/blog-post-stage";
+@import "./parts/components/prismic/blog-post-content";
+@import "./parts/components/prismic/contact-module";
+@import "./parts/components/prismic/choose-articles";
 @import "./parts/components/prismic/content-and-carousel";
 @import "./parts/components/prismic/content-carousel-index";
 @import "./parts/components/prismic/form-fields";
@@ -45,6 +51,7 @@
 @import "./parts/components/prismic/title-description-link";
 @import "./parts/components/prismic/title-subtitle-description";
 @import "./parts/components/prismic/title-subtitle-link";
+@import "./parts/components/prismic/two-columns";
 @import "./parts/components/prismic/logobar";
 @import "./parts/components/prismic/multi-step-form-section";
 

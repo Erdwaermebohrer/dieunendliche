@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/prismic": "^1.2.6",
     "@nuxtjs/pwa": "^3.3.5",
     "gsap": "^3.6.1",
