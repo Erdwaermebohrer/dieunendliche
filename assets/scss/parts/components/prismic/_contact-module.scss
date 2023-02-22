@@ -2,4 +2,40 @@
   width: 100%;
   padding: 10px 40px;
   background: $brand-primary;
+  display: flex;
+
+  &--left {
+    width: 50%;
+    padding-top: 80px;
+
+    .title {
+      .headline-component__wrapper {
+        > * {
+          margin-top: 0;
+          margin-bottom: 40px;
+          font-size: 70px;
+          font-weight: 400;
+          line-height: 77.7px;
+          color: $white;
+        }
+      }
+    }
+
+    .subtitle {
+      .headline-component__wrapper {
+        > * {
+          font-size: 22px;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0.02em;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  &--right {
+    width: 50%;
+    padding-top: 80px;
+  }
 }
