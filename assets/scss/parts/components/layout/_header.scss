@@ -212,3 +212,12 @@
     }
   }
 }
+
+.white-header {
+  background: $white;
+
+  .header__wrapper--navigation .navigation__wrapper--desktop .link-item {
+    color: $black!important;
+  }
+}
+

@@ -1,5 +1,5 @@
 <template>
-  <div class="footer__wrapper">
+  <div class="footer__wrapper" :class="{'white-footer': isBlog}">
     <div class="footer__wrapper--navigation">
       <ul class="navigation__wrapper">
         <nuxt-link
@@ -14,7 +14,8 @@
     </div>
     <div class="footer__wrapper--content">
       <div class="title" v-text="$prismic.asText(inputData.title)" />
-      <img class="logo" :src="inputData.logo.url" />
+      <img v-if="!isBlog" class="logo" src="~assets/svg/small-logo-white.svg" />
+      <img v-else class="logo" src="~assets/svg/small-logo-brown.svg" />
     </div>
     <div class="footer__wrapper--bottom">
       <div
@@ -68,6 +69,13 @@ export default {
       immediate: true,
       deep: true,
     },
+    $route: {
+      handler(value) {
+        this.currentRoute = value.name
+      },
+      immediate: true,
+      deep: true,
+    },
   },
   computed: {
     computedNavigation() {
@@ -75,11 +83,15 @@ export default {
         ? this.inputData.navigation_mobile
         : this.inputData.navigation;
     },
+    isBlog() {
+      return this.currentRoute === 'blog-all-uid' || this.currentRoute === 'blog'
+    }
   },
   data() {
     return {
       isMobile: false,
       windowWidth: 0,
+      currentRoute: ''
     };
   },
   methods: {

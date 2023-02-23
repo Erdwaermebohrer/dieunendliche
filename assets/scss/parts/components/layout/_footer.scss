@@ -188,3 +188,11 @@
     }
   }
 }
+
+.white-footer {
+  background: $white;
+
+  .footer__wrapper--navigation .navigation__wrapper .link-item, .footer__wrapper--content .title {
+    color: $brand-secondary!important;
+  }
+}

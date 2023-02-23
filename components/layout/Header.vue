@@ -1,7 +1,8 @@
 <template>
-  <div class="header__wrapper" :class="{'header__wrapper--hidden':showNav == false}">
+  <div class="header__wrapper" :class="{'header__wrapper--hidden':showNav == false, 'white-header': isBlog}">
     <a class="header__wrapper--logo" @click="$router.push('/')">
-      <img :src="inputData.logo.url" />
+      <img v-if="isBlog" src="~assets/svg/big-logo-black.svg" />
+      <img v-else src="~assets/svg/big-logo-white.svg" />
     </a>
     <div class="header__wrapper--navigation">
       <ul class="navigation__wrapper--desktop">
@@ -86,12 +87,27 @@ export default {
       type: Object,
     },
   },
+  watch: {
+    $route: {
+      handler(value) {
+        this.currentRoute = value.name
+      },
+      immediate: true,
+      deep: true,
+    },
+  },
   data() {
     return {
       isNavOpen: false,
       lastScrollTop: 0,
-      showNav: true
+      showNav: true,
+      currentRoute: ''
     };
+  },
+  computed: {
+    isBlog() {
+      return this.currentRoute === 'blog-all-uid' || this.currentRoute === 'blog'
+    }
   },
   methods: {
     toggleBurger() {
