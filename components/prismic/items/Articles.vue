@@ -3,14 +3,15 @@
     <headline-component :inputData="slice.primary.title" :className="'h2'" />
     <div class="all-articles__wrapper--categories">
       <div class="categories__wrapper">
-        <nuxt-link
-          class="categories__wrapper--item"
+        <a
           v-for="(category, key) in categories"
           :key="key"
-          :to="$prismic.linkResolver(category, null, null, 1)"
+          class="categories__wrapper--item"
+          :class="{'active': activeCategory === category.id }"
+          @click="selectCategory(category.id)"
         >
           <div v-text="$prismic.asText(category.data.title)" />
-        </nuxt-link>
+        </a>
       </div>
     </div>
     <div class="all-articles__wrapper--posts">
@@ -89,6 +90,9 @@
         </div>
       </div>
     </div>
+    <div v-if="showLoadMoreButton" class="all-articles__wrapper--load-more">
+      <button @click="loadMoreItems">Load more</button>
+    </div>
   </div>
 </template>
 
@@ -108,8 +112,12 @@ export default {
   },
   data() {
     return {
+      activeCategory: '',
       categories: [],
       posts: [],
+      currentPage: 1,
+      pageSize: 20,
+      showLoadMoreButton: false
     };
   },
   methods: {
@@ -123,6 +131,67 @@ export default {
 
       return words.join(" ");
     },
+    loadMoreItems() {
+      this.pageSize = this.pageSize + 1;
+
+      if (this.activeCategory === '') {
+        this.$prismic.api.query(
+        this.$prismic.predicates.at("document.type", "blog_post"),
+        {
+          orderings: "[my.blog_post.publish_date desc]",
+					pageSize: this.pageSize * parseInt(this.currentPage),
+        }
+        ).then(res => {
+          if (res.next_page) {
+            this.showLoadMoreButton = true
+          } else {
+            this.showLoadMoreButton = false
+          }
+            this.posts = res.results
+        });
+      } else {
+        this.$prismic.api.query(
+        this.$prismic.predicates.at("document.type", "blog_post"),
+        {
+          orderings: "[my.blog_post.publish_date desc]",
+					pageSize: this.pageSize * parseInt(this.currentPage),
+        }
+      ).then(res => {
+        this.posts = res.results;
+      })
+      }
+    },
+    selectCategory(category) {
+      this.currentPage = 1;
+      this.pageSize = 20;
+
+      if(this.activeCategory === category) {
+        this.activeCategory = ''
+      
+        this.$prismic.api.query(
+        this.$prismic.predicates.at("document.type", "blog_post"),
+        {
+          orderings: "[my.blog_post.publish_date desc]",
+					pageSize: this.pageSize * parseInt(this.currentPage),
+        }
+      ).then(res => {
+        this.posts = res.results;
+      })
+        return;
+      }
+
+      this.activeCategory = category
+
+      this.$prismic.api.query(
+				this.$prismic.predicates.at("my.blog_post.category", category),
+				{
+					pageSize: this.pageSize * parseInt(this.currentPage),
+					orderings: "[my.blog_post.publish_date desc]",
+				}
+			).then(res => {
+        this.posts = res.results;
+      })
+    },
   },
   async beforeMount() {
     try {
@@ -130,16 +199,19 @@ export default {
         this.$prismic.predicates.at("document.type", "blog_category")
       );
 
-      const posts = await this.$prismic.api.query(
+      await this.$prismic.api.query(
         this.$prismic.predicates.at("document.type", "blog_post"),
         {
           orderings: "[my.blog_post.publish_date desc]",
-          pageSize: 1000
+					pageSize: this.pageSize * parseInt(this.currentPage),
         }
-      );
-
-      this.categories = categories.results;
-      this.posts = posts.results;
+      ).then(res => {
+        if (res.next_page) {
+          this.showLoadMoreButton = true
+        }
+         this.categories = categories.results;
+          this.posts = res.results
+      });
     } catch (e) {
       console.log(e);
     }
