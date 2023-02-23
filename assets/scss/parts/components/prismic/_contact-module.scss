@@ -3,6 +3,7 @@
   padding: 100px 7vw 40px;
   background: $brand-primary;
   display: flex;
+  gap: 50px;
 
   @include for-tablet {
     flex-direction: column;
