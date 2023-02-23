@@ -81,7 +81,8 @@
                   )
                 "
               >
-                {{ $prismic.asText(post.data.link_title) }}
+                <span>→</span>
+                <span>{{ $prismic.asText(post.data.link_title) }}</span>
               </nuxt-link>
             </div>
           </div>

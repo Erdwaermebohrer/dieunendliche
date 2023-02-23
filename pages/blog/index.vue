@@ -1,15 +1,18 @@
 <template>
   <div :class="'page page__' + uid">
     <slices-wrapper :slices="slices" />
+    <blog-footer />
   </div>
 </template>
 
 <script>
 import SlicesWrapper from "../../components/prismic/SlicesWrapper.vue";
+import BlogFooter from "../../components/layout/BlogFooter.vue";
 
 export default {
   components: {
     "slices-wrapper": SlicesWrapper,
+    BlogFooter
   },
   head() {
     return {
@@ -80,10 +83,9 @@ export default {
   async asyncData({ app, $prismic, error }) {
     try {
       const result = await $prismic.api.getSingle("blog");
-
       return {
         slices: result.data.body,
-        page: result.data,
+        page: result.data
       };
     } catch (e) {
       error({ statusCode: 404, message: "Page not found" });

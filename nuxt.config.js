@@ -72,11 +72,7 @@ export default {
             // of a Content Relationship field in the Custom Type.
             category: 'category'
           }
-        },
-        {
-          type: 'blog_category',
-          path: '/blog/:uid',
-        },
+        }
       ]
     },
   },

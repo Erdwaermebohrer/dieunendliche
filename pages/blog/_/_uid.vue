@@ -1,16 +1,19 @@
 <template>
   <div :class="'page page__' + uid">
     <slices-wrapper :slices="slices" :page="page" />
+    <blog-footer />
   </div>
 </template>
 
 <script>
 import SlicesWrapper from "../../../components/prismic/SlicesWrapper.vue";
+import BlogFooter from "../../../components/layout/BlogFooter.vue";
 
 export default {
   name: "blog-post",
   components: {
     "slices-wrapper": SlicesWrapper,
+     BlogFooter
   },
   head() {
     return {
@@ -57,28 +60,7 @@ export default {
       uid: "post",
     };
   },
-  mounted() {
-    if (this.page) {
-      var originalLocation = localStorage.getItem('originalLocation');
-      if(!originalLocation){
-        originalLocation = document.location.protocol+'//'+
-          document.location.hostname+
-          document.location.pathname+
-          document.location.search;
-        localStorage.setItem('originalLocation',originalLocation);
-      }
-
-      window.dataLayer.push({
-        event: "pageview",
-        title: this.$prismic.asText(this.page.data.meta_title)
-          ? this.$prismic.asText(this.page.data.meta_title)
-          : "Nelly Solutions",
-        uid: this.uid,
-        originalLocation: originalLocation
-      });
-    }
-  },
-  async asyncData({ $prismic, params, error }) {
+  async asyncData({$prismic, params, error}) {
     try {
       var slug = params.uid;
       const result = await $prismic.api.getByUID("blog_post", slug);

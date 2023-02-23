@@ -183,6 +183,23 @@
               line-height: 17.75px;
               color: $brand-primary;
               text-decoration: none;
+              display: flex;
+              gap: 10px;
+              transition: $default-transition;
+
+              &:hover {
+                opacity: $default-opacity;
+              }
+
+              span {
+                &:first-child {
+                  text-decoration: none;
+                }
+
+                &:nth-child(2) {
+                  text-decoration: underline;
+                }
+              }
             }
           }
         }
