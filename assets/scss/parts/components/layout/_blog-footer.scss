@@ -4,6 +4,10 @@
   position: relative;
   background: $white;
 
+  @include for-tablet {
+    padding: 40px 20px;
+  }
+
   &--top {
     width: 100%;
 

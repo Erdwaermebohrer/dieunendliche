@@ -4,7 +4,7 @@
   background: $white;
 
   @include for-tablet {
-    padding: 40px 20px;
+    padding: 5px 20px 40px;
     flex-direction: column;
   }
 
@@ -29,6 +29,7 @@
   &--content {
     color: $brand-secondary;
 
+    .content >
     p {
       font-size: 16.8px;
       line-height: 23.52px;
@@ -38,6 +39,11 @@
         font-size: 22px;
         line-height: 26.4px;
         margin-bottom: 30px;
+
+        @include for-tablet {
+          font-size: 18px;
+          line-height: 24px;
+        }
       }
     }
 
@@ -50,6 +56,11 @@
       max-width: 70%;
       margin-bottom: 0.3em;
       margin-top: 40px;
+
+      @include for-tablet {
+        max-width: 100%;
+        margin-top: 5px;
+      }
     }
 
     h1,
@@ -100,6 +111,10 @@
     img {
       width: 100%;
       margin: 30px 0 80px;
+
+      @include for-tablet {
+        margin: 0;
+      }
     }
   }
 }
