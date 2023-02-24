@@ -11,7 +11,7 @@
     <div class="contact-module__wrapper--right">
       <form class="form-fields__wrapper--content"
         name="Contact form Unendliche"
-        id="form"
+        :id="slice.primary.id"
         data-netlify="true"
         @submit.prevent="checkFields(formFields)">
         <input type="hidden" name="form-name" value="Contact form Unendliche" />
@@ -117,7 +117,7 @@ export default {
 
       if(!this.showErrorMessage){
 
-       let myForm = document.getElementById("form");
+       let myForm = document.getElementById(this.slice.primary.id);
         let formData = new FormData(myForm);
         fetch("/", {
           method: "POST",
