@@ -10,11 +10,11 @@
     </div>
     <div class="contact-module__wrapper--right">
       <form class="form-fields__wrapper--content"
-        name="Contact form Unendliche"
+        :name="slice.primary.id"
         :id="slice.primary.id"
         data-netlify="true"
         @submit.prevent="checkFields(formFields)">
-        <input type="hidden" name="form-name" value="Contact form Unendliche" />
+        <input type="hidden" name="form-name" :value="slice.primary.id" />
         <div class="fields__wrapper">
           <div
             class="fields__wrapper--item"
