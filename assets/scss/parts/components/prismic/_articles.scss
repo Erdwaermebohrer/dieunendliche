@@ -50,6 +50,10 @@
 
         &:hover {
           opacity: $default-opacity;
+
+          @include for-tablet {
+            opacity: 1;
+          }
         }
       }
       .active {
