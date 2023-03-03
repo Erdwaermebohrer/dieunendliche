@@ -19,14 +19,14 @@ export default {
   //   return {
   //     title: this.$prismic.asText(this.page.meta_title)
   //       ? this.$prismic.asText(this.page.meta_title)
-  //       : "CRU Scaffold",
+  //       : "Die Unendliche – Energie für Generationen",
   //     meta: [
   //       {
   //         hid: "description",
   //         name: "description",
   //         content: this.$prismic.asText(this.page.meta_description)
   //           ? this.$prismic.asText(this.page.meta_description)
-  //           : "CRU Scaffold",
+  //           : "Die Unendliche – Energie für Generationen",
   //       },
   //       {
   //         hid: "og:image",
@@ -40,7 +40,7 @@ export default {
   //         property: "og:title",
   //         content: this.$prismic.asText(this.page.meta_title)
   //           ? this.$prismic.asText(this.page.meta_title)
-  //           : "CRU Scaffold",
+  //           : "Die Unendliche – Energie für Generationen",
   //       },
   //       {
   //         hid: "og:description",
@@ -48,7 +48,7 @@ export default {
   //         property: "og:description",
   //         content: this.$prismic.asText(this.page.meta_description)
   //           ? this.$prismic.asText(this.page.meta_description)
-  //           : "CRU Scaffold",
+  //           : "Die Unendliche – Energie für Generationen",
   //       },
   //     ],
   //   };
