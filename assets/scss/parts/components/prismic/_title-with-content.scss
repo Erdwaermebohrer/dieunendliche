@@ -1,0 +1,44 @@
+.title-with-content__wrapper {
+  width: 100%;
+  padding: 120px 40px 40px;
+  position: relative;
+  display: flex;
+  background: $white;
+  justify-content: space-between;
+  flex-direction: column;
+
+  @include for-tablet {
+    padding: 120px 20px 20px;
+    flex-direction: column;
+  }
+
+  .title {
+    .headline-component__wrapper {
+      > * {
+        color: $brand-secondary;
+        font-size: 27px;
+        line-height: 29px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .description {
+    max-width: 48%;
+    
+    @include for-tablet {
+      max-width: 100%;
+    }
+
+    > * {
+      font-size: 16.8px;
+      font-weight: 400;
+      line-height: 26.88px;
+      color: $brand-secondary;
+
+      @include for-tablet {
+        padding-top: 20px;
+      }
+    }
+  }
+}

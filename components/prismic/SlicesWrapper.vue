@@ -91,6 +91,10 @@
           <steps :slice="slice" />
         </template>
 
+        <template v-if="slice.slice_type === 'titlewithcontent'">
+          <title-with-content :slice="slice" />
+        </template>
+
         <template v-if="slice.slice_type === 'titleandplaintext'">
           <title-and-plain-text :slice="slice" />
         </template>
@@ -152,6 +156,7 @@ import ImagesWithRoles from "./items/ImagesWithRoles.vue";
 import Process from "./items/Process.vue";
 import Steps from "./items/Steps.vue";
 import TitleAndPlainText from "./items/TitleAndPlainText.vue";
+import TitleWithContent from "./items/TitleWithContent.vue";
 import TitleDescription from "./items/TitleDescription.vue";
 import TitleDescriptionLink from "./items/TitleDescriptionLink.vue";
 import TitleSubtitleDescription from "./items/TitleSubtitleDescription.vue";
@@ -188,6 +193,7 @@ export default {
     Process,
     Steps,
     TitleAndPlainText,
+    TitleWithContent,
     TitleDescription,
     TitleDescriptionLink,
     TitleSubtitleDescription,
