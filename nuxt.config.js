@@ -22,6 +22,7 @@ export default {
   ],
   modules: [
     "@nuxtjs/axios",
+    '@nuxtjs/moment',
     "@nuxtjs/prismic",
     "@nuxtjs/pwa",
     [
@@ -62,6 +63,15 @@ export default {
         {
           type: 'custom-form',
           path: '/forms/:uid',
+        },
+        {
+          type: 'blog_post',
+          path: '/blog/:category/:uid',
+          resolvers: {
+            // A list of “path variables” mapped to the API ID
+            // of a Content Relationship field in the Custom Type.
+            category: 'category'
+          }
         }
       ]
     },

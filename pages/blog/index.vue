@@ -1,0 +1,95 @@
+<template>
+  <div :class="'page page__' + uid">
+    <slices-wrapper :slices="slices" />
+    <blog-footer />
+  </div>
+</template>
+
+<script>
+import SlicesWrapper from "../../components/prismic/SlicesWrapper.vue";
+import BlogFooter from "../../components/layout/BlogFooter.vue";
+
+export default {
+  components: {
+    "slices-wrapper": SlicesWrapper,
+    BlogFooter
+  },
+  head() {
+    return {
+      title: this.$prismic.asText(this.page.meta_title)
+        ? this.$prismic.asText(this.page.meta_title)
+        : "Die Unendliche – Energie für Generationen",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.$prismic.asText(this.page.meta_description)
+            ? this.$prismic.asText(this.page.meta_description)
+            : "Die Unendliche – Energie für Generationen",
+        },
+        {
+          hid: "og:image",
+          name: "image",
+          property: "og:image",
+          content: this.page.og_image.url ? this.page.og_image.url : "",
+        },
+        {
+          hid: "og:title",
+          name: "title",
+          property: "og:title",
+          content: this.$prismic.asText(this.page.meta_title)
+            ? this.$prismic.asText(this.page.meta_title)
+            : "Die Unendliche – Energie für Generationen",
+        },
+        {
+          hid: "og:description",
+          name: "description",
+          property: "og:description",
+          content: this.$prismic.asText(this.page.meta_description)
+            ? this.$prismic.asText(this.page.meta_description)
+            : "Die Unendliche – Energie für Generationen",
+        },
+      ],
+    };
+  },
+  data() {
+    return {
+      page: [],
+      slices: [],
+      uid: "blog",
+    };
+  },
+  mounted() {
+    if (this.page) {
+      var originalLocation = localStorage.getItem('originalLocation');
+      if(!originalLocation){
+        originalLocation = document.location.protocol+'//'+
+          document.location.hostname+
+          document.location.pathname+
+          document.location.search;
+        localStorage.setItem('originalLocation',originalLocation);
+      }
+
+      window.dataLayer.push({
+        event: "pageview",
+        title: this.$prismic.asText(this.page.meta_title)
+          ? this.$prismic.asText(this.page.meta_title)
+          : "Nelly Solutions",
+        uid: this.uid,
+        originalLocation: originalLocation
+      });
+    }
+  },
+  async asyncData({ app, $prismic, error }) {
+    try {
+      const result = await $prismic.api.getSingle("blog");
+      return {
+        slices: result.data.body,
+        page: result.data
+      };
+    } catch (e) {
+      error({ statusCode: 404, message: "Page not found" });
+    }
+  },
+};
+</script>
