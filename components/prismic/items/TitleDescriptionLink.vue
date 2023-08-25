@@ -14,10 +14,22 @@
       <div class="link__wrapper">
         <div>
           <a 
-            v-if="slice.primary.link && $prismic.asText(slice.primary.link_title)"
+            v-if="slice.primary.link && slice.primary.link.link_type != 'Web' && $prismic.asText(slice.primary.link_title)"
             class="link__wrapper--link"
             target="_blank"
             :href="$prismic.linkResolver(slice.primary.link)"
+          >
+            <img
+              class="link__wrapper--icon"
+              src="~assets/svg/arrow-right-white.svg"
+            />
+            <span>{{$prismic.asText(slice.primary.link_title)}}</span>
+          </a>
+          <a 
+            v-if="slice.primary.link && slice.primary.link.link_type == 'Web'  && $prismic.asText(slice.primary.link_title)"
+            class="link__wrapper--link"
+            target="_blank"
+            :href="slice.primary.link.url"
           >
             <img
               class="link__wrapper--icon"
