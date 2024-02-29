@@ -11,3 +11,4 @@ sw.*
 dist
 dist/.
 
+.DS_Store
