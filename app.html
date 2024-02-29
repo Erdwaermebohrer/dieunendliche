@@ -9,17 +9,6 @@
   </head>
   <body {{ BODY_ATTRS }}>
 
-    <!-- Google tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91846216-2">
-    </script>
-    <script type="text/plain" data-cookiecategory="analytics">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-91846216-2');
-    </script>
-
     {{ APP }}
 
     <script>
@@ -35,27 +24,6 @@
         autorun: true,
         delay: 1000,
         page_scripts: true,
-
-        // onAccept: function(cookies) {
-        //   if (cookieconsent.allowedCategory("analytics")) {
-
-        //     var gID = '{{ process.env.GTAG_TRACKING_ID }}';
-        //     if(gID != 'xxx' && gID != ''){
-        //       cookieconsent.loadScript(
-        //         "https://www.googletagmanager.com/gtag/js?id="+gID,
-        //         function() {
-        //           window.dataLayer = window.dataLayer || [];
-        //           function gtag() {
-        //             dataLayer.push(arguments);
-        //           }
-        //           gtag("js", new Date());
-                  
-        //           gtag("config", gID, { 'anonymize_ip': true });
-        //         }
-        //       );
-        //     }
-        //   }
-        // },
 
         languages: {
           de: {
@@ -93,16 +61,6 @@
                     readonly: true
                   }
                 },
-                {
-                  title: "Statistiken",
-                  description:
-                    "Ausschließlich für interne Zwecke. Dies hilft uns nachzuvollziehen, wie unsere Seite genutzt wird, um sie dahingehend zu verbessern.",
-                  toggle: {
-                    value: "analytics",
-                    enabled: false,
-                    readonly: false
-                  }
-                }
               ]
             }
           }
